@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PUC Oportunidades - Perfil do Aluno</title>
+    <!-- Fonte e ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- CSS do projeto (estilos em português e comentados) -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Cabeçalho: marca + busca + botões de ação -->
+    <header class="cabecalho">
+        <div class="container">
+            <!-- Marca / logo do site -->
+            <h1 class="marca">PUC OPORTUNIDADES</h1>
+
+            <!-- Ações do cabeçalho: busca, notificações, menu móvel -->
+            <div class="acoes-cabecalho">
+                <!-- Caixa de busca (apenas visual, sem JS) -->
+                <div class="busca">
+                    <span class="material-icons">search</span>
+                    <input type="text" placeholder="Buscar vagas..." aria-label="Buscar vagas" />
+                </div>
+
+                <!-- Botões de ação (texto usado aqui, pode trocar por ícone) -->
+                <button class="botao-icone" aria-label="Notificações"><span class="material-icons">notifications</span></button>
+                <button class="botao-icone botao-menu" aria-label="Menu"><span class="material-icons">menu</span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="container principal">
+
+        <!-- Cartão de perfil: avatar, informações e ações -->
+        <section class="cartao-perfil card">
+            <div class="perfil-esquerda">
+                <div class="avatar">
+                    <img src="https://quirinopolis.go.gov.br/wp-content/uploads/2025/01/Programa-Bolsa-Universitaria-2025.png" alt="Maria Alves">
+                </div>
+                <div class="info-perfil">
+                    <h2 class="nome">Maria Alves</h2>
+                    <p class="texto-secundario">Engenharia de Produção - 5º período</p>
+                    <p class="texto-pequeno">ID 203948 - CR 7,9 - 84/180 créditos</p>
+                </div>
+            </div>
+
+            <!-- Ações do perfil -->
+            <div class="acoes-perfil">
+                <button class="btn btn-secundario"><span class="material-icons">edit</span> Editar Perfil</button>
+                <button class="btn btn-primario"><span class="material-icons">save</span> Salvar Alterações</button>
+            </div>
+        </section>
+
+        <!-- Layout principal: coluna esquerda (sidebar) + coluna direita (conteúdo) -->
+        <div class="estrutura">
+
+            <!-- Coluna esquerda: informações, competências, notificações -->
+            <aside class="coluna-esquerda">
+                <div class="card">
+                    <h3>Informações do Perfil</h3>
+                    <div class="grade-info">
+                        <div><p class="rotulo">Curso</p><p class="valor">Eng. de Produção</p></div>
+                        <div><p class="rotulo">Período</p><p class="valor">5º</p></div>
+                        <div><p class="rotulo">Disponibilidade</p><p class="valor">20-30h/sem</p></div>
+                        <div><p class="rotulo">Modalidade</p><p class="valor">Remoto/Híbrido</p></div>
+                        <div><p class="rotulo">CR</p><p class="valor">7,4</p></div>
+                        <div><p class="rotulo">Créditos</p><p class="valor">84/180</p></div>
+                    </div>
+
+                    <!-- Progresso de horas complementares -->
+                    <div class="bloco-progresso">
+                        <p class="rotulo">Progresso de AC</p>
+                        <div class="progresso"><div class="barra-progresso" style="width:83%"></div></div>
+                        <p class="texto-pequeno direita">83/100 horas complementares cumpridas</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Competências</h3>
+                    <div class="grupo-tags">
+                        <div class="tag">Excel Avançado</div>
+                        <div class="tag">Python</div>
+                        <div class="tag">Power BI</div>
+                        <div class="tag">Estatística</div>
+                        <div class="tag">Operações</div>
+                        <div class="tag">Dados</div>
+                        <div class="tag">Consultoria</div>
+                        <div class="tag">Inovação</div>
+                        <div class="tag">Português (Nativo)</div>
+                        <div class="tag">Inglês (B1)</div>
+                        <div class="tag">Espanhol (B1)</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Notificações</h3>
+                    <ul class="notificacoes">
+                        <li>
+                            <div class="nota-esquerda"><span class="material-icons">work</span><span>Vagas de Eng. de Produção com bolsa &gt; R$ 2.000</span></div>
+                            <input type="checkbox" checked />
+                        </li>
+                        <li>
+                            <div class="nota-esquerda"><span class="material-icons">event</span><span>Novos eventos e palestras</span></div>
+                            <input type="checkbox" />
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Coluna direita: abas + vaga em destaque -->
+            <section class="coluna-direita">
+                <div class="card cartao-navegacao">
+                    <nav class="abas">
+                        <a class="aba" href="#">Recomendações</a>
+                        <a class="aba" href="#">Favoritos</a>
+                        <a class="aba" href="#">Minhas Inscrições</a>
+                        <a class="aba" href="#">Equipes &amp; IC</a>
+                        <a class="aba" href="#">Preferências</a>
+                    </nav>
+                </div>
+
+                <div class="card cartao-vaga">
+                    <div class="topo-vaga">
+                        <div>
+                            <h4>Estágio</h4>
+                            <div class="meta-vaga">
+                                <span><span class="material-icons">place</span> Remoto</span>
+                                <span><span class="material-icons">schedule</span> 20-30h</span>
+                                <span><span class="material-icons">attach_money</span> Bolsa R$ 2.200</span>
+                                <span><span class="material-icons">school</span> Requer: 60+ créditos</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="botao-link">Ver detalhes</button>
+                        </div>
+                    </div>
+
+                    <div class="acoes-vaga">
+                        <button class="btn btn-primario largura-total"> <span class="material-icons">send</span> Candidatar</button>
+                        <button class="btn btn-outline largura-total"> <span class="material-icons">favorite_border</span> Favoritar</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+</body>
+</html>
