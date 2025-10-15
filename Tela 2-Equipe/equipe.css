@@ -1,0 +1,101 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background:var(--background);
+        color:var(--text);
+        -webkit-font-smoothing:antialiased
+}
+
+:root{
+    --primary: #6D28D9; 
+    --muted: #6B7280;
+    --radius: 8px;
+    --container-max: 1100px;
+    --space: 16px; /* espaçamento base simples */
+}
+
+.main{
+    max-width:var(--container-max);
+    margin:0 auto;
+    padding:0 var(--space)
+}
+
+.cabecalho{
+    background:var(--primary);
+    box-shadow:0 2px 6px rgba(0,0,0,0.08)
+}
+
+.cabecalho .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:80px
+}
+
+.marca{
+    color:#fff;
+    font-weight:700;
+    font-size:20px;
+    margin:0; 
+    font-family: Arial;
+}
+
+.acoes-cabecalho{
+    display:flex;
+    gap:12px;
+    align-items:center; 
+}
+
+
+.busca{
+    display:flex;
+    background-image: url('../img/lupa_branca\ \(3\).png');
+    align-items:center;
+    background-position: right 0.5em center;
+    background-repeat: no-repeat;
+    background-size: 1em;
+    padding-left: 2em;
+    border-radius: 0.6em;
+    background:rgba(255,255,255,0.12);
+    padding:6px 10px;
+    border-radius:999px;
+    font-size: 0.7em;
+    color:#fff
+}
+
+.busca input{
+    border:0;
+    background:transparent;
+    color:#fff;
+    outline:none;
+    width:160px
+}
+
+
+.vermaisFoto {
+        width: 2.8em;
+        height: 2.8em;
+        position: absolute;
+        left: 1.8em;
+        z-index: 1000;
+        margin-top: 3.4%;
+}
+
+
+h2{
+    font-size: 20pt;
+    background-color: rgb(222, 101, 1) ;
+    border-radius: 100px;
+    color: white; 
+    font-family: sans-serif;
+    margin-top: 2em;
+    margin-left: 1em;
+    width: 22em; 
+    height: 4em; 
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 1em; 
+    padding-top: 1em;
+}
