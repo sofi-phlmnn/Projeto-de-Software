@@ -1,0 +1,310 @@
+
+:root {
+  --primario: #6d28d9;
+  --fundo-claro: #f3f4f6;
+  --fundo-escuro: #1f2937;
+  --cartao-claro: #ffffff;
+  --cartao-escuro: #374151;
+  --texto-claro: #111827;
+  --texto-escuro: #f9fafb;
+  --texto-secundario-claro: #6b7280;
+  --texto-secundario-escuro: #d1d5db;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body.corpo-site { 
+    font-family: 'Montserrat', sans-serif;
+    background: var(--fundo-claro);
+    color: var(--texto-claro);
+    margin: 5;
+    text-align: center;
+}
+
+.container-principal { 
+    max-width: 1200px; 
+    margin-left: auto; 
+    margin-right:auto; 
+    padding-left: 224px; 
+    padding-right: 224px; 
+}
+
+@media (min-width: 640px) { 
+    .container-principal { padding-left: 24px; 
+    padding-right: 24px; } 
+}
+@media (min-width: 1024px) { 
+    .container-principal { padding-left: 32px; 
+    padding-right: 32px; } 
+}
+
+.cabecalho-site { 
+    background: var(--primario);
+    color: white; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+}
+.cabecalho-interno { 
+    display:flex; 
+    align-items:center; 
+    justify-content:space-between; 
+    height:80px; 
+}
+.titulo-site {
+    font-size: 47.6px; 
+    font-weight:900; 
+    margin:0; 
+}
+@media (min-width:640px) { 
+    .titulo-site { font-size:30px; } 
+}
+
+.acoes { 
+    display:flex; 
+    gap:16px; 
+    align-items:center; 
+}
+.caixa-pesquisa { 
+    display:flex; 
+    align-items:center; 
+    background: rgba(255,255,255,0.12); 
+    border-radius:9999px; 
+    overflow:hidden; 
+}
+.caixa-pesquisa input[type="text"] { 
+    background:transparent; 
+    border:0; 
+    color:white; 
+    padding:8px 12px; 
+    width:192px; 
+}
+.botao-icone { 
+    background:transparent; 
+    border:0; 
+    padding:8px; 
+    color:white; 
+    cursor:pointer; 
+    display:inline-flex; 
+    align-items:center; 
+    justify-content:center; 
+}
+.botao-icone:hover {
+     background: rgba(255,255,255,0.08); 
+    }
+
+.secao-principal { 
+    padding-top:32px; 
+    padding-bottom:32px; 
+}
+@media (min-width:640px) { 
+    .secao-principal { padding-top:48px; 
+    padding-bottom:48px; } 
+}
+.titulo-pagina { color: var(--primario); 
+    font-size:32px; 
+    margin:0 0 8px 0; }
+@media (min-width:640px){ 
+    .titulo-pagina{ font-size:40px; } 
+}
+.subtitulo { 
+    color: var(--texto-secundario-claro); 
+    margin:0; 
+}
+
+.cartao { 
+    background: var(--cartao-claro); 
+    border-radius:8px; 
+    padding:24px; 
+    box-shadow: 0 6px 12px rgba(0,0,0,0.06); 
+}
+.grade-cartoes { 
+    display:grid; 
+    grid-template-columns:1fr; 
+    gap:32px; 
+}
+@media (min-width:768px) { 
+    .grade-cartoes { grid-template-columns: repeat(2,1fr); } 
+}
+@media (min-width:1024px) { 
+    .grade-cartoes { grid-template-columns: repeat(3,1fr); } 
+}
+.icone-wrapper { 
+    width:80px; 
+    height:80px; 
+    border-radius:50%; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    margin-bottom:16px; 
+}
+.cartao h4 { 
+    margin:0 0 16px 0; 
+    font-size:18px; 
+}
+.texto-pequeno { 
+    color: var(--texto-secundario-claro); 
+    margin:0; 
+}
+
+.cartao-atividade { 
+    background:var(--cartao-claro); 
+    border-radius:8px; 
+    padding:24px; 
+    box-shadow:0 4px 6px rgba(0,0,0,0.06); 
+}
+
+.fundo-azul { background:#3b82f6; }
+.fundo-verde { background:#10b981; }
+.fundo-amarelo { background:#f59e0b; }
+.fundo-vermelho { background:#ef4444; }
+.fundo-indigo { background:#6366f1; }
+.fundo-rosa { background:#ec4899; }
+
+.tabela-regulamento { 
+    width:100%; 
+    min-width:700px; 
+    border-collapse:collapse; 
+}
+.tabela-regulamento thead th { 
+    text-align:left; 
+    padding:12px 16px; 
+    border-bottom:2px solid #e5e7eb; 
+    color:var(--texto-secundario-claro); 
+    font-size:14px; 
+    letter-spacing:0.05em; 
+    text-transform:uppercase; 
+}
+.tabela-regulamento tbody td { 
+    padding:16px;
+    border-top:1px solid var(--fundo-claro);
+    vertical-align:top; 
+    }
+.tabela-regulamento tr:hover { 
+    background:#f9fafb; 
+}
+
+.rodape-site { 
+    background:#111827; 
+    color:white; 
+    margin-top:48px; 
+}
+.rodape-site .container-principal { 
+    padding-top:32px; 
+    padding-bottom:32px; 
+    text-align:center; 
+}
+.nota-rodape { 
+    color:#9ca3af; 
+}
+
+.sobreposicao-modal { position:fixed; 
+    inset:0; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    background:rgba(0,0,0,0.6); 
+    z-index:50; 
+}
+.conteudo-modal { 
+    background: var(--cartao-claro); 
+    border-radius:8px; 
+    max-width:640px; 
+    width:100%; 
+    max-height:90vh; 
+    overflow:auto; 
+}
+
+.margem-baixo-minima { 
+    margin-bottom:8px; 
+}
+.margem-baixo-pequena { 
+    margin-bottom:16px; 
+}
+.margem-topo-media { 
+    margin-top:16px; 
+}
+
+.container-principal {
+    max-width:1200px; 
+    margin-left:auto; 
+    margin-right:auto; 
+    padding-left:1024px; 
+    padding-right:1024px; 
+    padding-top:64px; 
+    padding-bottom:64px; 
+}
+@media (min-width:640px) { 
+    .container-principal { 
+        padding-top:48px;
+         padding-bottom:48px; 
+         padding-left:24px; 
+         padding-right:24px; 
+        } }
+
+.cartao-destaque { 
+    background: var(--cartao-claro); 
+    border-radius:8px; 
+    padding:24px; 
+    box-shadow:0 6px 12px rgba(0,0,0,0.06); 
+    margin-bottom:16px; 
+}
+
+.secao-atividades { 
+    margin-bottom:48px;
+}
+
+.cartao-atividade { 
+    background:var(--cartao-claro); 
+    border-radius:8px; 
+    padding:24px; 
+    box-shadow:0 4px 6px rgba(0,0,0,0.06); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    cursor: pointer; 
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    text-align:center; 
+}
+.cartao-atividade:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); 
+}
+
+.icone-ensino, .icone-eventos, .icone-culturais, .icone-voluntariado, .icone-profissionais, .icone-outras {
+    width:80px; 
+    height:80px; 
+    border-radius:50%;
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    margin-bottom:16px; 
+    color:white;
+}
+.icone-ensino { background:#3b82f6; }
+.icone-eventos { background:#10b981; }
+.icone-culturais { background:#f59e0b; }
+.icone-voluntariado { background:#ef4444; }
+.icone-profissionais { background:#6366f1; }
+.icone-outras { background:#ec4899; }
+.icone-ensino .material-icons, .icone-eventos .material-icons, .icone-culturais .material-icons, .icone-voluntariado .material-icons, .icone-profissionais .material-icons, .icone-outras .material-icons { 
+    font-size:32px; 
+    color:white; 
+}
+
+.titulo-central { 
+    text-align:center; 
+    font-size:24px; 
+    margin-bottom:32px; 
+    color:var(--primario); 
+}
+.transbordamento-auto { 
+    overflow-x:auto; 
+}
+.espacamento-topo {
+    margin-top:16px; 
+}
+.nota-rodape { 
+    margin-top:8px; 
+    color:#9ca3af; 
+}
+
+
