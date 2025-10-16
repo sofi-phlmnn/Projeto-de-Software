@@ -152,3 +152,57 @@ color: rgb(81, 80, 80);
     text-align: center;
 }
 
+.boxintegrantes{
+    color: rgb(81, 80, 80); 
+    box-shadow: 1px 7px 7px -7px #333;
+    background-color: white;
+    margin: 1em; 
+    padding: 3em;
+    border-radius: 1em;
+    font-family: 'Arial' ; /*mudar fonte*/ 
+    font-size: 12pt;
+    line-height: 1.5;
+    margin-bottom: 4em;
+    width: 30em; 
+    display: inline-block; 
+    margin-left: 5%;
+    
+}
+.first{
+    margin-left: 20%;
+}
+.fotointegrantes{
+    width: 25em; 
+    height: 20em;
+}
+
+
+.linkedin{
+    width: 3em; 
+    height: 3em;
+}
+
+.insta{
+    width: 6.5em; 
+    height: 6.5em;
+    margin-bottom: -7.5%; 
+    margin-right: -3%;
+    margin-left: 15.5%;
+}
+
+.git{
+    width: 5em; 
+    height: 4.3em; 
+    margin-bottom: -2%;
+    margin-right: 4%;
+}
+
+.nome{
+    font-size: 17pt; 
+    text-align: center;
+    color: black; 
+}
+
+.textopessoal{
+    text-align: center;
+}
