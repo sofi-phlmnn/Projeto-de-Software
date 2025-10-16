@@ -13,16 +13,16 @@
         box-sizing: border-box;
 }
 body{
-    background-color:  #e2e0e0 ;
+    background-color: rgb(235, 235, 235)  ;
 }
 #container{
-    background-color: #e2e0e0 ;
+    background-color: rgb(235, 235, 235) ;
 }
 
 body {
         margin: 0;
         padding: 0;
-        background-color: #ffffff;
+        background-color: rgb(235, 235, 235) ;
 }
 
 nav {
@@ -116,30 +116,15 @@ h1 a:link {
 }
 
 .bubbleequipe{
-    width: 31em; 
-    height: 16em; 
+    width: 35em; 
+    height: 19em; 
     margin-top: -2.5em;
     margin-left: -4em;
     margin-bottom: -4em;
 
 }
 
-h2{
-    font-size: 20pt;
-    background-color: rgb(222, 101, 1) ;
-    border-radius: 100px;
-    color: white; 
-    font-family: sans-serif;
-    margin-top: 2em;
-    margin-left: 1em;
-    width: 22em; 
-    height: 4em; 
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    padding: 1em; 
-    padding-top: 1em;
-}
+
 
 .boxtext{
     color: rgb(81, 80, 80); 
@@ -217,7 +202,7 @@ footer a:link {
     margin-left: 2em;
 }
 .sobreequipe{
-    margin-left: 76em;
+    margin-left: 102em;
 }
 
 #pegasus{
