@@ -7,81 +7,122 @@
         -webkit-font-smoothing:antialiased
 }
 
-:root{
-    --primary: #6D28D9; 
-    --muted: #6B7280;
-    --radius: 8px;
-    --container-max: 1100px;
-    --space: 16px; /* espaçamento base simples */
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+body{
+    background-color:  #e2e0e0 ;
+}
+#container{
+    background-color: #e2e0e0 ;
 }
 
-.main{
-    max-width:var(--container-max);
-    margin:0 auto;
-    padding:0 var(--space)
+body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
 }
 
-.cabecalho{
-    background:var(--primary);
-    box-shadow:0 2px 6px rgba(0,0,0,0.08)
+nav {
+        margin-bottom: 20px;
 }
 
-.cabecalho .container{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    height:80px
+nav a {
+        margin-right: 15px;
+        font-size: 1.2em;
 }
 
-.marca{
-    color:#fff;
-    font-weight:700;
-    font-size:20px;
-    margin:0; 
-    font-family: Arial;
+#products {
+        max-width: 70%;
+        margin-left: 7.5%;
+        /*margin-right: 25%;*/
+        align-items: center;
 }
 
-.acoes-cabecalho{
-    display:flex;
-    gap:12px;
-    align-items:center; 
+h1 {
+        padding: 0.3em;
+        font-family: 'Arial';
+        font-size: 1.6em;
+        text-align: center;
+        color: #fff;
+        background-color: #6D28D9;
+        display: inline-block;
+        margin-left: 2.3%;
+        margin-top: 1.5em ;
+}
+
+h1 a:hover,
+h1 a:link {
+        color: inherit;
+        text-decoration: none;
+}
+
+#titulo {
+        background-color: #6D28D9;
+        box-shadow: 0 4px 6px -6px #333;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5em; 
+}
+
+.pesquisa {
+        background-image: url('../img/lupa_branca\ \(3\).png');
+        margin-top: inherit;
+        cursor: pointer;
+        background-position: right 0.5em center;
+        background-repeat: no-repeat;
+        background-size: 1em;
+        padding-left: 2em;
+        border-radius: 0.6em;
+        padding: 0.9em;
+        width: 32em;
+        height: 3.5em;
+        border: solid 0.1em #ffffff;
+        outline: none;
+        background-color: #ffffff48;
+        font-size: 0.7em;
+        color: white;
+        margin-right: -2em;
 }
 
 
-.busca{
-    display:flex;
-    background-image: url('../img/lupa_branca\ \(3\).png');
-    align-items:center;
-    background-position: right 0.5em center;
-    background-repeat: no-repeat;
-    background-size: 1em;
-    padding-left: 2em;
-    border-radius: 0.6em;
-    background:rgba(255,255,255,0.12);
-    padding:6px 10px;
-    border-radius:999px;
-    font-size: 0.7em;
-    color:#fff
+
+.icones {
+        display: flex;
+        align-items: center;
+        margin-top: 2%;
+        gap: 3em ;
+
 }
 
-.busca input{
-    border:0;
-    background:transparent;
-    color:#fff;
-    outline:none;
-    width:160px
+.formulario {
+  display: flex;
+  align-items: center;
 }
-
 
 .vermaisFoto {
-        width: 2.8em;
-        height: 2.8em;
-        position: absolute;
+        width: 2.4em;
+        height: 2.4em;
+         display: inline-flex;
+        margin-top: inherit;
+        cursor: pointer;
         left: 1.8em;
         z-index: 1000;
         margin-top: 3.4%;
+        margin-right: 4em;
+        margin-bottom: 0.5em;
 }
 
+.bubbleequipe{
+    width: 31em; 
+    height: 16em; 
+    margin-top: -2.5em;
+    margin-left: -4em;
+    margin-bottom: -4em;
+
+}
 
 h2{
     font-size: 20pt;
@@ -98,4 +139,87 @@ h2{
     justify-content: center;
     padding: 1em; 
     padding-top: 1em;
+}
+
+.boxtext{
+    color: rgb(81, 80, 80); 
+     box-shadow: 1px 7px 7px -7px #333;
+     background-color: white;
+     margin: 2em; 
+     margin-left: 11.5em;
+     padding: 3em;
+     border-radius: 1em;
+     font-family: 'Arial' ; /*mudar fonte*/ 
+     font-size: 12pt;
+     line-height: 1.5;
+     margin-bottom: 4em;
+
+}
+
+.imgequipes{
+    border-radius: 0.3em;
+    width: 22em;
+    height: 12em; 
+    margin-right: 18em;
+    box-shadow:1px 7px 7px -7px #333 ;
+}
+
+.equipes{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    color: rgb(81, 80, 80); 
+     box-shadow: 0px 1px 8px #333333bb;
+     background-color: white;
+     margin: 2em; 
+     margin-left: 2em;
+     padding: 3em;
+     border-radius: 1em;
+     margin-bottom: 6em;
+     
+}
+
+.nomequipe{
+    font-family: 'Arial' ; /*mudar fonte*/ 
+    font-size: 20pt;
+    color: #6D28D9; 
+    margin-bottom: 0.7em ;
+}
+
+.textoequi{
+       flex-direction: column;
+       margin-left: -18em;
+}
+
+.textequipe{
+    font-family: 'Arial' ; /*mudar fonte*/ 
+    font-size: 12pt;
+    line-height: 1.5;
+ 
+
+
+}
+
+.rodape{
+    background-color: rgb(42, 41, 41);
+    margin-top: 4em;
+    font-family: 'Arial';
+    padding: 3em; 
+    color: white;
+}
+
+footer a:link {
+        color: inherit;
+        text-decoration: none;
+}
+
+.contato{
+    margin-left: 2em;
+}
+.sobreequipe{
+    margin-left: 76em;
+}
+
+#pegasus{
+    width: 23em; 
 }
