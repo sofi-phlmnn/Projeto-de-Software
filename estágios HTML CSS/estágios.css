@@ -1,0 +1,49 @@
+/* estilos básicos */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header {
+    background-color: #004b8d;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 1rem 2rem;
+}
+
+.program {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.5rem;
+}
+
+.program h2 {
+    margin-top: 0;
+    color: #004b8d;
+}
+
+.program ul {
+    margin-left: 1.5rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #e0e0e0;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
