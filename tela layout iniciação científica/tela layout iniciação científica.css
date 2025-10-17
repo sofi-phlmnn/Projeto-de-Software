@@ -1,0 +1,115 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte e fundo */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6fb;
+    color: #333;
+}
+
+/* Cabeçalho e Menu */
+header {
+    background-color: #003f37;
+    color: #fff;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.ativo {
+    background-color: #005b4f;
+}
+
+/* Banner topo */
+.banner {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(to right, #005b4f, #02796b);
+    color: #fff;
+}
+
+.banner h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.banner p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Cards de Programas */
+.program {
+    background-color: #fff;
+    margin: 1.5rem auto;
+    padding: 1.8rem;
+    border-radius: 10px;
+    max-width: 850px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos coloridos */
+.titulo-pibic {
+    color: #0074d9;
+}
+
+.titulo-lab {
+    color: #b10dc9;
+}
+
+.titulo-ecoa {
+    color: #2ecc40;
+}
+
+.program h3 {
+    margin-bottom: 0.6rem;
+    font-size: 1.4rem;
+}
+
+.program p {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.program ul li {
+    margin: 0.4rem 0;
+}
+
+footer {
+    background-color: #003f37;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
