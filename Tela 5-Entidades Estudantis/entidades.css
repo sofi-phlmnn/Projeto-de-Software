@@ -60,7 +60,7 @@ a{text-decoration:none;color:inherit}
 .entity-card__cta{margin-top:auto;align-self:flex-end;color:#6D28D9;font-weight:700;position:relative;z-index:2}
 
 .entity-card{color:#cbd5e1;margin-top:40px}
-.footer__inner{display:flex;justify-content:flex-end;gap:18px;height:64px;align-items:center;color: #334155;}
+.footer__inner{display:flex;justify-content:flex-end;gap:18px;height:64px;align-items:center}
 
 @media (max-width:980px){
   .entities-grid{grid-template-columns:1fr 1fr}
