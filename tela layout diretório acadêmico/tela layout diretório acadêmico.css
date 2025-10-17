@@ -1,0 +1,126 @@
+/* Reset Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+/* Cabeçalho e Menu */
+header {
+    background-color: #222;
+    color: white;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.ativo {
+    background-color: #444;
+    border-radius: 5px;
+}
+
+/* Banner */
+.banner {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+}
+
+.banner h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.banner p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Cards informativos */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #1e3c72;
+    margin-bottom: 0.7rem;
+}
+
+/* Seção Contato */
+.contato {
+    text-align: center;
+    padding: 2rem;
+}
+
+.contato h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.contato button {
+    padding: 0.7rem 1.5rem;
+    background-color: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.contato button:hover {
+    background-color: #1e3c72;
+}
+
+/* Rodapé */
+footer {
+    background-color: #222;
+    color: #ddd;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
