@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUC OPORTUNIDADES – Diretórios Acadêmicos</title>
+    <link rel="stylesheet" href="equipe.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+    <div id="container"> 
+        <header id="titulo"> 
+            <h1><a href="index.html">PUC OPORTUNIDADES</a></h1>
+
+            <div class="icones">
+                <form action="todosprod.html" method="get" class="formulario">
+                    <input id="pesquisa" name="pesquisa" class="pesquisa" type="search" placeholder="O que você procura?">
+                </form>
+
+                <label for="menu-toggle" class="vermaisFoto">
+                    <img src="../img/vermais_branco (1).png" alt="Abrir Menu">
+                </label>
+            </div> 
+        </header>
+
+        <section> 
+            <img class="bubbleequipe" alt="diretórios acadêmicos" src="../img/diretorios.png"/>
+
+            <p class="boxtext"> 
+                &nbsp; &nbsp; &nbsp;&nbsp;Os <strong>diretórios acadêmicos</strong> da PUC-Rio reúnem estudantes de cada curso para 
+                representar seus colegas, promover integração e fortalecer a vida universitária. Mais do que organizar eventos, 
+                divulgam oportunidades (estágios, monitorias, projetos) e atuam como ponte entre alunos, coordenações e empresas. 
+                Participar de um diretório é vivenciar trabalho em equipe, liderança e desenvolvimento profissional dentro e fora da universidade.
+            </p>
+
+            <!-- CARD 1 -->
+            <div class="equipes">
+                <img class="imgequipes" style="width: 150px; height: 150px" alt="Logo do DAAF" src="https://www.ctc.puc-rio.br/Upload/Imagem/2021/03/daaf.png"/>
+                <div class="textoequi"> 
+                    <h3 class="nomequipe">DAAF</h3>
+                    <p class="textequipe">
+                        &nbsp; &nbsp; &nbsp;&nbsp;O DAAF é responsável por acolher os alunos tanto academicamente quando socialmente, transformando a Engenharia da PUC na melhor possível!
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="equipes">
+                <img class="imgequipes" style="width: 150px; height: 150px" alt="Logo do DAQEQ" src="https://www.ctc.puc-rio.br/Upload/Imagem/2021/03/daqeq.png"/>
+                <div class="textoequi"> 
+                    <h3 class="nomequipe">DAQEQ</h3>
+                    <p class="textequipe">
+                        &nbsp; &nbsp; &nbsp;&nbsp;O Diretório Acadêmico de Química e das Engenharias Química e de Materiais e Nanotecnologia é a base da representação estudantil perante à universidade. É composto por estudantes de ambos os cursos, e atua na luta pelos direitos dos estudantes, buscando a melhoria na qualidade dos estudos, infraestrutura da universidade, e promove eventos de cunho acadêmico, culturais e sociais. O DAQEQ deve promover atividades que busquem enriquecer os alunos em todos os aspectos da sua formação, como Semanas Acadêmicas (SIEng e SQM) e a organização de delegações para congressos e encontros do curso.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="equipes">
+                <img class="imgequipes" style="width: 150px; height: 150px" alt="Logo do CAINF" src="https://www.ctc.puc-rio.br/Upload/Imagem/2021/03/cainf.png"/>
+                <div class="textoequi"> 
+                    <h3 class="nomequipe">CAINF</h3>
+                    <p class="textequipe">
+                        &nbsp; &nbsp; &nbsp;&nbsp;O Centro Acadêmico de Informática é a entidade estudantil responsável pela representação do Corpo Discente do Departamento de Informática perante à PUC-Rio e seus órgãos. Eleito e composto pelos estudantes do DI, tem como objetivos apresentar e defender os interesses dos alunos perante à Universidade, reivindicar a melhoria do ensino e do desenvolvimento de pesquisa e extensão, desenvolver o espírito de união entre o Corpo Discente e organizar e promover eventos relacionados à área de Informática.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="rodape">
+            <a class="sobreequipe" href="sobre.html">Sobre</a>
+            <a class="contato" href="#">Contato</a>
+        </footer>
+    </div>
+</body>
+</html>
