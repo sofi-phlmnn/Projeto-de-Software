@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PUC Oportunidades — Entidades Estudantis</title>
+  <link rel="stylesheet" href="entidades.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">PUC OPORTUNIDADES</div>
+      <div class="topbar__right">
+        <div class="search">
+          <span class="material-icons-outlined" aria-hidden="true">search</span>
+          <input type="search" placeholder="Pesquisar entidades..." aria-label="Pesquisar entidades" />
+        </div>
+        <button class="icon-btn" aria-label="Menu">
+          <span class="material-icons-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="index.html">Início</a>
+        <span class="sep">/</span>
+        <span>Entidades Estudantis</span>
+      </nav>
+
+      <div class="page-hero__card card">
+        <div class="page-hero__icon">
+          <span class="material-icons-outlined">diversity_3</span>
+        </div>
+        <div class="page-hero__text">
+          <h1>Entidades Estudantis</h1>
+          <p>Explore representantes estudantis, empresas juniores, coletivos e ligas. Clique em uma entidade para ver a página dela (que será criada depois).</p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <button class="chip is-active" type="button" data-filter="all">todas</button>
+        <button class="chip" type="button" data-filter="empresa-junior">empresa júnior</button>
+        <button class="chip" type="button" data-filter="centro-academico">centro acadêmico</button>
+        <button class="chip" type="button" data-filter="diretorio-academico">diretório acadêmico</button>
+        <button class="chip" type="button" data-filter="coletivo">coletivo</button>
+        <button class="chip" type="button" data-filter="liga">liga</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section__title">Destaques</h2>
+
+      <div class="entities-grid" id="entities">
+        <article class="entity-card card" data-type="empresa-junior" data-slug="puc-empresa-junior">
+          <a class="entity-card__anchor" href="entidade.html?slug=puc-empresa-junior" aria-label="Abrir PUC Empresa Júnior"></a>
+          <header class="entity-card__header">
+            <img class="entity-card__logo" src="https://upload.wikimedia.org/wikipedia/commons/7/75/Briefcase_icon.svg" alt="Ícone portfólio" />
+            <div>
+              <h3 class="entity-card__title">PUC Empresa Júnior</h3>
+              <div class="entity-card__tags">
+                <span class="tag">empresa júnior</span>
+                <span class="tag">consultoria</span>
+              </div>
+            </div>
+          </header>
+          <p class="entity-card__desc">
+            Consultoria e projetos com clientes reais para desenvolvimento dos alunos nas áreas de gestão e tecnologia.
+          </p>
+          <ul class="entity-card__meta">
+            <li><span class="material-icons-outlined">person</span> Presidência 2025.2: Maria Luiza Castro</li>
+            <li><span class="material-icons-outlined">alternate_email</span> <a href="#">@pucempresa</a></li>
+            <li><span class="material-icons-outlined">mail</span> contato@pucempresa.br</li>
+          </ul>
+          <span class="entity-card__cta">ver mais</span>
+        </article>
+
+        <article class="entity-card card" data-type="diretorio-academico" data-slug="da-engenharia">
+          <a class="entity-card__anchor" href="entidade.html?slug=da-engenharia" aria-label="Abrir Diretório Acadêmico de Engenharia"></a>
+          <header class="entity-card__header">
+            <img class="entity-card__logo" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Academic_cap.svg" alt="Ícone capelo" />
+            <div>
+              <h3 class="entity-card__title">Diretório Acadêmico de Engenharia</h3>
+              <div class="entity-card__tags">
+                <span class="tag">diretório acadêmico</span>
+                <span class="tag">CTC</span>
+              </div>
+            </div>
+          </header>
+          <p class="entity-card__desc">
+            Representação estudantil dos cursos de engenharia: apoio acadêmico, eventos e integração dos alunos.
+          </p>
+          <ul class="entity-card__meta">
+            <li><span class="material-icons-outlined">alternate_email</span> <a href="#">@daeng_puc</a></li>
+            <li><span class="material-icons-outlined">mail</span> daeng@puc-rio.br</li>
+          </ul>
+          <span class="entity-card__cta">ver mais</span>
+        </article>
+
+        <article class="entity-card card" data-type="centro-academico" data-slug="ca-computacao">
+          <a class="entity-card__anchor" href="entidade.html?slug=ca-computacao" aria-label="Abrir Centro Acadêmico de Computação"></a>
+          <header class="entity-card__header">
+            <img class="entity-card__logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Circle-icons-computer.svg" alt="Ícone computador" />
+            <div>
+              <h3 class="entity-card__title">Centro Acadêmico de Computação</h3>
+              <div class="entity-card__tags">
+                <span class="tag">centro acadêmico</span>
+                <span class="tag">computação</span>
+              </div>
+            </div>
+          </header>
+          <p class="entity-card__desc">
+            Iniciativas para alunos de Ciência da Computação: hackathons, grupos de estudo e integração com o mercado.
+          </p>
+          <ul class="entity-card__meta">
+            <li><span class="material-icons-outlined">alternate_email</span> <a href="#">@cacomp_puc</a></li>
+            <li><span class="material-icons-outlined">mail</span> cacomp@puc-rio.br</li>
+          </ul>
+          <span class="entity-card__cta">ver mais</span>
+        </article>
+
+        <article class="entity-card card" data-type="coletivo" data-slug="coletivo-ecopuc">
+          <a class="entity-card__anchor" href="entidade.html?slug=coletivo-ecopuc" aria-label="Abrir Coletivo EcoPUC"></a>
+          <header class="entity-card__header">
+            <img class="entity-card__logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Leaf_icon_02.svg" alt="Ícone folha" />
+            <div>
+              <h3 class="entity-card__title">Coletivo EcoPUC</h3>
+              <div class="entity-card__tags">
+                <span class="tag">coletivo</span>
+                <span class="tag">sustentabilidade</span>
+              </div>
+            </div>
+          </header>
+          <p class="entity-card__desc">
+            Projetos ambientais no campus: reciclagem, comunicação e voluntariado voltados à sustentabilidade.
+          </p>
+          <ul class="entity-card__meta">
+            <li><span class="material-icons-outlined">alternate_email</span> <a href="#">@ecopuc</a></li>
+            <li><span class="material-icons-outlined">mail</span> ecopuc@puc-rio.br</li>
+          </ul>
+          <span class="entity-card__cta">ver mais</span>
+        </article>
+
+        <article class="entity-card card" data-type="liga" data-slug="liga-saude-tecnologia">
+          <a class="entity-card__anchor" href="entidade.html?slug=liga-saude-tecnologia" aria-label="Abrir Liga de Saúde & Tecnologia"></a>
+          <header class="entity-card__header">
+            <img class="entity-card__logo" src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Heart_icon_red_hollow.svg" alt="Ícone coração" />
+            <div>
+              <h3 class="entity-card__title">Liga de Saúde & Tecnologia</h3>
+              <div class="entity-card__tags">
+                <span class="tag">liga</span>
+                <span class="tag">interdisciplinar</span>
+              </div>
+            </div>
+          </header>
+          <p class="entity-card__desc">
+            Conecta saúde, engenharia e computação em projetos e estudos voltados a impacto social.
+          </p>
+          <ul class="entity-card__meta">
+            <li><span class="material-icons-outlined">alternate_email</span> <a href="#">@ligasaudetech</a></li>
+            <li><span class="material-icons-outlined">mail</span> liga@puc-rio.br</li>
+          </ul>
+          <span class="entity-card__cta">ver mais</span>
+        </article>
+        <article class="entity-card card" data-type="liga" data-slug="ieee-puc">
+          <a class="entity-card__anchor" href="entidade.html?slug=ieee-puc" aria-label="Abrir IEEE PUC-Rio"></a>
+          <header class="entity-card__header">
+            <img class="entity-card__logo" src="https://upload.wikimedia.org/wikipedia/commons/0/00/IEEE_logo.svg" alt="Logo IEEE" />
+            <div>
+              <h3 class="entity-card__title">IEEE PUC-Rio</h3>
+              <div class="entity-card__tags">
+                <span class="tag">liga</span>
+                <span class="tag">tecnologia</span>
+              </div>
+            </div>
+          </header>
+          <p class="entity-card__desc">
+            Capítulo estudantil da maior associação profissional do mundo em engenharia elétrica, eletrônica e computação.
+          </p>
+          <ul class="entity-card__meta">
+            <li><span class="material-icons-outlined">alternate_email</span> <a href="#">@ieeepucrio</a></li>
+            <li><span class="material-icons-outlined">mail</span> ieee@puc-rio.br</li>
+          </ul>
+          <span class="entity-card__cta">ver mais</span>
+        </article>
+
+        <article class="entity-card card" data-type="liga" data-slug="liga-mercado-financeiro">
+          <a class="entity-card__anchor" href="entidade.html?slug=liga-mercado-financeiro" aria-label="Abrir Liga de Mercado Financeiro"></a>
+          <header class="entity-card__header">
+            <img class="entity-card__logo" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Money_Flat_Icon.svg" alt="Ícone dinheiro" />
+            <div>
+              <h3 class="entity-card__title">Liga de Mercado Financeiro</h3>
+              <div class="entity-card__tags">
+                <span class="tag">liga</span>
+                <span class="tag">finanças</span>
+              </div>
+            </div>
+          </header>
+          <p class="entity-card__desc">
+            Promove conhecimento em investimentos, finanças e mercado de capitais por meio de eventos, cursos e networking.
+          </p>
+          <ul class="entity-card__meta">
+            <li><span class="material-icons-outlined">alternate_email</span> <a href="#">@ligamercadofinanceiro</a></li>
+            <li><span class="material-icons-outlined">mail</span> ligafinancas@puc-rio.br</li>
+          </ul>
+          <span class="entity-card__cta">ver mais</span>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>Sobre</span>
+      <span>Contato</span>
+    </div>
+  </footer>
+
+  <script>
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('.entity-card');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('is-active'));
+        chip.classList.add('is-active');
+        const type = chip.dataset.filter;
+        cards.forEach(card => {
+          card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none';
+        });
+      });
+    });
+
+    document.querySelectorAll('.entity-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const a = card.querySelector('.entity-card__anchor');
+        if (a) {
+          const isLink = e.target.closest('a');
+          if (!isLink) a.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
