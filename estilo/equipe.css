@@ -87,7 +87,58 @@ h1 a:link {
         margin-right: -2em;
 }
 
+.side-menu {
+        position: fixed;
+        left: -20em;
+        width: 20em;
+        background-color: #e7e0d8;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        transition: left 0.3s ease;
+        z-index: 999;
+        font-family: 'Calibri';
+        position: fixed;
+        top: 7em;
+        padding-top: 4em;
+        height: calc(100vh - 7em);
 
+}
+
+.side-menu-fade {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3em;
+        background: linear-gradient(to bottom, rgba(232, 227, 221, 0), #E8E3DD);
+        pointer-events: none;
+        /* garante que ele não bloqueie cliques */
+}
+
+
+#menu-toggle:checked~.side-menu {
+        left: 0;
+}
+
+
+
+
+.side-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+}
+
+.side-menu li {
+        padding: 1em;
+        border-bottom: 1px solid #dbd7d7;
+}
+
+.side-menu a {
+        text-decoration: none;
+        color: #000;
+        font-size: 1.2em;
+        display: block;
+}
 
 .icones {
         display: flex;
