@@ -88,19 +88,17 @@ h1 a:link {
 }
 
 .side-menu {
-        position: fixed;
-        left: -20em;
-        width: 20em;
-        background-color: #e7e0d8;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-        transition: left 0.3s ease;
-        z-index: 999;
-        font-family: 'Calibri';
-        position: fixed;
-        top: 7em;
-        padding-top: 4em;
-        height: calc(100vh - 7em);
-
+    position: fixed;
+    right: -20em; /* agora ele começa escondido do lado direito */
+    width: 20em;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* sombra invertida */
+    transition: right 0.3s ease;
+    z-index: 999;
+    top: 6.71em;
+    padding-top: 4em;
+    height: calc(100vh - 7em);
+    font-family: 'Arial';
 }
 
 .side-menu-fade {
@@ -115,12 +113,9 @@ h1 a:link {
 }
 
 
-#menu-toggle:checked~.side-menu {
-        left: 0;
+#menu-toggle:checked ~ .side-menu {
+    right: 0;
 }
-
-
-
 
 .side-menu ul {
         list-style: none;
