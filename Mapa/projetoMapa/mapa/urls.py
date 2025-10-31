@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import mapa_view
+from . import views
+
+app_name = "mapa"
 
 urlpatterns = [
-    path("", mapa_view, name="mapa"),
+    path("", views.mapa_view, name="mapa"),
 ]
