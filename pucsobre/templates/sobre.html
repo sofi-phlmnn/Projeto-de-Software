@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PUC OPORTUNIDADES – Sobre a Equipe{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+<div id="container"> 
+  <header id="titulo"> 
+    <h1><a href="{% url 'sobre' %}">PUC OPORTUNIDADES</a></h1>
+
+    <div class="icones">
+      <form action="#" method="get" class="formulario">
+        <input id="pesquisa" name="pesquisa" class="pesquisa" type="search" placeholder="O que você procura?">
+      </form>
+
+      <label class="vermaisFoto">
+        <!-- coloque essa imagem em static/img e ajuste o nome se necessário -->
+        <img src="{% static 'img/vermais_branco-1.png' %}" alt="Abrir Menu">
+      </label>
+    </div> 
+  </header>
+
+  <section> 
+    <div class="intro">
+      <h2 class="titulopag">Conheça Nossa Equipe</h2> 
+      <p id="textintro">Conheça os integrantes do projeto PUC da disciplina ENG4021.</p>
+    </div>
+
+    <div class="boxintegrantes"> 
+      <img class="fotointegrantes" src="{% static 'img/duda.png' %}" alt="Maria Eduarda Avila">
+      <div class="informacoes"> 
+        <h3 class="nome">Maria Eduarda Dantas Avila</h3>
+        <p class="textopessoal">
+          &nbsp; &nbsp; &nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, cumque officiis excepturi culpa harum quo a eius ducimus, eos maxime aliquid quos vel dolorum enim. Sunt qui adipisci consequuntur doloribus!
+        </p> 
+      </div>
+      <div class="contato"> 
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+
+    <div class="boxintegrantes"> 
+      <img class="fotointegrantes" src="{% static 'img/gustavo.png' %}" alt="Gustavo">
+      <div class="informacoes"> 
+        <h3 class="nome">Gustavo</h3>
+        <p class="textopessoal">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, ad. Deserunt delectus ipsa quo quam tenetur temporibus magnam distinctio corrupti soluta eum, cumque quae, in ratione ab ducimus doloremque recusandae.
+        </p> 
+      </div>
+      <div class="contato"> 
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+
+    <div class="boxintegrantes"> 
+      <img class="fotointegrantes" src="{% static 'img/eduardo.png' %}" alt="Eduardo">
+      <div class="informacoes"> 
+        <h3 class="nome">Eduardo</h3>
+        <p class="textopessoal">
+          &nbsp; &nbsp; &nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, cumque officiis excepturi culpa harum quo a eius ducimus, eos maxime aliquid quos vel dolorum enim. Sunt qui adipisci consequuntur doloribus!
+        </p> 
+      </div>
+      <div class="contato"> 
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+
+    <div class="boxintegrantes first"> 
+      <img class="fotointegrantes" src="{% static 'img/felipe.png' %}" alt="Felipe">
+      <div class="informacoes"> 
+        <h3 class="nome">Felipe</h3>
+        <p class="textopessoal">
+          &nbsp; &nbsp; &nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, cumque officiis excepturi culpa harum quo a eius ducimus, eos maxime aliquid quos vel dolorum enim. Sunt qui adipisci consequuntur doloribus!
+        </p> 
+      </div>
+      <div class="contato"> 
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+
+    <div class="boxintegrantes"> 
+      <img class="fotointegrantes" src="{% static 'img/sofia.png' %}" alt="Sofia">
+      <div class="informacoes"> 
+        <h3 class="nome">Sofia</h3>
+        <p class="textopessoal">
+          &nbsp; &nbsp; &nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, cumque officiis excepturi culpa harum quo a eius ducimus, eos maxime aliquid quos vel dolorum enim. Sunt qui adipisci consequuntur doloribus!
+        </p> 
+      </div>
+      <div class="contato"> 
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <a class="sobreequipe" href="{% url 'sobre' %}">Sobre</a>
+    <a class="contato" href="#">Contato</a>
+  </footer>
+</div>
+{% endblock %}
