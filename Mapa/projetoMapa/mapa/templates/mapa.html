@@ -1,7 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  {% load static %}
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PUC Oportunidades — Mapa</title>
@@ -9,6 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'mapa.css' %}" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="{% static 'mapa-leaflet.css' %}" />
 </head>
 <body>
   <div class="site-root">
@@ -56,14 +60,16 @@
               <h2 class="titulo-cartao">Mapa PUC-Rio</h2>
             </div>
 
-            <div class="cartao cartao--crescer">
-              <a href="{{ mapa.link }}" target="_blank" rel="noopener noreferrer" title="Abrir no Google Maps">
-                <img src="{{ mapa.img }}" alt="{{ mapa.alt }}" class="imagem-mapa" />
-              </a>
+            <div class="cartao cartao--crescer cartao--mapa">
+              <div id="map" class="mapa-interativo" style="height:60vh;width:100%;border-radius:12px;" aria-label="Mapa PUC-Rio"></div>
+              <noscript>
+                <a href="{{ mapa.link }}" target="_blank" rel="noopener noreferrer" title="Abrir no Google Maps">
+                  Ver no Google Maps (ative o JavaScript para o mapa interativo)
+                </a>
+              </noscript>
             </div>
           </section>
 
-          <!-- Coluna direita com painéis dinâmicos -->
           <aside class="coluna-direita">
             {% for p in paines %}
             <div class="cartao">
@@ -83,5 +89,62 @@
       </div>
     </main>
   </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  {# Passa os pontos do backend com segurança (Django 3.1+) #}
+  {% if pontos %}{{ pontos|json_script:"pontos-data" }}{% endif %}
+
+  <script>
+    const INITIAL_COORDS = [-22.9796, -43.2335];
+    const INITIAL_ZOOM = 16;
+
+    const map = L.map('map', {
+      zoomControl: true,
+      scrollWheelZoom: true,
+      dragging: true,
+      tap: true
+    }).setView(INITIAL_COORDS, INITIAL_ZOOM);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> colaboradores'
+    }).addTo(map);
+
+    L.marker(INITIAL_COORDS).addTo(map).bindPopup('<b>PUC-Rio</b><br/>Campus Gávea');
+
+    try {
+      const el = document.getElementById('pontos-data');
+      if (el) {
+        const pontos = JSON.parse(el.textContent);
+        if (Array.isArray(pontos)) {
+          const bounds = [];
+          pontos.forEach(p => {
+            if (typeof p.lat === 'number' && typeof p.lng === 'number') {
+              const m = L.marker([p.lat, p.lng]).addTo(map);
+              const titulo = p.name ? `<b>${p.name}</b>` : '<b>Ponto</b>';
+              const desc = p.desc ? `<br/>${p.desc}` : '';
+              m.bindPopup(`${titulo}${desc}`);
+              bounds.push([p.lat, p.lng]);
+            }
+          });
+          if (bounds.length) map.fitBounds(bounds, { padding: [20, 20] });
+        }
+      }
+    } catch (e) {
+      console.error('Falha ao carregar pontos:', e);
+    }
+
+    // Clique no mapa -> abre Google Maps na coordenada clicada
+    map.on('click', (ev) => {
+      const { lat, lng } = ev.latlng;
+      const gmaps = `https://www.google.com/maps?q=${lat},${lng}&z=${map.getZoom()}`;
+      window.open(gmaps, '_blank', 'noopener,noreferrer');
+    });
+
+    // Garante renderização correta após o layout montar
+    setTimeout(() => map.invalidateSize(), 0);
+    window.addEventListener('resize', () => map.invalidateSize());
+  </script>
 </body>
 </html>
