@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUC OPORTUNIDADES</title>
+
+  <!-- CSS (sem pasta estilos) -->
+  <link rel="stylesheet" href="{% static 'equipe.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+  <div id="container"> 
+    <header id="titulo"> 
+      <h1><a href="{% url 'equipe' %}">PUC OPORTUNIDADES</a></h1>
+
+      <div class="icones">
+        <form action="#" method="get" class="formulario">
+          <input id="pesquisa" name="pesquisa" class="pesquisa" type="search" placeholder="O que você procura?">
+        </form>
+
+        <!-- Botão/ícone do menu lateral (opcional, troque a imagem se quiser) -->
+        <label for="menu-toggle" class="vermaisFoto">
+          <img src="{% static 'img/vermais_branco.png' %}" alt="Abrir Menu">
+        </label>
+        <input type="checkbox" id="menu-toggle" hidden>
+
+        <aside class="side-menu">
+          <nav>
+            <ul>
+              <li><a href="#">Perfil</a></li>
+              <li><a href="#">Diretórios Acadêmicos</a></li>
+              <li><a href="#">Estágio</a></li>  
+              <li><a href="{% url 'equipe' %}">Equipes de Competição</a></li>
+              <li><a href="#">Iniciação Científica</a></li>
+              <li><a href="#">Atividades Complementares</a></li>
+              <li><a href="#">Mapa</a></li>
+              <li><a href="#">Sobre Equipe</a></li>
+            </ul>
+          </nav>
+          <div class="side-menu-fade"></div>
+        </aside>
+      </div> 
+    </header>
+
+    <section> 
+      <!-- Texto introdutório fixo (mantém o layout original) -->
+      <p class="boxtext"> 
+        As equipes de competição da PUC-Rio reúnem alunos de diferentes cursos que, juntos, aplicam seus 
+        conhecimentos acadêmicos em projetos desafiadores e de impacto. Mais do que representar a universidade 
+        em torneios nacionais e internacionais, essas equipes oferecem uma oportunidade única de aprendizado prático, 
+        integração multidisciplinar e desenvolvimento pessoal. Participar de uma equipe significa viver de perto a 
+        experiência de trabalhar em grupo, enfrentar problemas reais e buscar soluções inovadoras em áreas como 
+        engenharia, tecnologia, negócios, design e muito mais. Além disso, é uma chance de desenvolver habilidades 
+        valorizadas no mercado de trabalho, como liderança, criatividade, gestão de tempo e comunicação.
+      </p>
+
+      <!-- Lista dinâmica de equipes (dados vêm da view) -->
+      {% for e in equipes %}
+      <div class="equipes">
+        <img class="imgequipes" alt="Logo da equipe {{ e.nome }}"
+             src="{% static 'img/' %}{{ e.img }}">
+        <div class="textoequi"> 
+          <h3 class="nomequipe">{{ e.nome }}</h3>
+          <p class="textequipe">{{ e.descricao }}</p>
+        </div>
+      </div>
+      {% empty %}
+      <p>Nenhuma equipe cadastrada ainda.</p>
+      {% endfor %}
+    </section>
+
+    <footer class="rodape">
+      <a class="sobreequipe" href="#">Sobre</a>
+      <a class="contato" href="#">Contato</a>
+    </footer>
+  </div>
+</body>
+</html>
