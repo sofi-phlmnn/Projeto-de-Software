@@ -4,37 +4,31 @@
 {% block title %}PUC Oportunidades — Equipes{% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/equipe.css' %}">
+<link rel="stylesheet" href="{% static 'css/equipe.css' %}">
 {% endblock %}
 
 {% block content %}
-  <section class="container section">
-    <h1 class="page-title">Equipes de Competição</h1>
+<section>
+  <p class="boxtext">
+    As equipes de competição da PUC-Rio reúnem alunos de diferentes cursos que, juntos, aplicam seus
+    conhecimentos acadêmicos em projetos desafiadores e de impacto. Mais do que representar a universidade
+    em torneios nacionais e internacionais, essas equipes oferecem uma oportunidade única de aprendizado prático,
+    integração multidisciplinar e desenvolvimento pessoal. Participar de uma equipe significa viver de perto a
+    experiência de trabalhar em grupo, enfrentar problemas reais e buscar soluções inovadoras em áreas como
+    engenharia, tecnologia, negócios, design e muito mais. Além disso, é uma chance de desenvolver habilidades
+    valorizadas no mercado de trabalho, como liderança, criatividade, gestão de tempo e comunicação.
+  </p>
 
-    <!-- Texto introdutório -->
-    <p class="boxtext">
-      As equipes de competição da PUC-Rio reúnem alunos de diferentes cursos que, juntos, aplicam seus
-      conhecimentos acadêmicos em projetos desafiadores e de impacto. Mais do que representar a universidade
-      em torneios nacionais e internacionais, essas equipes oferecem uma oportunidade única de aprendizado prático,
-      integração multidisciplinar e desenvolvimento pessoal. Participar de uma equipe significa viver de perto a
-      experiência de trabalhar em grupo, enfrentar problemas reais e buscar soluções inovadoras em áreas como
-      engenharia, tecnologia, negócios, design e muito mais. Além disso, é uma chance de desenvolver habilidades
-      valorizadas no mercado de trabalho, como liderança, criatividade, gestão de tempo e comunicação.
-    </p>
-
-    <!-- Lista dinâmica de equipes -->
-    {% for e in equipes %}
-      <div class="equipes">
-        <img class="imgequipes"
-             alt="Logo da equipe {{ e.nome }}"
-             src="{% static 'img/' %}{{ e.img }}">
-        <div class="textoequi">
-          <h3 class="nomequipe">{{ e.nome }}</h3>
-          <p class="textequipe">{{ e.descricao }}</p>
-        </div>
-      </div>
-    {% empty %}
-      <p>Nenhuma equipe cadastrada ainda.</p>
-    {% endfor %}
-  </section>
+  {% for e in equipes %}
+  <div class="equipes">
+    <img class="imgequipes" alt="Logo da equipe {{ e.nome }}" src="{% static 'img/' %}{{ e.img }}">
+    <div class="textoequi">
+      <h3 class="nomequipe">{{ e.nome }}</h3>
+      <p class="textequipe">{{ e.descricao }}</p>
+    </div>
+  </div>
+  {% empty %}
+  <p class="boxtext">Nenhuma equipe cadastrada ainda.</p>
+  {% endfor %}
+</section>
 {% endblock %}

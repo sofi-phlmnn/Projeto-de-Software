@@ -1,9 +1,2 @@
-/* Ajustes específicos da Home */
-.hero-card__text{
-  margin-left: 100px; /* espaço extra ao lado do selo na Home */
-}
-
-/* Escopo opcional: se quiser estilizar apenas quando <main class="home"> */
-.home .section__title{
-  letter-spacing: .2px;
-}
+.hero-card__text{margin-left:100px}
+.home .section__title{letter-spacing:.2px}

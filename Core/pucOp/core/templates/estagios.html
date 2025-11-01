@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PUC Oportunidades — Estágios e Inovação{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/estagios.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="banner">
+  <h2>Programas de Estágio e Inovação</h2>
+  <p>Conheça iniciativas que unem aprendizado prático, tecnologia e desenvolvimento profissional.</p>
+</section>
+
+<main class="container">
+  <section class="program">
+    <h2>Apple Developer Academy – PUC-Rio</h2>
+    <p>Programa de inovação tecnológica promovido pela PUC com apoio da Apple, focado no desenvolvimento de apps e produtos digitais.</p>
+    <ul>
+      <li>Modalidade: programa de inovação / extensão</li>
+      <li>Inscrições periódicas pelo ECOA / PUC-Rio</li>
+      <li>Atuação prática com projetos, mentoria e tecnologia</li>
+    </ul>
+  </section>
+
+  <section class="program">
+    <h2>Programa de Estágio Petrobras</h2>
+    <p>Programa de estágio nacional da Petrobras para estudantes de nível técnico ou superior.</p>
+    <ul>
+      <li>Estágios para cursos técnicos ou superiores</li>
+      <li>Bolsa-auxílio recente: R$ 1.825,00</li>
+      <li>Carga horária típica: 20 horas semanais</li>
+    </ul>
+  </section>
+
+  <section class="program">
+    <h2>Ignição Petrobras / ECOA PUC-Rio</h2>
+    <p>Programa de inovação no mercado de óleo e gás em parceria com a Petrobras, organizado pelo ECOA na PUC-Rio.</p>
+    <ul>
+      <li>Voltado a estudantes universitários com criatividade tecnológica</li>
+      <li>Desenvolvimento de soluções para problemas reais</li>
+      <li>Participação remunerada ou com bolsa conforme normas do ECOA / PUC</li>
+    </ul>
+  </section>
+
+  <section class="program">
+    <h2>i9Cultura / Tecnotopias</h2>
+    <p>Programa de inovação cultural do Instituto ECOA PUC-Rio que valoriza o uso de tecnologia para promover transformações na área cultural.</p>
+    <ul>
+      <li>Desenvolve exposições e instalações com tecnologia, cultura e arte</li>
+      <li>Programa gratuito e aberto ao público para participação e experimentação</li>
+      <li>Exemplo de projeto: “Tecnotopias – Janelas para futuros possíveis”</li>
+      <li>Instalações imersivas explorando cultura, meio ambiente e inovação</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 • PUC Oportunidades</p>
+</footer>
+{% endblock %}

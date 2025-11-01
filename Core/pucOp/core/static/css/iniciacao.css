@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: rgb(235, 235, 235);
+  color: #333;
+}
+
+.banner {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  background: linear-gradient(to right, #6D28D9, #7B3AED);
+  color: #fff;
+}
+
+.banner h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.banner p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.program {
+  background-color: #fff;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.program h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.titulo-pibic {
+  color: #0074d9;
+}
+
+.titulo-lab {
+  color: #b10dc9;
+}
+
+.titulo-ecoa {
+  color: #2ecc40;
+}
+
+.program p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.program ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.program ul li {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+footer {
+  background-color: #0f172a;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 600px) {
+  .banner h2 {
+    font-size: 1.5rem;
+  }
+
+  .program {
+    padding: 1.2rem;
+    margin: 1.2rem;
+  }
+}

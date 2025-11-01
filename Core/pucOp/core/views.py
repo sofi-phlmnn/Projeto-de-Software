@@ -60,7 +60,7 @@ def home(request):
     return render(request, "home.html", ctx)
 
 
-def equipe_view(request):
+def equipes(request):
     equipes = [
         {
             "nome": "RIOROBOTZ",
@@ -105,7 +105,7 @@ def equipe_view(request):
     return render(request, "equipe.html", {"equipes": equipes})
 
 
-def mapa_view(request):
+def mapa(request):
     hero = {
         "titulo": "Mapa do Campus PUC-Rio",
         "descricao": (
@@ -142,57 +142,18 @@ def mapa_view(request):
     return render(request, "mapa.html", ctx)
 
 
-def sobre_view(request):
-    integrantes = [
-        {
-            "nome": "Maria Eduarda Dantas Avila",
-            "foto": "duda.png",
-            "bio": "Aluno(a) da ENG4021. Interesses: design, front-end e UX.",
-            "links": {
-                "insta": "https://instagram.com/SEU_USUARIO",
-                "git": "https://github.com/SEU_USUARIO",
-                "linkedin": "https://www.linkedin.com/in/SEU_USUARIO/"
-            }
-        },
-        {
-            "nome": "Gustavo",
-            "foto": "gustavo.png",
-            "bio": "Apaixonado por robótica e sistemas embarcados.",
-            "links": {
-                "insta": "",
-                "git": "https://github.com/SEU_USUARIO",
-                "linkedin": ""
-            }
-        },
-        {
-            "nome": "Eduardo",
-            "foto": "eduardo.png",
-            "bio": "Foco em back-end, APIs e dados.",
-            "links": {
-                "insta": "",
-                "git": "",
-                "linkedin": ""
-            }
-        },
-        {
-            "nome": "Felipe",
-            "foto": "felipe.png",
-            "bio": "Entusiasta de IA aplicada e ciência de dados.",
-            "links": {
-                "insta": "",
-                "git": "",
-                "linkedin": ""
-            }
-        },
-        {
-            "nome": "Sofia",
-            "foto": "sofia.png",
-            "bio": "Interesses em produto, pesquisa e UX writing.",
-            "links": {
-                "insta": "",
-                "git": "",
-                "linkedin": ""
-            }
-        },
-    ]
-    return render(request, "sobre.html", {"integrantes": integrantes})
+def sobre(request):
+    return render(request, "sobre.html")
+
+def diretorios(request):
+    return render(request, "diretorios.html")
+
+def iniciacao(request):
+    return render(request, "iniciacao.html")
+
+def entidades(request):
+    return render(request, "entidades.html")
+
+def estagios(request):
+    return render(request, "estagios.html")
+

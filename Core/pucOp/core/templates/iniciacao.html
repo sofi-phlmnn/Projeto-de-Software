@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PUC Oportunidades — Iniciação Científica{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/iniciacao.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="banner">
+  <h2>Oportunidades de Iniciação Científica na PUC</h2>
+  <p>
+    Aprimore seu conhecimento acadêmico participando de projetos de pesquisa
+    com professores e laboratórios de excelência.
+  </p>
+</section>
+
+<main>
+  <section class="program">
+    <h3 class="titulo-pibic">🧬 PIBIC – Iniciação Científica com Bolsa</h3>
+    <p>
+      O PIBIC é o principal programa de iniciação científica, oferecendo bolsas
+      para estudantes que desejam desenvolver projetos de pesquisa com orientação docente.
+    </p>
+    <ul>
+      <li><strong>Duração:</strong> 12 meses de pesquisa</li>
+      <li><strong>Bolsa:</strong> Auxílio CNPq ou PUC</li>
+      <li><strong>Resultado:</strong> Apresentação em seminários e publicações</li>
+    </ul>
+  </section>
+
+  <section class="program">
+    <h3 class="titulo-lab">🔬 Laboratórios e Grupos de Pesquisa</h3>
+    <p>
+      Os laboratórios da PUC oferecem espaços de investigação em diversas áreas,
+      como tecnologia, ciências humanas, saúde e comunicação.
+    </p>
+    <ul>
+      <li><strong>Participação:</strong> Com bolsa ou voluntária</li>
+      <li><strong>Inscrição:</strong> Via professor orientador</li>
+      <li><strong>Benefício:</strong> Experiência para mestrado e publicações</li>
+    </ul>
+  </section>
+
+  <section class="program">
+    <h3 class="titulo-ecoa">🌱 ECOA – Inovação e Pesquisa Criativa</h3>
+    <p>
+      O Instituto ECOA promove projetos interdisciplinares que unem tecnologia,
+      arte, sustentabilidade e cultura, proporcionando experiências únicas aos alunos.
+    </p>
+    <ul>
+      <li><strong>Diferencial:</strong> Pesquisa + Inovação</li>
+      <li><strong>Ambiente:</strong> Colaborativo e criativo</li>
+      <li><strong>Projetos:</strong> Exposições, mostras e protótipos</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 • Plataforma Acadêmica PUC</p>
+</footer>
+{% endblock %}
