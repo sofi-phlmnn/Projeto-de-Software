@@ -1,0 +1,45 @@
+/* ... (mantenha todo o conteúdo anterior que te passei) ... */
+
+/* ======= Menu desktop (topnav) ======= */
+.topnav{
+  display: none;
+  gap: 12px;
+  align-items: center;
+}
+.topnav__link{
+  text-decoration: none;
+  color: #eef2ff;
+  padding: 10px 8px;
+  border-radius: 8px;
+  position: relative;
+  font-weight: 600;
+}
+.topnav__link:hover{
+  background: rgba(255,255,255,.12);
+}
+.topnav__link.is-active,
+.topnav__link[aria-current="page"]{
+  background: rgba(255,255,255,.16);
+}
+.topnav__link.is-active::after,
+.topnav__link[aria-current="page"]::after{
+  content:"";
+  position:absolute;
+  left:10px; right:10px; bottom:6px;
+  height: 3px; border-radius: 999px;
+  background: #fff;
+  opacity: .9;
+}
+
+/* Mostrar topnav em telas médias+ */
+@media (min-width: 980px){
+  .topnav{ display: flex; }
+}
+
+/* ======= Drawer (menu lateral) – estado ativo ======= */
+.drawer__link.is-active,
+.drawer__link[aria-current="page"]{
+  background: #eef2ff;
+  color: #111827;
+  font-weight: 700;
+}

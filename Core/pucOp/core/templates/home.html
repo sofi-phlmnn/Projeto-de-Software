@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PUC Oportunidades — Início{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="hero-card__ornament" aria-hidden="true"></div>
+
+        <div class="hero-card__sealwrap">
+          <img class="hero-card__seal" src="{{ hero.logo_url }}" alt="Brasão da PUC-Rio">
+        </div>
+
+        <div class="hero-card__text">
+          <h2 class="hero-card__title">{{ hero.titulo }}</h2>
+          <p class="hero-card__desc">{{ hero.descricao }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="home">
+    <section class="container section">
+      <h3 class="section__title">Oportunidades em Destaque</h3>
+
+      <div class="cards-grid">
+        {% for op in destaques %}
+        <article class="op-card">
+          <header class="op-card__header">
+            <div class="op-card__badge {{ op.badge_class }}">
+              <span class="material-icons-outlined" aria-hidden="true">{{ op.icon }}</span>
+            </div>
+            <h4 class="op-card__title">{{ op.titulo }}</h4>
+          </header>
+
+          <p class="op-card__desc">{{ op.descricao }}</p>
+
+          <ul class="op-card__meta">
+            {% for m in op.meta %}
+              <li><span class="material-icons-outlined" aria-hidden="true">{{ m.icon }}</span> {{ m.texto }}</li>
+            {% endfor %}
+          </ul>
+
+          <a class="op-card__link" href="{{ op.href }}">Ver Mais</a>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="container section">
+      <h3 class="section__title">Explore por Categoria</h3>
+
+      <nav class="categories">
+        {% for c in categorias %}
+          <a class="{{ c.class }}" href="{{ c.href }}">{{ c.label_html|safe }}</a>
+        {% endfor %}
+      </nav>
+    </section>
+  </main>
+{% endblock %}

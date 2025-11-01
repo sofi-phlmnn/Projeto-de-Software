@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PUC OPORTUNIDADES – Sobre a Equipe{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+<div class="sobre-root">
+  <section class="intro">
+    <h2 class="titulopag">Conheça Nossa Equipe</h2>
+    <p id="textintro">Conheça os integrantes do projeto PUC da disciplina ENG4021.</p>
+  </section>
+
+  <section class="lista-integrantes">
+    {% for p in integrantes %}
+    <article class="boxintegrantes{% if forloop.first %} first{% endif %}">
+      <img class="fotointegrantes" src="{% static 'img/' %}{{ p.foto }}" alt="{{ p.nome }}">
+      <div class="informacoes">
+        <h3 class="nome">{{ p.nome }}</h3>
+        <p class="textopessoal">{{ p.bio }}</p>
+      </div>
+
+      <div class="contato">
+        {% if p.links.insta %}
+          <a href="{{ p.links.insta }}" target="_blank" rel="noopener" aria-label="Instagram de {{ p.nome }}">
+            <img class="insta" src="{% static 'img/insta.png' %}" alt="Instagram">
+          </a>
+        {% endif %}
+        {% if p.links.git %}
+          <a href="{{ p.links.git }}" target="_blank" rel="noopener" aria-label="GitHub de {{ p.nome }}">
+            <img class="git" src="{% static 'img/git.png' %}" alt="GitHub">
+          </a>
+        {% endif %}
+        {% if p.links.linkedin %}
+          <a href="{{ p.links.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn de {{ p.nome }}">
+            <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="LinkedIn">
+          </a>
+        {% endif %}
+      </div>
+    </article>
+    {% empty %}
+      <p>Nenhum integrante cadastrado ainda.</p>
+    {% endfor %}
+  </section>
+
+  <footer class="rodape">
+    <a class="sobreequipe" href="{% url 'core:sobre' %}">Sobre</a>
+    <a class="contato" href="#">Contato</a>
+  </footer>
+</div>
+{% endblock %}

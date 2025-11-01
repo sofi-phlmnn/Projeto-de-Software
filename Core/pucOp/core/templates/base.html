@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}PUC Oportunidades{% endblock %}</title>
+
+  <!-- Fontes e ícones globais -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+
+  <!-- CSS específico da página -->
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  {% url 'core:home' as url_home %}
+  {% url 'core:equipes' as url_equipes %}
+  {% url 'core:mapa' as url_mapa %}
+  {% url 'core:sobre' as url_sobre %}
+
+  <!-- Header/Topbar global com menu hambúrguer -->
+  <header class="topbar" role="banner">
+    <div class="container topbar__inner">
+      <a class="brand" href="{{ url_home }}">PUC OPORTUNIDADES</a>
+
+      <!-- Menu desktop -->
+      <nav class="topnav" aria-label="Navegação principal">
+        <a
+          href="{{ url_home }}"
+          class="topnav__link{% if request.path == url_home %} is-active{% endif %}"
+          {% if request.path == url_home %}aria-current="page"{% endif %}
+        >Início</a>
+
+        <a
+          href="{{ url_equipes }}"
+          class="topnav__link{% if request.path|slice:":9" == url_equipes %} is-active{% endif %}"
+          {% if request.path|slice:":9" == url_equipes %}aria-current="page"{% endif %}
+        >Equipes</a>
+
+        <a
+          href="{{ url_mapa }}"
+          class="topnav__link{% if request.path|slice:":6" == url_mapa %} is-active{% endif %}"
+          {% if request.path|slice:":6" == url_mapa %}aria-current="page"{% endif %}
+        >Mapa</a>
+
+        <a
+          href="{{ url_sobre }}"
+          class="topnav__link{% if request.path|slice:":7" == url_sobre %} is-active{% endif %}"
+          {% if request.path|slice:":7" == url_sobre %}aria-current="page"{% endif %}
+        >Sobre</a>
+      </nav>
+
+      <div class="topbar__right">
+        <div class="search">
+          <span class="material-icons-outlined" aria-hidden="true">search</span>
+          <input type="search" placeholder="Pesquisar..." aria-label="Pesquisar" />
+        </div>
+
+        <!-- Botão hambúrguer -->
+        <button class="icon-btn hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-controls="site-drawer" aria-expanded="false">
+          <span class="material-icons-outlined" aria-hidden="true">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Drawer (menu lateral mobile) -->
+  <div class="drawer" id="site-drawer" aria-hidden="true">
+    <nav class="drawer__nav" aria-label="Navegação principal">
+      <a
+        class="drawer__link{% if request.path == url_home %} is-active{% endif %}"
+        href="{{ url_home }}"
+        {% if request.path == url_home %}aria-current="page"{% endif %}
+      >
+        <span class="material-icons-outlined" aria-hidden="true">home</span>
+        Início
+      </a>
+
+      <a
+        class="drawer__link{% if request.path|slice:":9" == url_equipes %} is-active{% endif %}"
+        href="{{ url_equipes }}"
+        {% if request.path|slice:":9" == url_equipes %}aria-current="page"{% endif %}
+      >
+        <span class="material-icons-outlined" aria-hidden="true">groups</span>
+        Equipes
+      </a>
+
+      <a
+        class="drawer__link{% if request.path|slice:":6" == url_mapa %} is-active{% endif %}"
+        href="{{ url_mapa }}"
+        {% if request.path|slice:":6" == url_mapa %}aria-current="page"{% endif %}
+      >
+        <span class="material-icons-outlined" aria-hidden="true">map</span>
+        Mapa
+      </a>
+
+      <a
+        class="drawer__link{% if request.path|slice:":7" == url_sobre %} is-active{% endif %}"
+        href="{{ url_sobre }}"
+        {% if request.path|slice:":7" == url_sobre %}aria-current="page"{% endif %}
+      >
+        <span class="material-icons-outlined" aria-hidden="true">info</span>
+        Sobre
+      </a>
+    </nav>
+  </div>
+  <div class="backdrop" id="drawerBackdrop" tabindex="-1" hidden></div>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="{{ url_sobre }}">Sobre</a>
+      <a href="#">Contato</a>
+    </div>
+  </footer>
+
+  <!-- JS global -->
+  <script src="{% static 'js/global.js' %}"></script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
