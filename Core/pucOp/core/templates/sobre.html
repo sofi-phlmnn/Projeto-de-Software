@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PUC Oportunidades — Sobre a Equipe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="sobre-root">
+  <div class="intro">
+    <h2 class="titulopag">Conheça Nossa Equipe</h2>
+    <p id="textintro">Conheça os integrantes do projeto PUC da disciplina ENG4021.</p>
+  </div>
+
+  <div class="lista-integrantes">
+    <div class="boxintegrantes">
+      <img class="fotointegrantes" src="{% static 'img/duda.png' %}" alt="Maria Eduarda Avila">
+      <div class="informacoes">
+        <h3 class="nome">Maria Eduarda Dantas Avila</h3>
+        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+      <div class="contato">
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+
+    <div class="boxintegrantes">
+      <img class="fotointegrantes" src="{% static 'img/gustavo.png' %}" alt="Gustavo">
+      <div class="informacoes">
+        <h3 class="nome">Gustavo</h3>
+        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+      <div class="contato">
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+
+    <div class="boxintegrantes">
+      <img class="fotointegrantes" src="{% static 'img/eduardo.png' %}" alt="Eduardo">
+      <div class="informacoes">
+        <h3 class="nome">Eduardo</h3>
+        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+      <div class="contato">
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+
+    <div class="boxintegrantes first">
+      <img class="fotointegrantes" src="{% static 'img/felipe.png' %}" alt="Felipe">
+      <div class="informacoes">
+        <h3 class="nome">Felipe</h3>
+        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+      <div class="contato">
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+
+    <div class="boxintegrantes">
+      <img class="fotointegrantes" src="{% static 'img/sofia.png' %}" alt="Sofia">
+      <div class="informacoes">
+        <h3 class="nome">Sofia</h3>
+        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+      <div class="contato">
+        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
+        <img class="git" src="{% static 'img/git.png' %}" alt="github">
+        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

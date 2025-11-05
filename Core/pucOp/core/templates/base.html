@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}PUC Oportunidades{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  {% url 'core:home' as url_home %}
+  {% url 'core:equipes' as url_equipes %}
+  {% url 'core:mapa' as url_mapa %}
+  {% url 'core:sobre' as url_sobre %}
+  {% url 'core:diretorios' as url_diretorios %}
+  {% url 'core:iniciacao' as url_iniciacao %}
+  {% url 'core:entidades' as url_entidades %}
+  {% url 'core:estagios' as url_estagios %}
+
+  <header class="topbar" role="banner">
+    <div class="container topbar__inner">
+      <a class="brand" href="{{ url_home }}">PUC OPORTUNIDADES</a>
+
+      <div class="topbar__right">
+        <div class="search">
+          <span class="material-icons-outlined" aria-hidden="true">search</span>
+          <input type="search" placeholder="Pesquisar..." aria-label="Pesquisar" />
+        </div>
+        <label for="nav-toggle" class="icon-btn hamburger" aria-label="Abrir menu" role="button">
+          <span class="material-icons-outlined" aria-hidden="true">menu</span>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <input type="checkbox" id="nav-toggle" class="visually-hidden" aria-hidden="true" />
+
+  <div class="drawer" id="site-drawer" aria-label="Menu lateral">
+    <nav class="drawer__nav" aria-label="Navegação principal">
+      <a class="drawer__link{% if request.path == url_home %} is-active{% endif %}" href="{{ url_home }}" {% if request.path == url_home %}aria-current="page"{% endif %}>
+        <span class="material-icons-outlined" aria-hidden="true">home</span>
+        Início
+      </a>
+      <a class="drawer__link{% if request.path|slice:":9" == url_equipes %} is-active{% endif %}" href="{{ url_equipes }}" {% if request.path|slice:":9" == url_equipes %}aria-current="page"{% endif %}>
+        <span class="material-icons-outlined" aria-hidden="true">groups</span>
+        Equipes
+      </a>
+      <a class="drawer__link{% if request.path|slice:":6" == url_mapa %} is-active{% endif %}" href="{{ url_mapa }}" {% if request.path|slice:":6" == url_mapa %}aria-current="page"{% endif %}>
+        <span class="material-icons-outlined" aria-hidden="true">map</span>
+        Mapa
+      </a>
+      <a class="drawer__link{% if request.path|slice:":7" == url_sobre %} is-active{% endif %}" href="{{ url_sobre }}" {% if request.path|slice:":7" == url_sobre %}aria-current="page"{% endif %}>
+        <span class="material-icons-outlined" aria-hidden="true">info</span>
+        Sobre
+      </a>
+      <a class="drawer__link{% if request.path|slice:":12" == url_diretorios %} is-active{% endif %}" href="{{ url_diretorios }}">
+        <span class="material-icons-outlined" aria-hidden="true">school</span>
+        Diretórios Acadêmicos
+      </a>
+      <a class="drawer__link{% if request.path|slice:":11" == url_iniciacao %} is-active{% endif %}" href="{{ url_iniciacao }}">
+        <span class="material-icons-outlined" aria-hidden="true">science</span>
+        Iniciação Científica
+      </a>
+      <a class="drawer__link{% if request.path|slice:":12" == url_entidades %} is-active{% endif %}" href="{{ url_entidades }}">
+        <span class="material-icons-outlined" aria-hidden="true">groups</span>
+        Entidades Estudantis
+      </a>
+      <a class="drawer__link{% if request.path|slice:":11" == url_estagios %} is-active{% endif %}" href="{{ url_estagios }}">
+      <span class="material-icons-outlined" aria-hidden="true">work_outline</span>
+      Estágios e Inovação
+      </a>
+    </nav>
+  </div>
+
+  <label for="nav-toggle" class="backdrop" aria-hidden="true"></label>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="{{ url_sobre }}">Sobre</a>
+      <a href="#">Contato</a>
+    </div>
+  </footer>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

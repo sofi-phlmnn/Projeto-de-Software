@@ -1,0 +1,21 @@
+.sobre-root{max-width:1100px;margin:0 auto;padding:16px}
+.titulopag{font-size:clamp(22px,2.2vw,32px);color:#6D28D9;text-align:center;margin:16px 0 6px 0}
+#textintro{color:#6B7280;text-align:center;margin:0 0 24px 0}
+.lista-integrantes{display:grid;gap:16px}
+.boxintegrantes{
+  display:grid;grid-template-columns:160px 1fr auto;gap:12px;align-items:start;
+  background:#fff;border:1px solid rgba(17,24,39,.06);box-shadow:0 10px 24px rgba(17,24,39,.08);border-radius:12px;padding:16px;color:#515050;line-height:1.6;font-size:1rem
+}
+.boxintegrantes.first{border-color:#c7d2fe;box-shadow:0 0 0 3px rgba(99,102,241,.12)}
+.fotointegrantes{width:160px;height:160px;object-fit:cover;border-radius:12px;background:#f3f4f6}
+.informacoes .nome{margin:0 0 .25rem 0;font-size:clamp(18px,1.6vw,22px);color:#111827;text-align:left}
+.textopessoal{margin:0;color:#374151;text-align:left}
+.contato{display:flex;gap:8px;align-items:center}
+.contato img{width:28px;height:28px;display:block;border-radius:6px;transition:transform .12s ease}
+.rodape{background:#2a2929;color:#fff;margin-top:24px;padding:16px;border-radius:10px}
+.rodape a{color:inherit;text-decoration:none}
+@media (max-width:720px){
+  .boxintegrantes{grid-template-columns:96px 1fr}
+  .fotointegrantes{width:96px;height:96px}
+  .contato{grid-column:1/-1}
+}
