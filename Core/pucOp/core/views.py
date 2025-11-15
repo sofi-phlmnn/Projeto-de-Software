@@ -104,6 +104,45 @@ def equipes(request):
     ]
     return render(request, "equipe.html", {"equipes": equipes})
 
+def diretorios(request):
+    diretorios = [
+        {
+            "nome": "DAAF",
+            "img": "daff2.png",
+            "descricao": (
+                "O DAAF acolhe os alunos tanto"
+                "academicamente quanto"
+                " socialmente,transformando a "
+                "Engenharia da PUC na melhor"
+                " possível!"
+            ),
+        },
+        {
+            "nome": "DAQEQ",
+            "img": "daqeq.png",
+            "descricao": (
+                "O Diretório Acadêmico de"
+                " Química e das Engenharias" 
+                "Química e de Materiais atua na"
+                " luta pelos direitos dos estudantes," 
+                "promove eventos acadêmicos,"
+                "culturais e sociais."
+            ),
+        },
+        {
+            "nome": "CAINF",
+            "img": "cainf2.png",
+            "descricao": (
+                "O Centro Acadêmico de"
+                " Informática representa os alunos"
+                " do Departamento de Informática,"
+                " defendendo seus interesses e "
+                "promovendo eventos"
+                " de tecnologia."
+            ),
+        },
+    ]
+    return render(request, "diretorios.html", {"diretorios": diretorios})
 
 def mapa(request):
     hero = {
@@ -145,8 +184,7 @@ def mapa(request):
 def sobre(request):
     return render(request, "sobre.html")
 
-def diretorios(request):
-    return render(request, "diretorios.html")
+
 
 def iniciacao(request):
     return render(request, "iniciacao.html")

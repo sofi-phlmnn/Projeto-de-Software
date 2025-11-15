@@ -1,71 +1,61 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: rgb(235, 235, 235);
-  color: #333;
-}
-
-.diretorios {
-  text-align: center;
-  padding: 2rem;
-}
-
-.banner-img {
+.diretorios-section {
   width: 100%;
-  max-width: 800px;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-}
-
-.texto-intro {
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border-radius: 10px;
-  padding: 2rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #444;
-  margin-bottom: 3rem;
-}
-
-.cards {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  justify-content: center;  /* centraliza todo o container */
+  margin-top: 40px;         
+  padding: 0 20px;           /* evita que encoste nas bordas da tela */
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;         /* deixa tudo alinhado com limite */
 }
 
 .card {
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: 280px;
-  padding: 1.5rem;
-  transition: 0.3s;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+  
 }
 
-.card img {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  margin-bottom: 1rem;
+.imgdiretorio-container { 
+  height: 120px; /* Altura fixa para todos os containers de imagem */
+  width: 100%;
+  display: flex; /* Para centralizar o conteúdo (a imagem) */
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 15px; /* Centraliza o container e adiciona margem inferior */
 }
 
-.card h3 {
-  color: #6A0DAD;
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+/* A imagem em si */
+.imgdiretorio {
+  max-height: 100%; /* Limita a altura da imagem ao container */
+  max-width: 100%;  /* Limita a largura da imagem ao container */
+  width: auto;      /* Permite que a largura se ajuste automaticamente */
+  height: auto;     /* Permite que a altura se ajuste automaticamente */
+  object-fit: contain; /* Garante que a imagem caiba sem ser cortada ou distorcida */
+  display: block;
 }
 
-.card p {
+/* Garante que o texto tenha altura uniforme forçando o container do texto */
+.textdiretorio {
   font-size: 0.95rem;
   color: #555;
-  line-height: 1.4;
+  height: 90px; /* Ajuste esta altura conforme a necessidade para padronizar (Ex: 90px) */
+  display: flex;
+  align-items: flex-start; /* Alinha o texto ao topo dentro do seu container */
+  justify-content: center; /* Centraliza o texto horizontalmente */
+  text-align: center; /* Garante que o conteúdo do texto fique centralizado */
 }

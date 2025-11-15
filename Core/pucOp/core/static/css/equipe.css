@@ -2,7 +2,8 @@ body{
   background-color:rgb(235,235,235) !important;
   color:#000;
 }
-.boxtext{
+
+.boxtextEquipe{
   color:rgb(81,80,80);
   background:#fff;
   box-shadow:0px 1px 8px #33333355;
@@ -14,19 +15,35 @@ body{
   font-size:12pt;
   line-height:1.5;
   margin-bottom:4em;
-  max-width:980px;
+  max-width:1300px;
 }
+
 .equipes{
   display:flex;align-items:center;gap:40px;
   color:rgb(81,80,80);
   background:#fff;
-  box-shadow:0px 1px 8px #333333bb;
+  
+  /* Sombra inicial IGUAL à dos Diretórios */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+  
   border-radius:1em;
   margin:2em auto 6em auto;
   padding:3em;
   max-width:1100px;
   border:1px solid #e5e7eb;
+  position: relative; /* Adicionado para garantir que o z-index funcione */
+  z-index: 1; /* Adicionado para garantir que não haja sobreposição */
+  
+  /* Transição IGUAL à dos Diretórios (para suavizar o hover) */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+.equipes:hover{
+  /* Este já está correto! */
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
 .imgequipes{
   border-radius:.3em;
   width:22em;height:12em;
