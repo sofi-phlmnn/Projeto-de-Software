@@ -5,132 +5,48 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/entidades.css' %}">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
-<section class="page-hero">
-  <div class="container">
-    <nav class="breadcrumb">
-      <span>Início</span>
-      <span class="sep">/</span>
-      <span>Entidades Estudantis</span>
-    </nav>
-
-    <div class="page-hero__card card">
-      <div class="page-hero__icon">
-        <span class="material-icons-outlined">diversity_3</span>
-      </div>
-      <div class="page-hero__text">
-        <h1>Entidades Estudantis</h1>
-        <p>Explore representantes estudantis, empresas juniores, coletivos e ligas.</p>
-      </div>
-    </div>
-
-    <div class="filters">
-      <span class="chip is-active">todas</span>
-      <span class="chip">empresa júnior</span>
-      <span class="chip">centro acadêmico</span>
-      <span class="chip">diretório acadêmico</span>
-      <span class="chip">coletivo</span>
-      <span class="chip">liga</span>
-    </div>
-  </div>
+<section class="banner">
+  <h2>Entidades Estudantis na PUC-Rio</h2>
+  <p>Explore representantes estudantis, empresas juniores, coletivos e ligas.</p>
 </section>
 
 <main class="container">
-  <section class="section">
-    <h2 class="section__title">Destaques</h2>
-    <div class="entities-grid">
-      <article class="entity-card card">
-        <header class="entity-card__header">
-          <img class="entity-card__logo" src="https://upload.wikimedia.org/wikipedia/commons/7/75/Briefcase_icon.svg" alt="PUC Empresa Júnior" />
-          <div>
-            <h3 class="entity-card__title">PUC Empresa Júnior</h3>
-            <div class="entity-card__tags">
-              <span class="tag">empresa júnior</span>
-              <span class="tag">consultoria</span>
-            </div>
-          </div>
-        </header>
-        <p class="entity-card__desc">
-          Consultoria e projetos com clientes reais para desenvolvimento dos alunos nas áreas de gestão e tecnologia.
-        </p>
-        <ul class="entity-card__meta">
-          <li><span class="material-icons-outlined">person</span> Maria Luiza Castro (Presidência 2025.2)</li>
-          <li><span class="material-icons-outlined">alternate_email</span> @pucempresa</li>
-          <li><span class="material-icons-outlined">mail</span> contato@pucempresa.br</li>
-        </ul>
-      </article>
-
-      <article class="entity-card card">
-        <header class="entity-card__header">
-          <img class="entity-card__logo" src="" alt="Diretório Acadêmico" />
-          <div>
-            <h3 class="entity-card__title">Diretório Acadêmico de Engenharia</h3>
-            <div class="entity-card__tags">
-              <span class="tag">diretório acadêmico</span>
-              <span class="tag">CTC</span>
-            </div>
-          </div>
-        </header>
-        <p class="entity-card__desc">
-          Representação estudantil dos cursos de engenharia: apoio acadêmico, eventos e integração dos alunos.
-        </p>
-        <ul class="entity-card__meta">
-          <li><span class="material-icons-outlined">alternate_email</span> @daeng_puc</li>
-          <li><span class="material-icons-outlined">mail</span> daeng@puc-rio.br</li>
-        </ul>
-      </article>
-
-      <article class="entity-card card">
-        <header class="entity-card__header">
-          <img class="entity-card__logo" src="" alt="Centro Acadêmico" />
-          <div>
-            <h3 class="entity-card__title">Centro Acadêmico de Computação</h3>
-            <div class="entity-card__tags">
-              <span class="tag">centro acadêmico</span>
-              <span class="tag">computação</span>
-            </div>
-          </div>
-        </header>
-        <p class="entity-card__desc">
-          Iniciativas para alunos de Ciência da Computação: hackathons, grupos de estudo e integração com o mercado.
-        </p>
-        <ul class="entity-card__meta">
-          <li><span class="material-icons-outlined">alternate_email</span> @cacomp_puc</li>
-          <li><span class="material-icons-outlined">mail</span> cacomp@puc-rio.br</li>
-        </ul>
-      </article>
-
-      <article class="entity-card card">
-        <header class="entity-card__header">
-          <img class="entity-card__logo" src="" alt="Coletivo EcoPUC" />
-          <div>
-            <h3 class="entity-card__title">Coletivo EcoPUC</h3>
-            <div class="entity-card__tags">
-              <span class="tag">coletivo</span>
-              <span class="tag">sustentabilidade</span>
-            </div>
-          </div>
-        </header>
-        <p class="entity-card__desc">
-          Projetos ambientais no campus: reciclagem, comunicação e voluntariado voltados à sustentabilidade.
-        </p>
-        <ul class="entity-card__meta">
-          <li><span class="material-icons-outlined">alternate_email</span> @ecopuc</li>
-          <li><span class="material-icons-outlined">mail</span> ecopuc@puc-rio.br</li>
-        </ul>
-      </article>
-    </div>
-  </section>
+    {% for e in entidades %}
+  <div class="entity">
+      
+      {# HEADER PARA ALINHAR IMAGEM E NOME LADO A LADO #}
+      <div class="entity-header">
+          <img class="entity-logo" src="{% static 'img/' %}{{ e.img }}" alt="Logo da {{ e.nome }}">
+          <h3 class="nomestagio">{{ e.nome }}</h3>
+      </div>
+      
+      <p class="desestagio">{{ e.descricao }}</p>
+      
+      {# Detalhes (Tipo e Contatos) #}
+      <div class="detalhes-topicos">
+         <ul class="entity-meta">
+        {# CORREÇÃO: Removemos "Tipo:" para que o texto fique alinhado como os demais contatos #}
+        <li><span class="material-icons-outlined"></span> {{ e.tipo }}</li>
+    
+        {# Contatos (Estes já estão corretos) #}
+        {% for item in e.contatos %}
+            <li><span class="material-icons-outlined">{{ item.icone }}</span> {{ item.texto }}</li>
+        {% endfor %}
+    </ul>
+      </div>
+  </div>
+    {% empty %}
+        <p>Nenhuma entidade estudantil encontrada no momento.</p>
+    {% endfor %} 
 </main>
 
 <footer>
-  <div class="container footer__inner">
-    <span>Sobre</span>
-    <span>Contato</span>
-  </div>
+  <p>© 2025 • PUC Oportunidades</p>
 </footer>
+
 {% endblock %}
+

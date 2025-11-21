@@ -19,3 +19,13 @@
   .fotointegrantes{width:96px;height:96px}
   .contato{grid-column:1/-1}
 }
+
+footer {
+  background-color: #e0e0e0;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 2rem;
+}
+  

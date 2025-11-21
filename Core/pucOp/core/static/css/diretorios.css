@@ -59,3 +59,20 @@
   justify-content: center; /* Centraliza o texto horizontalmente */
   text-align: center; /* Garante que o conteúdo do texto fique centralizado */
 }
+
+footer {
+  background-color: #e0e0e0;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 18rem;
+}
+
+.nomediretorio{
+  font-family:Arial, sans-serif;
+  font-size:20pt;
+  color:#6D28D9;
+  margin-bottom:.7em;
+}
+  

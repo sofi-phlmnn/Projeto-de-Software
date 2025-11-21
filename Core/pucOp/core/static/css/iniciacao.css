@@ -73,13 +73,14 @@ body {
 }
 
 footer {
-  background-color: #0f172a;
-  color: #fff;
+  background-color: #e0e0e0;
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
-  margin-top: 3rem;
+  color: #333;
+  margin-top: 2rem;
 }
+
 
 @media (max-width: 600px) {
   .banner h2 {
