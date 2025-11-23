@@ -5,11 +5,14 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/entidades.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
-<section class="banner">
+
+
+<section class="boxtext">
   <h2>Entidades Estudantis na PUC-Rio</h2>
   <p>Explore representantes estudantis, empresas juniores, coletivos e ligas.</p>
 </section>
@@ -18,7 +21,7 @@
     {% for e in entidades %}
   <div class="entity">
       
-      {# HEADER PARA ALINHAR IMAGEM E NOME LADO A LADO #}
+
       <div class="entity-header">
           <img class="entity-logo" src="{% static 'img/' %}{{ e.img }}" alt="Logo da {{ e.nome }}">
           <h3 class="nomestagio">{{ e.nome }}</h3>
@@ -26,17 +29,14 @@
       
       <p class="desestagio">{{ e.descricao }}</p>
       
-      {# Detalhes (Tipo e Contatos) #}
+
       <div class="detalhes-topicos">
          <ul class="entity-meta">
-        {# CORREÇÃO: Removemos "Tipo:" para que o texto fique alinhado como os demais contatos #}
-        <li><span class="material-icons-outlined"></span> {{ e.tipo }}</li>
-    
-        {# Contatos (Estes já estão corretos) #}
-        {% for item in e.contatos %}
-            <li><span class="material-icons-outlined">{{ item.icone }}</span> {{ item.texto }}</li>
-        {% endfor %}
-    </ul>
+            <li><span class="material-icons-outlined"></span> {{ e.tipo }}</li>
+            {% for item in e.contatos %}
+                <li><span class="material-icons-outlined">{{ item.icone }}</span> {{ item.texto }}</li>
+            {% endfor %}
+        </ul>
       </div>
   </div>
     {% empty %}

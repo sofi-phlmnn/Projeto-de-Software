@@ -4,28 +4,33 @@
 {% block title %}PUC Oportunidades — Estágios e Inovação{% endblock %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
 <link rel="stylesheet" href="{% static 'css/estagios.css' %}">
 {% endblock %}
 
 {% block content %}
-<section class="banner">
+
+<!-- Banner da Página -->
+<section class="boxtextEstagio">
   <h2>Programas de Estágio e Inovação</h2>
   <p>Conheça iniciativas que unem aprendizado prático, tecnologia e desenvolvimento profissional.</p>
 </section>
 
-<main class="container">
-    {% for e in estagios %}
-  <div class="program">
+<!-- Container Principal -->
+<main>
+  {% for e in estagios %}
+  <div class="estagios">
+    <div class="textestagio">
       <h3 class="nomestagio">{{ e.nome }}</h3>
       <p class="desestagio">{{ e.descricao }}</p>
       <div class="detalhes-topicos">
-          {{ e.topicos_lista|safe }}
+        {{ e.topicos_lista|safe }}
       </div>
+    </div>
   </div>
-    {% empty %}
-        <p>Nenhum programa de estágio ou inovação encontrado no momento.</p>
-    {% endfor %} 
-
+  {% empty %}
+  <p class="boxtext">Nenhum programa de estágio ou inovação encontrado no momento.</p>
+  {% endfor %}
 </main>
 
 <footer>
@@ -33,3 +38,4 @@
 </footer>
 
 {% endblock %}
+

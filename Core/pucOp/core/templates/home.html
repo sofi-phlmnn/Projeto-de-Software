@@ -24,6 +24,9 @@
   </section>
 
   <main class="home">
+    <!-- ============================ -->
+    <!-- OPORTUNIDADES EM DESTAQUE -->
+    <!-- ============================ -->
     <section class="container section">
       <h3 class="section__title">Oportunidades em Destaque</h3>
       <div class="cards-grid">
@@ -35,12 +38,15 @@
             </div>
             <h4 class="op-card__title">{{ op.titulo }}</h4>
           </header>
+
           <p class="op-card__desc">{{ op.descricao }}</p>
+
           <ul class="op-card__meta">
             {% for m in op.meta %}
               <li><span class="material-icons-outlined" aria-hidden="true">{{ m.icon }}</span> {{ m.texto }}</li>
             {% endfor %}
           </ul>
+
           <a class="op-card__link" href="{{ op.href }}">Ver Mais</a>
         </article>
         {% endfor %}
@@ -49,9 +55,12 @@
 
     <section class="container section">
       <h3 class="section__title">Explore por Categoria</h3>
+
       <nav class="categories">
         {% for c in categorias %}
-          <a class="{{ c.class }}" href="{{ c.href }}">{{ c.label_html|safe }}</a>
+          <a class="category-circle {{ c.class }}" href="{{ c.href }}">
+            <span class="category-label">{{ c.label_html|safe }}</span>
+          </a>
         {% endfor %}
       </nav>
     </section>

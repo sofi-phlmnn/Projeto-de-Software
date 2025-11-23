@@ -1,99 +1,64 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  background-color:rgb(235,235,235) !important;
-  color:#000;
+  background-color: rgb(235,235,235);
+  color: #000;
+  font-family: Arial, sans-serif;
 }
 
-.banner {
- color:rgb(81,80,80);
-  background:#fff;
-  box-shadow:0px 1px 8px #33333355;
-  border:1px solid #e5e7eb;
-  margin:2em auto;
-  padding:3em;
-  border-radius:1em;
-  font-family:Arial, sans-serif;
-  font-size:12pt;
-  line-height:1.5;
-  margin-bottom:4em;
-  max-width:1300px;
+.boxtextEstagio {
+  color: rgb(81,80,80);
+  background: #fff;
+  box-shadow: 0px 1px 8px #33333355;
+  border: 1px solid #e5e7eb;
+  margin: 2em auto;
+  padding: 3em;
+  border-radius: 1em;
+  font-size: 12pt;
+  line-height: 1.5;
+  max-width: 1300px;
+  margin-bottom: 4em;
 }
 
-.container {
-  width: 90%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.program {
-  color:rgb(81,80,80);
-  background:#fff;
-
- box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-  
-  border-radius:1em;
-  margin:2em auto 6em auto;
-  padding:3em;
-  max-width:1100px;
-  border:1px solid #e5e7eb;
+.estagios {
+  color: rgb(81,80,80);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 1em;
+  margin: 2em auto 6em auto;
+  padding: 3em;
+  max-width: 1100px;
+  border: 1px solid #e5e7eb;
   position: relative;
   z-index: 1;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-
 }
 
-.program:hover{
-  /* Este já está correto! */
+.estagios:hover {
   transform: translateY(-7px) scale(1.01);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-
-.program .nomestagio {
-  font-family:Arial, sans-serif;
-  font-size:20pt;
-  color:#6D28D9;
-  margin-bottom:.7em;
+.nomestagio {
+  font-size: 20pt;
+  color: #6D28D9;
+  margin-bottom: 0.7em;
 }
 
-
-.program .desestagio {
+.desestagio {
   font-size: 1rem;
   color: #444;
-  margin-bottom: 1.5rem; /* Espaço maior antes da lista de tópicos */
+  margin-bottom: 1.5rem;
   line-height: 1.5;
 }
 
-
-.program h2 { /* Mantenho h2 por segurança, mas o h3 é o nome */
-  color: #004b8d;
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Mantendo estilos genéricos de parágrafo, embora o .desestagio já controle */
-.program p {
-  font-size: 1rem;
-  color: #444;
-  margin-bottom: 0.8rem;
-  line-height: 1.5;
-}
-
-/* Estilos para a lista de tópicos */
-.program ul {
+.estagios ul {
   list-style: disc;
   margin-left: 1.5rem;
-  padding-left: 0; /* Garante que o ul não empurre demais */
+  padding-left: 0;
 }
 
-.program ul li {
+.estagios ul li {
   margin-bottom: 0.4rem;
-  font-size: 0.95rem; /* Levemente menor para ser um detalhe */
+  font-size: 0.95rem;
   color: #555;
 }
 
@@ -104,4 +69,20 @@ footer {
   font-size: 0.9rem;
   color: #333;
   margin-top: 2rem;
+}
+
+/* ---------- Correção do Topbar (título e pesquisa) ---------- */
+.topbar__inner {
+  padding: 0 var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+@media (max-width:960px){
+  .estagios {
+    padding: 2em;
+    margin: 2em 1em 4em 1em;
+  }
 }
