@@ -49,23 +49,21 @@ def home(request):
         },
     ]
 
-    # ==========================
-    # CATEGORIAS ATUALIZADAS
-    # ==========================
+
+
+
+ # <-- FECHOU A LISTA AQUI
+    
+
+
+
     categorias = [
-
-        {"class": "cat-equipe",    "label_html": "equipe",                      "href": "/equipes/"},
-        {"class": "cat-iniciacao", "label_html": "iniciação<br/>científica",    "href": "/iniciacao/"},
-        {"class": "cat-entidades", "label_html": "entidades<br/>estudantis",    "href": "/entidades/"},
-        {"class": "cat-da",        "label_html": "diretório<br/>acadêmico",     "href": "/diretorios/"},
-        {"class": "cat-estagio",   "label_html": "estágio",                     "href": "/estagios/"},
-
         {"class": "cat cat--orange", "label_html": "equipes",                  "href": reverse("core:equipes")},
         {"class": "cat cat--blue",   "label_html": "iniciação<br/>científica", "href": reverse("core:iniciacao")},
         {"class": "cat cat--yellow", "label_html": "entidades<br/>estudantis", "href": reverse("core:entidades")},
         {"class": "cat cat--pink",   "label_html": "diretório<br/>acadêmico",  "href": reverse("core:diretorios")},
         {"class": "cat cat--green",  "label_html": "estágio",                  "href": reverse("core:estagios")},
- 
+    ]
 
     ctx = {
         "hero": hero,
@@ -73,6 +71,7 @@ def home(request):
         "categorias": categorias
     }
     return render(request, "home.html", ctx)
+
 
 
 
@@ -360,6 +359,24 @@ def iniciacao(request):
     ]
 
     return render(request, "iniciacao.html", {"iniciacoes": iniciacoes})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
