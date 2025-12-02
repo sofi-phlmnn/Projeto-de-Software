@@ -1,0 +1,369 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #F4F6F9;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header - padrão consistente */
+.header-container {
+    background-color: #002D5B;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo-area, .user-area {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#logo {
+    width: 50px;
+    height: 50px;
+}
+
+.menu-icon, .profile-icon, .notification-icon {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.search-input-desktop {
+    flex-grow: 1;
+    max-width: 500px;
+    position: relative;
+}
+
+.search-input-desktop input {
+    width: 100%;
+    padding: 10px 15px 10px 45px; 
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333333;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-icon-desktop {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+/* Barra Lateral */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: #002D5B;
+    color: #FFFFFF;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sidebar-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sidebar-menu {
+    padding: 20px 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border-left: 4px solid transparent;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left-color: #FF8C00;
+}
+
+.menu-item.active {
+    background-color: rgba(255, 140, 0, 0.2);
+    border-left-color: #FF8C00;
+}
+
+.menu-icon {
+    margin-right: 15px;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-text {
+    flex: 1;
+    font-size: 16px;
+}
+
+.checkbox-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #FFFFFF;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.checkbox-custom.checked::after {
+    content: "✓";
+    color: #FF8C00;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Overlay quando sidebar está aberta */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* Ajuste do conteúdo quando sidebar está aberta */
+body.sidebar-open {
+    overflow: hidden;
+}
+
+/* Header ajustado para incluir o menu hamburguer */
+.menu-icon.hamburger {
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.menu-icon.hamburger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Container de login */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 100px 20px 40px;
+    width: 100%;
+}
+
+.login-content {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Logo section */
+.logo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.logo-puc, .logo-vinculou {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+/* Banner de boas-vindas */
+.welcome-banner {
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.welcome-banner h1 {
+    font-size: 24px;
+    font-weight: 300;
+    color: #002D5B;
+    margin: 0;
+}
+
+/* Formulário de login */
+.login-form-container {
+    background-color: #FFFFFF;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #002D5B;
+    min-width: 80px;
+    text-align: left;
+}
+
+.login-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    background-color: #F4F6F9;
+    font-size: 16px;
+    color: #333333;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-input:focus {
+    border-color: #002D5B;
+    box-shadow: 0 0 0 3px rgba(0, 45, 91, 0.1);
+}
+
+.login-input::placeholder {
+    color: #666666;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: #002D5B;
+    color: #FFFFFF;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background-color: #FF8C00;
+    transform: translateY(-2px);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+    
+    .search-input-desktop {
+        order: 3;
+        max-width: 100%;
+        margin-top: 10px;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .logo-puc, .logo-vinculou {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .login-form-container {
+        padding: 30px 20px;
+    }
+    
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .form-group label {
+        min-width: auto;
+    }
+    
+    .login-input {
+        width: 100%;
+    }
+    
+    .sidebar {
+        width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-puc, .logo-vinculou {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .welcome-banner h1 {
+        font-size: 20px;
+    }
+    
+    .login-form-container {
+        padding: 25px 15px;
+    }
+}
