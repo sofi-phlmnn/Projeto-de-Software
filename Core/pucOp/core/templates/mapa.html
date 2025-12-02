@@ -60,6 +60,10 @@
     </div>
   </main>
 </div>
+<footer>
+  <p>© 2025 • PUC Oportunidades</p>
+</footer>  
+
 {% if pontos %}{{ pontos|json_script:"pontos-data" }}{% endif %}
 {% endblock %}
 
@@ -98,4 +102,7 @@
   setTimeout(() => map.invalidateSize(), 0);
   window.addEventListener('resize', () => map.invalidateSize());
 </script>
+
+
+
 {% endblock %}

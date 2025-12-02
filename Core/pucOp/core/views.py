@@ -49,6 +49,14 @@ def home(request):
         },
     ]
 
+
+
+
+ # <-- FECHOU A LISTA AQUI
+    
+
+
+
     categorias = [
         {"class": "cat cat--orange", "label_html": "equipes",                  "href": reverse("core:equipes")},
         {"class": "cat cat--blue",   "label_html": "iniciação<br/>científica", "href": reverse("core:iniciacao")},
@@ -63,6 +71,9 @@ def home(request):
         "categorias": categorias
     }
     return render(request, "home.html", ctx)
+
+
+
 
 
 def equipes(request):
@@ -110,6 +121,154 @@ def equipes(request):
     return render(request, "equipe.html", {"equipes": equipes})
 
 
+def diretorios(request):
+    diretorios = [
+        {
+            "nome": "DAAF",
+            "img": "daff2.png",
+            "descricao": (
+                "O DAAF acolhe os alunos tanto"
+                "academicamente quanto"
+                " socialmente,transformando a "
+                "Engenharia da PUC na melhor"
+                " possível!"
+            ),
+        },
+        {
+            "nome": "DAQEQ",
+            "img": "daqeq.png",
+            "descricao": (
+                "O Diretório Acadêmico de"
+                " Química e das Engenharias" 
+                "Química e de Materiais atua na"
+                " luta pelos direitos dos estudantes," 
+                "promove eventos acadêmicos,"
+                "culturais e sociais."
+            ),
+        },
+        {
+            "nome": "CAINF",
+            "img": "cainf2.png",
+            "descricao": (
+                "O Centro Acadêmico de"
+                " Informática representa os alunos"
+                " do Departamento de Informática,"
+                " defendendo seus interesses e "
+                "promovendo eventos"
+                " de tecnologia."
+            ),
+        },
+    ]
+    return render(request, "diretorios.html", {"diretorios": diretorios})
+
+
+def estagios(request):
+    estagios = [
+        {
+            "nome": "APPLE DEVELOPER ACADEMY – PUC-RIO",
+            "descricao": (
+                "Programa de inovação tecnológica promovido pela PUC com apoio da Apple, focado no "
+                "desenvolvimento de apps e produtos digitais."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li> Programa de inovação / extensão</li>
+                <li> Inscrições periódicas pelo ECOA / PUC-Rio</li>
+                <li> Atuação prática com projetos, mentoria e tecnologia</li>
+                <li> Inscrições periódicas pelo ECOA / PUC-Rio</li>
+            </ul>
+            """
+        },
+        {
+            "nome": "PROGRAMA DE ESTÁGIO PETROBRAS",
+            "descricao": "Programa de estágio nacional da Petrobras para estudantes de nível técnico ou superior.",
+            "topicos_lista": """
+            <ul>
+                <li> Estágios para cursos técnicos ou superiores</li>
+                <li> Bolsa-auxílio recente: R$ 1.825,00</li>
+                <li> Carga horária típica: 20 horas semanais</li>
+            </ul>
+            """
+        },
+        {
+            "nome": "IGNIÇÃO PETROBRAS / ECOA PUC-RIO",
+            "descricao": (
+                "Programa de inovação no mercado de óleo e gás em parceria com a Petrobras, "
+                "organizado pelo ECOA na PUC-Rio."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li> Voltado a estudantes universitários com criatividade tecnológica</li>
+                <li> Desenvolvimento de soluções para problemas reais</li>
+                <li> Participação remunerada ou com bolsa conforme normas do ECOA / PUC</li>
+            </ul>
+            """
+        },
+        {
+            "nome": "I9CULTURA / TECNOTOPIAS",
+            "descricao": (
+                "Programa de inovação cultural do Instituto ECOA PUC-Rio que valoriza o uso de tecnologia "
+                "para promover transformações na área cultural."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li> Desenvolve exposições e instalações com tecnologia, cultura e arte</li>
+                <li> Programa gratuito e aberto ao público para participação e experimentação</li>
+                <li> Instalações imersivas explorando cultura, meio ambiente e inovação</li>
+            </ul>
+            """
+        },
+    ]
+    return render(request, "estagios.html", {"estagios": estagios})
+
+
+def entidades(request):
+    entidades = [
+        {
+            "nome": "PUC EMPRESA JÚNIOR",
+            "img": "ej.png",
+            "descricao": "Consultoria e projetos com clientes reais para desenvolvimento dos alunos nas áreas de gestão e tecnologia.",
+            "tipo": "Empresa Júnior",
+            "contatos": [
+                {"icone": "person", "texto": "Maria Luiza Castro (Presidência 2025.2)"},
+                {"icone": "alternate_email", "texto": "@pucempresa"},
+                {"icone": "mail", "texto": "contato@pucempresa.br"},
+            ]
+        },
+        {
+            "nome": "DIRETÓRIO ACADÊMICO DE ENGENHARIA (DAENG)",
+            "img": "deep.png",
+            "descricao": "Representação estudantil dos cursos de engenharia: apoio acadêmico, eventos e integração dos alunos.",
+            "tipo": "Diretório Acadêmico",
+            "contatos": [
+                {"icone": "alternate_email", "texto": "@daeng_puc"},
+                {"icone": "mail", "texto": "daeng@puc-rio.br"},
+            ]
+        },
+        {
+            "nome": "CENTRO ACADÊMICO DE COMPUTAÇÃO (CACOMP)",
+            "img": "com.png",
+            "descricao": "Iniciativas para alunos de Ciência da Computação: hackathons, grupos de estudo e integração com o mercado.",
+            "tipo": "Centro Acadêmico",
+            "contatos": [
+                {"icone": "alternate_email", "texto": "@cacomp_puc"},
+                {"icone": "mail", "texto": "cacomp@puc-rio.br"},
+            ]
+        },
+        {
+            "nome": "COLETIVO ECOPUC",
+            "img": "ecoa.png",
+            "descricao": "Projetos ambientais no campus: reciclagem, comunicação e voluntariado voltados à sustentabilidade.",
+            "tipo": "Coletivo",
+            "contatos": [
+                {"icone": "alternate_email", "texto": "@ecopuc"},
+                {"icone": "mail", "texto": "ecopuc@puc-rio.br"},
+            ]
+        },
+    ]
+    return render(request, "entidades.html", {"entidades": entidades})
+
+
 def mapa(request):
     hero = {
         "titulo": "Mapa do Campus PUC-Rio",
@@ -150,15 +309,77 @@ def mapa(request):
 def sobre(request):
     return render(request, "sobre.html")
 
-def diretorios(request):
-    return render(request, "diretorios.html")
+
+
 
 def iniciacao(request):
-    return render(request, "iniciacao.html")
+    iniciacoes = [
+        {
+            "nome": "PIBIC – Iniciação Científica com Bolsa",
+            "descricao": (
+                "O PIBIC é o principal programa de iniciação científica da PUC-Rio, oferecendo bolsas "
+                "para estudantes que desejam desenvolver projetos de pesquisa com orientação docente."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li><strong>Duração:</strong> 12 meses de pesquisa</li>
+                <li><strong>Bolsa:</strong> Auxílio CNPq ou PUC</li>
+                <li><strong>Resultado:</strong> Seminários e publicações</li>
+            </ul>
+            """
+        },
+        {
+            "nome": "Laboratórios e Grupos de Pesquisa",
+            "descricao": (
+                "Os laboratórios da PUC-Rio oferecem ambientes de investigação em diversas áreas como "
+                "tecnologia, humanidades, saúde e comunicação."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li><strong>Participação:</strong> Com bolsa ou voluntária</li>
+                <li><strong>Inscrição:</strong> Via professor orientador</li>
+                <li><strong>Benefício:</strong> Experiência para mestrado e publicações</li>
+            </ul>
+            """
+        },
+        {
+            "nome": "ECOA – Inovação e Pesquisa Criativa",
+            "descricao": (
+                "O Instituto ECOA desenvolve projetos interdisciplinares envolvendo tecnologia, cultura, "
+                "sustentabilidade e arte, oferecendo experiências únicas aos alunos."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li><strong>Diferencial:</strong> Pesquisa + Inovação</li>
+                <li><strong>Ambiente:</strong> Colaborativo e criativo</li>
+                <li><strong>Projetos:</strong> Exposições, mostras e prototipagem</li>
+            </ul>
+            """
+        },
+    ]
 
-def entidades(request):
-    return render(request, "entidades.html")
+    return render(request, "iniciacao.html", {"iniciacoes": iniciacoes})
 
-def estagios(request):
-    return render(request, "estagios.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

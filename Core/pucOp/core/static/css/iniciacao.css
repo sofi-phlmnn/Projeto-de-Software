@@ -4,90 +4,94 @@
   box-sizing: border-box;
 }
 
+/* ---------- BODY ---------- */
 body {
-  font-family: 'Arial', sans-serif;
+
+
   background-color: rgb(235, 235, 235);
-  color: #333;
+  color: #000;
+  font-family: Arial, sans-serif;
 }
 
-.banner {
+/* ---------- BANNER / INTRO ---------- */
+.boxtext {
+  color: rgb(81,80,80);
+  background: #fff;
+  box-shadow: 0px 1px 8px #33333355;
+  border: 1px solid #e5e7eb;
+  margin: 2em auto;
+  padding: 3em;
+  border-radius: 1em;
+  font-family: Arial, sans-serif;
+  font-size: 12pt;
+  line-height: 1.5;
+  max-width: 1300px;
   text-align: center;
-  padding: 2.5rem 1rem;
-  background: linear-gradient(to right, #6D28D9, #7B3AED);
-  color: #fff;
 }
 
-.banner h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.banner p {
-  font-size: 1.1rem;
-  opacity: 0.95;
-  max-width: 700px;
+/* ---------- CONTAINER ---------- */
+.container {
+  width: min(1100px, 96%);
   margin: 0 auto;
 }
 
+/* ---------- CARDS DE INICIAÇÃO ---------- */
 .program {
-  background-color: #fff;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 900px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: rgb(81,80,80);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 1em;
+  margin: 2em auto 6em auto;
+  padding: 3em;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 
-.program h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.8rem;
+.program:hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
 }
 
-.titulo-pibic {
-  color: #0074d9;
+/* ---------- TIPOGRAFIA ---------- */
+.nomeinic {
+  font-size: 20pt;
+  color: #6D28D9;
+  margin-bottom: 0.7em;
+  font-family: Arial, sans-serif;
 }
 
-.titulo-lab {
-  color: #b10dc9;
-}
-
-.titulo-ecoa {
-  color: #2ecc40;
-}
-
-.program p {
+.desinic {
   font-size: 1rem;
-  margin-bottom: 1rem;
+
+
   color: #444;
-  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
 .program ul {
-  list-style: none;
-  padding-left: 0;
+  list-style: disc;
+  margin-left: 1.5rem;
 }
 
 .program ul li {
-  margin: 0.4rem 0;
+  margin-bottom: 0.4rem;
   font-size: 0.95rem;
+  color: #555;
 }
 
+/* ---------- FOOTER ---------- */
 footer {
-  background-color: #0f172a;
-  color: #fff;
+  background-color: #e0e0e0;
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
-  margin-top: 3rem;
+  color: #333;
+  margin-top: 2rem;
 }
 
-@media (max-width: 600px) {
-  .banner h2 {
-    font-size: 1.5rem;
-  }
 
-  .program {
-    padding: 1.2rem;
-    margin: 1.2rem;
-  }
-}
+
+
+

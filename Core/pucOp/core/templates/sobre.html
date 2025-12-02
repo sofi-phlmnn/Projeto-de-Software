@@ -8,77 +8,92 @@
 {% endblock %}
 
 {% block content %}
-<div class="sobre-root">
-  <div class="intro">
-    <h2 class="titulopag">Conheça Nossa Equipe</h2>
-    <p id="textintro">Conheça os integrantes do projeto PUC da disciplina ENG4021.</p>
-  </div>
 
-  <div class="lista-integrantes">
-    <div class="boxintegrantes">
-      <img class="fotointegrantes" src="{% static 'img/duda.png' %}" alt="Maria Eduarda Avila">
-      <div class="informacoes">
-        <h3 class="nome">Maria Eduarda Dantas Avila</h3>
-        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-      <div class="contato">
-        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
-        <img class="git" src="{% static 'img/git.png' %}" alt="github">
-        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
-      </div>
-    </div>
+<div class="sobre-container">
 
-    <div class="boxintegrantes">
-      <img class="fotointegrantes" src="{% static 'img/gustavo.png' %}" alt="Gustavo">
-      <div class="informacoes">
-        <h3 class="nome">Gustavo</h3>
-        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-      <div class="contato">
-        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
-        <img class="git" src="{% static 'img/git.png' %}" alt="github">
-        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
-      </div>
-    </div>
+    <h2 class="sobre-title">Conheça Nossa Equipe</h2>
+    <p class="sobre-subtitle">
+        Conheça as pessoas incríveis que tornam o Portal de Oportunidades da PUC-Rio possível.<br>
+        Nossa equipe é dedicada a conectar você com as melhores oportunidades.
+    </p>
 
-    <div class="boxintegrantes">
-      <img class="fotointegrantes" src="{% static 'img/eduardo.png' %}" alt="Eduardo">
-      <div class="informacoes">
-        <h3 class="nome">Eduardo</h3>
-        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-      <div class="contato">
-        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
-        <img class="git" src="{% static 'img/git.png' %}" alt="github">
-        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
-      </div>
-    </div>
+    <div class="cards-grid">
 
-    <div class="boxintegrantes first">
-      <img class="fotointegrantes" src="{% static 'img/felipe.png' %}" alt="Felipe">
-      <div class="informacoes">
-        <h3 class="nome">Felipe</h3>
-        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-      <div class="contato">
-        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
-        <img class="git" src="{% static 'img/git.png' %}" alt="github">
-        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
-      </div>
-    </div>
+        <!-- Duda -->
+        <div class="card">
+            <img class="avatar" src="{% static 'img/duda.png' %}" alt="Foto integrante">
+            <h3 class="nome">Maria Eduarda Ávila</h3>
+            <p class="descricao">
+                Responsável por liderar a equipe e garantir que o portal atenda às necessidades dos alunos.
+            </p>
+            <div class="social">
+                <img src="{% static 'img/insta.png' %}" alt="Instagram">
+                <img src="{% static 'img/git.png' %}" alt="GitHub">
+                <img src="{% static 'img/linkedin.png' %}" alt="LinkedIn">
+            </div>
+        </div>
 
-    <div class="boxintegrantes">
-      <img class="fotointegrantes" src="{% static 'img/sofia.png' %}" alt="Sofia">
-      <div class="informacoes">
-        <h3 class="nome">Sofia</h3>
-        <p class="textopessoal">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
-      <div class="contato">
-        <img class="insta" src="{% static 'img/insta.png' %}" alt="instagram">
-        <img class="git" src="{% static 'img/git.png' %}" alt="github">
-        <img class="linkedin" src="{% static 'img/linkedin.png' %}" alt="linkedin">
-      </div>
+        <!-- Gustavo -->
+        <div class="card">
+            <img class="avatar" src="{% static 'img/gustavo.png' %}" alt="Foto integrante">
+            <h3 class="nome">Gustavo Parente</h3>
+            <p class="descricao">
+                A mente por trás da tecnologia do portal, garantindo uma experiência segura e fluida.
+            </p>
+            <div class="social">
+                <img src="{% static 'img/insta.png' %}" alt="Instagram">
+                <img src="{% static 'img/git.png' %}" alt="GitHub">
+                <img src="{% static 'img/linkedin.png' %}" alt="LinkedIn">
+            </div>
+        </div>
+
+        <!-- Felipe -->
+        <div class="card">
+            <img class="avatar" src="{% static 'img/felipe.png' %}" alt="Foto integrante">
+            <h3 class="nome">Felipe Cantisano</h3>
+            <p class="descricao">
+                Criador da interface intuitiva e amigável do portal, focado em tornar a navegação simples.
+            </p>
+            <div class="social">
+                <img src="{% static 'img/insta.png' %}" alt="Instagram">
+                <img src="{% static 'img/git.png' %}" alt="GitHub">
+                <img src="{% static 'img/linkedin.png' %}" alt="LinkedIn">
+            </div>
+        </div>
+
+        <!-- Eduardo -->
+        <div class="card">
+            <img class="avatar" src="{% static 'img/eduardo.png' %}" alt="Foto integrante">
+            <h3 class="nome">Eduardo</h3>
+            <p class="descricao">
+                Contribui com desenvolvimento e melhorias contínuas do portal.
+            </p>
+            <div class="social">
+                <img src="{% static 'img/insta.png' %}" alt="Instagram">
+                <img src="{% static 'img/git.png' %}" alt="GitHub">
+                <img src="{% static 'img/linkedin.png' %}" alt="LinkedIn">
+            </div>
+        </div>
+
+        <!-- Sofia -->
+        <div class="card">
+            <img class="avatar" src="{% static 'img/sofia.png' %}" alt="Foto integrante">
+            <h3 class="nome">Sofia</h3>
+            <p class="descricao">
+                Contribui com design, organização e acessibilidade do portal.
+            </p>
+            <div class="social">
+                <img src="{% static 'img/insta.png' %}" alt="Instagram">
+                <img src="{% static 'img/git.png' %}" alt="GitHub">
+                <img src="{% static 'img/linkedin.png' %}" alt="LinkedIn">
+            </div>
+        </div>
+
     </div>
-  </div>
 </div>
+
+<footer>
+  <p>© 2025 • PUC Oportunidades</p>
+</footer>
+
 {% endblock %}

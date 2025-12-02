@@ -1,2 +1,68 @@
 .hero-card__text{margin-left:100px}
 .home .section__title{letter-spacing:.2px}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* CÍRCULO BASE */
+.category-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* HOVER EFFECT */
+.category-circle:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.20);
+}
+
+/* TEXTO */
+.category-label {
+  text-align: center;
+  padding: 0 10px;
+}
+
+/* CORES PARA CADA CÍRCULO */
+.cat-equipe {
+  background-color: #f78d2d; /* laranja */
+}
+
+.cat-iniciacao {
+  background-color: #2d6cf7; /* azul */
+}
+
+.cat-entidades {
+  background-color: #f7c92d; /* amarelo */
+}
+
+.cat-da {
+  background-color: #f72d90; /* rosa */
+}
+
+.cat-estagio {
+  background-color: #2dd48f; /* verde */
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .category-circle {
+    width: 120px;
+    height: 120px;
+    font-size: 1rem;
+  }
+}

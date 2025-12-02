@@ -5,37 +5,39 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/diretorios.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
 {% endblock %}
 
-{% block content %}
+{% block content %}  
 <section class="diretorios">
+
   <img class="banner-img" src="{% static 'img/diretorios.png' %}" alt="Diretórios Acadêmicos">
 
-  <p class="texto-intro">
+  <p class="boxtext">
     Os <strong>diretórios acadêmicos</strong> da PUC-Rio reúnem estudantes de cada curso para 
     representar seus colegas, promover integração e fortalecer a vida universitária. Mais do que organizar eventos, 
     divulgam oportunidades (estágios, monitorias, projetos) e atuam como ponte entre alunos, coordenações e empresas.
     Participar de um diretório é vivenciar trabalho em equipe, liderança e desenvolvimento profissional dentro e fora da universidade.
   </p>
 
-  <div class="cards">
-    <div class="card">
-      <img src="https://www.ctc.puc-rio.br/Upload/Imagem/2021/03/daaf.png" alt="Logo DAAF">
-      <h3>DAAF</h3>
-      <p>O DAAF acolhe os alunos tanto academicamente quanto socialmente, transformando a Engenharia da PUC na melhor possível!</p>
+  <section class="diretorios-section">
+    <div class="cards-container">
+      {% for e in diretorios %}
+        <div class="card">
+          <div class="imgdiretorio-container">
+            <img class="imgdiretorio" alt="{{ e.nome }}" src="{% static 'img/' %}{{ e.img }}">
+          </div>
+          <h3 class="nomediretorio">{{ e.nome }}</h3>
+          <p class="textdiretorio">{{ e.descricao }}</p>
+        </div>
+      {% endfor %}
     </div>
+  </section>
 
-    <div class="card">
-      <img src="https://www.ctc.puc-rio.br/Upload/Imagem/2021/03/daqeq.png" alt="Logo DAQEQ">
-      <h3>DAQEQ</h3>
-      <p>O Diretório Acadêmico de Química e das Engenharias Química e de Materiais atua na luta pelos direitos dos estudantes, promove eventos acadêmicos, culturais e sociais.</p>
-    </div>
-
-    <div class="card">
-      <img src="https://www.ctc.puc-rio.br/Upload/Imagem/2021/03/cainf.png" alt="Logo CAINF">
-      <h3>CAINF</h3>
-      <p>O Centro Acadêmico de Informática representa os alunos do Departamento de Informática, defendendo seus interesses e promovendo eventos de tecnologia.</p>
-    </div>
-  </div>
 </section>
-{% endblock %}
+
+<footer>
+  <p>© 2025 • PUC Oportunidades</p>
+</footer> 
+
+{% endblock content %} 
