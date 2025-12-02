@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse
 
 def home(request):
     hero = {
@@ -22,7 +23,7 @@ def home(request):
                 {"icon": "person", "texto": "Prof. Dr. Carlos Silva"},
                 {"icon": "event", "texto": "Inscrições até 30/11/2024"},
             ],
-            "href": "#",
+            "href": reverse("core:iniciacao"),
         },
         {
             "badge_class": "badge--green",
@@ -33,7 +34,7 @@ def home(request):
                 {"icon": "business", "texto": "Tech Solutions"},
                 {"icon": "schedule", "texto": "20h semanais"},
             ],
-            "href": "#",
+            "href": reverse("core:estagios"),
         },
         {
             "badge_class": "badge--blue",
@@ -44,7 +45,7 @@ def home(request):
                 {"icon": "groups", "texto": "RioBotz"},
                 {"icon": "event_available", "texto": "Reuniões semanais"},
             ],
-            "href": "#",
+            "href": reverse("core:equipes"),
         },
     ]
 
@@ -52,20 +53,29 @@ def home(request):
     # CATEGORIAS ATUALIZADAS
     # ==========================
     categorias = [
+
         {"class": "cat-equipe",    "label_html": "equipe",                      "href": "/equipes/"},
         {"class": "cat-iniciacao", "label_html": "iniciação<br/>científica",    "href": "/iniciacao/"},
         {"class": "cat-entidades", "label_html": "entidades<br/>estudantis",    "href": "/entidades/"},
         {"class": "cat-da",        "label_html": "diretório<br/>acadêmico",     "href": "/diretorios/"},
         {"class": "cat-estagio",   "label_html": "estágio",                     "href": "/estagios/"},
-    ]
 
-    ctx = {"hero": hero, "destaques": destaques, "categorias": categorias}
+        {"class": "cat cat--orange", "label_html": "equipes",                  "href": reverse("core:equipes")},
+        {"class": "cat cat--blue",   "label_html": "iniciação<br/>científica", "href": reverse("core:iniciacao")},
+        {"class": "cat cat--yellow", "label_html": "entidades<br/>estudantis", "href": reverse("core:entidades")},
+        {"class": "cat cat--pink",   "label_html": "diretório<br/>acadêmico",  "href": reverse("core:diretorios")},
+        {"class": "cat cat--green",  "label_html": "estágio",                  "href": reverse("core:estagios")},
+ 
+
+    ctx = {
+        "hero": hero,
+        "destaques": destaques,
+        "categorias": categorias
+    }
     return render(request, "home.html", ctx)
 
 
-# ==========================
-# OUTRAS VIEWS (SEM ALTERAÇÃO)
-# ==========================
+
 
 def equipes(request):
     equipes = [
