@@ -1,0 +1,143 @@
+/* fundo geral */
+body {
+  background-color: rgb(235,235,235);
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+
+/* wrapper central */
+.detalhe-wrapper {
+  width: min(1100px, 96%);
+  margin: 2.5em auto 4em auto;
+}
+
+/* card principal */
+.detalhe-card {
+  background: #fff;
+  border-radius: 1em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e5e7eb;
+  padding: 2.5em 3em;
+}
+
+/* header */
+.detalhe-header {
+  margin-bottom: 1.5rem;
+}
+
+.detalhe-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6B7280;
+  margin-bottom: 0.3rem;
+}
+
+.detalhe-title {
+  font-size: 1.8rem;
+  color: #6D28D9;
+}
+
+/* layout interno */
+.detalhe-main {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.detalhe-image img {
+  max-width: 320px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+.detalhe-texto {
+  flex: 1 1 0;
+}
+
+.detalhe-descricao {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* tópicos */
+.detalhe-topicos ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.detalhe-topicos li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* contatos */
+.detalhe-contatos h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.detalhe-contatos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detalhe-contatos li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+}
+
+/* botão voltar */
+.detalhe-footer {
+  margin-top: 2rem;
+}
+
+.btn-voltar {
+  display: inline-block;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #111827;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-voltar:hover {
+  background: #d1d5db;
+  transform: translateY(-1px);
+}
+
+/* responsivo */
+@media (max-width: 900px) {
+  .detalhe-card {
+    padding: 2em 1.5em;
+  }
+
+  .detalhe-main {
+    flex-direction: column;
+  }
+
+  .detalhe-image img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+footer {
+  background-color: #e0e0e0;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 2rem;
+}

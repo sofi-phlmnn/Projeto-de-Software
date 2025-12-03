@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ objeto.nome }} — {{ categoria_label }} • PUC Oportunidades{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/detalhe.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="detalhe-wrapper">
+  <article class="detalhe-card">
+    <header class="detalhe-header">
+      <p class="detalhe-badge">{{ categoria_label }}</p>
+      <h2 class="detalhe-title">{{ objeto.nome }}</h2>
+    </header>
+
+    <div class="detalhe-main">
+      {% if objeto.img %}
+      <div class="detalhe-image">
+        <img src="{% static 'img/' %}{{ objeto.img }}" alt="Imagem de {{ objeto.nome }}">
+      </div>
+      {% endif %}
+
+      <div class="detalhe-texto">
+        <p class="detalhe-descricao">{{ objeto.descricao }}</p>
+
+        {% if objeto.topicos_lista %}
+        <div class="detalhe-topicos">
+          {{ objeto.topicos_lista|safe }}
+        </div>
+        {% endif %}
+
+        {% if objeto.contatos %}
+        <section class="detalhe-contatos">
+          <h3>Contatos</h3>
+          <ul>
+            {% for c in objeto.contatos %}
+            <li>
+              {% if c.icone %}
+              <span class="material-symbols-outlined">{{ c.icone }}</span>
+              {% endif %}
+              <span>{{ c.texto }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if voltar_url %}
+    <div class="detalhe-footer">
+      <a class="btn-voltar" href="{{ voltar_url }}">&larr; Voltar</a>
+    </div>
+    {% endif %}
+  </article>
+</section>
+
+
+{% endblock %}

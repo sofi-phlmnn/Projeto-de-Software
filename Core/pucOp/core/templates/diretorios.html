@@ -5,10 +5,10 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/diretorios.css' %}">
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
 {% endblock %}
 
-{% block content %}  
+{% block content %}
+
 <section class="diretorios">
 
   <img class="banner-img" src="{% static 'img/diretorios.png' %}" alt="Diretórios Acadêmicos">
@@ -25,10 +25,13 @@
       {% for e in diretorios %}
         <div class="card">
           <div class="imgdiretorio-container">
-            <img class="imgdiretorio" alt="{{ e.nome }}" src="{% static 'img/' %}{{ e.img }}">
+            <img class="imgdiretorio" alt="{{ e.nome }}" src="{% static 'img/'|add:e.img %}">
           </div>
           <h3 class="nomediretorio">{{ e.nome }}</h3>
           <p class="textdiretorio">{{ e.descricao }}</p>
+          <a class="btn-diretorio" href="{% url 'core:diretorio_detalhe' e.id %}">
+            Ver detalhes completos
+          </a>
         </div>
       {% endfor %}
     </div>
@@ -36,8 +39,4 @@
 
 </section>
 
-<footer>
-  <p>© 2025 • PUC Oportunidades</p>
-</footer> 
-
-{% endblock content %} 
+{% endblock content %}
