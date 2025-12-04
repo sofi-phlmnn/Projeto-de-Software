@@ -11,24 +11,40 @@
 
 <section class="detalhe-wrapper">
   <article class="detalhe-card">
+
     <header class="detalhe-header">
-      <p class="detalhe-badge">{{ categoria_label }}</p>
       <h2 class="detalhe-title">{{ objeto.nome }}</h2>
     </header>
 
     <div class="detalhe-main">
+
+      {# COLUNA ESQUERDA: IMAGEM PRINCIPAL + LOREM #}
       {% if objeto.img %}
       <div class="detalhe-image">
         <img src="{% static 'img/' %}{{ objeto.img }}" alt="Imagem de {{ objeto.nome }}">
+
+        <p class="detalhe-lorem">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
       </div>
       {% endif %}
 
+      {# COLUNA DIREITA: TEXTO + IMAGEM PEQUENA + CONTATOS #}
       <div class="detalhe-texto">
+
         <p class="detalhe-descricao">{{ objeto.descricao }}</p>
 
         {% if objeto.topicos_lista %}
         <div class="detalhe-topicos">
           {{ objeto.topicos_lista|safe }}
+        </div>
+        {% endif %}
+
+        {% if objeto.img2 %}
+        <div class="detalhe-image-secundaria">
+          <img src="{% static 'img/' %}{{ objeto.img2 }}" alt="Imagem complementar de {{ objeto.nome }}">
         </div>
         {% endif %}
 
@@ -50,6 +66,15 @@
       </div>
     </div>
 
+    {# TAGS COLORIDAS #}
+    {% if objeto.tags %}
+    <div class="detalhe-tags">
+      {% for tag in objeto.tags %}
+      <span class="tag-pill tag-{{ tag.cor }}">{{ tag.nome }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
     {% if voltar_url %}
     <div class="detalhe-footer">
       <a class="btn-voltar" href="{{ voltar_url }}">&larr; Voltar</a>
@@ -57,6 +82,5 @@
     {% endif %}
   </article>
 </section>
-
 
 {% endblock %}

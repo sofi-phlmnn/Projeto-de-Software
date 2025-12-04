@@ -52,7 +52,9 @@
             </div>
             <ul class="lista-informacoes">
               {% for item in p.itens %}
-                <li><span class="indice">{{ forloop.counter }}.</span> {{ item }}</li>
+                <li data-ponto="{{ item }}">
+                  <span class="indice">{{ forloop.counter }}.</span> {{ item }}
+                </li>
               {% endfor %}
             </ul>
           </div>
@@ -69,47 +71,121 @@
 {% block extra_js %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  const INITIAL_COORDS = [-22.9796, -43.2335];
-  const INITIAL_ZOOM = 16;
+(function () {
+  // Lê pontos do JSON gerado pelo Django
+  let pontos = [];
+  try {
+    const el = document.getElementById('pontos-data');
+    if (el) {
+      pontos = JSON.parse(el.textContent) || [];
+    }
+  } catch (e) {
+    console.error('Erro ao ler pontos do mapa:', e);
+  }
+
+  const COORDS_PADRAO = [-22.9796, -43.2335];
+
+  // centro inicial = primeiro ponto válido, senão padrão
+  let initialCoords = COORDS_PADRAO;
+  if (Array.isArray(pontos) && pontos.length) {
+    const base = pontos.find(p => typeof p.lat === 'number' && typeof p.lng === 'number');
+    if (base) {
+      initialCoords = [base.lat, base.lng];
+    }
+  }
+
+  const INITIAL_ZOOM = 17;
+
+  // Limites do campus
+  const CAMPUS_BOUNDS = L.latLngBounds(
+    [-22.98100, -43.23580], // sudoeste
+    [-22.97820, -43.23180]  // nordeste
+  );
 
   const map = L.map('map', {
     zoomControl: true,
     scrollWheelZoom: true,
     dragging: true,
-    tap: true
-  }).setView(INITIAL_COORDS, INITIAL_ZOOM);
+    tap: true,
+    maxBounds: CAMPUS_BOUNDS,
+    maxBoundsViscosity: 1.0,
+    minZoom: 17,
+    maxZoom: 18
+  }).setView(initialCoords, INITIAL_ZOOM);
+
+
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap colaboradores'
   }).addTo(map);
 
-  L.marker(INITIAL_COORDS)
-    .addTo(map)
-    .bindPopup('<b>PUC-Rio</b><br/>Campus Gávea');
+  const bounds = [];
+  const markersByName = {};
+  const colorByTipo = {
+    campus:      '#6A0DAD',
+    equipes:     '#f97316',
+    inovacao:    '#10b981',
+    estagio:     '#ec4899',
+    alimentacao: '#2563eb',
+    secretaria:  '#22c55e'
+  };
 
-  try {
-    const el = document.getElementById('pontos-data');
-    if (el) {
-      const pontos = JSON.parse(el.textContent);
-      if (Array.isArray(pontos)) {
-        const bounds = [];
-        pontos.forEach(p => {
-          if (typeof p.lat === 'number' && typeof p.lng === 'number') {
-            const m = L.marker([p.lat, p.lng]).addTo(map);
-            const titulo = p.name ? `<b>${p.name}</b>` : '<b>Ponto</b>';
-            const desc = p.desc ? `<br/>${p.desc}` : '';
-            m.bindPopup(`${titulo}${desc}`);
-            bounds.push([p.lat, p.lng]);
-          }
-        });
-        if (bounds.length) {
-          map.fitBounds(bounds, { padding: [20, 20] });
+  // cria markers
+  if (Array.isArray(pontos)) {
+    pontos.forEach(p => {
+      if (typeof p.lat === 'number' && typeof p.lng === 'number') {
+        const coord = [p.lat, p.lng];
+        const cor = colorByTipo[p.tipo] || '#6A0DAD';
+
+        let marker;
+        if (p.tipo) {
+          marker = L.circleMarker(coord, {
+            radius: 8,
+            color: cor,
+            fillColor: cor,
+            fillOpacity: 0.9
+          }).addTo(map);
+        } else {
+          marker = L.marker(coord).addTo(map);
+        }
+
+        const titulo = p.name ? `<b>${p.name}</b>` : '<b>Ponto</b>';
+        const desc   = p.desc ? `<br/>${p.desc}` : '';
+        marker.bindPopup(`${titulo}${desc}`);
+
+        bounds.push(coord);
+        if (p.name) {
+          markersByName[p.name] = marker;
         }
       }
-    }
-  } catch (e) {}
+    });
 
+    if (bounds.length > 1) {
+      map.fitBounds(bounds, { padding: [20, 20] });
+    }
+  }
+
+  // link lista da direita ↔ markers
+  const itensLista = document.querySelectorAll('[data-ponto]');
+  itensLista.forEach(li => {
+    const nome = li.dataset.ponto;
+    const marker = markersByName[nome];
+
+    if (marker) {
+      li.classList.add('has-marker');
+      li.addEventListener('click', () => {
+        itensLista.forEach(el => el.classList.remove('is-active'));
+        li.classList.add('is-active');
+
+        const latLng = marker.getLatLng();
+        map.setView(latLng, 18, { animate: true });
+        marker.openPopup();
+      });
+    }
+  });
+
+  // clique no mapa abre Google Maps
   map.on('click', (ev) => {
     const { lat, lng } = ev.latlng;
     const gmaps = `https://www.google.com/maps?q=${lat},${lng}&z=${map.getZoom()}`;
@@ -118,5 +194,8 @@
 
   setTimeout(() => map.invalidateSize(), 0);
   window.addEventListener('resize', () => map.invalidateSize());
+})();
 </script>
 {% endblock %}
+
+

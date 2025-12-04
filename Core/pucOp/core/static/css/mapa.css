@@ -120,6 +120,21 @@ html,body{
   padding:6px 0;
 }
 
+.lista-informacoes li.has-marker{
+  cursor:pointer;
+}
+
+.lista-informacoes li.has-marker:hover{
+  background:#f3f4f6;
+  border-radius:6px;
+}
+
+.lista-informacoes li.is-active{
+  background:#e5e7eb;
+  border-radius:6px;
+  font-weight:600;
+}
+
 .indice{
   font-weight:700;
   color:var(--text-light);
