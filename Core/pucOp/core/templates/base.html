@@ -44,17 +44,13 @@
         <span class="material-icons-outlined" aria-hidden="true">home</span>
         Início
       </a>
+      <a class="drawer__link{% if request.path|slice:":6" == url_mapa %} is-active{% endif %}" href="{{ url_mapa }}" {% if request.path|slice:":6" == url_mapa %}aria-current="page"{% endif %}>
+      <span class="material-icons-outlined" aria-hidden="true">map</span>
+      Mapa
+      </a>
       <a class="drawer__link{% if request.path|slice:":9" == url_equipes %} is-active{% endif %}" href="{{ url_equipes }}" {% if request.path|slice:":9" == url_equipes %}aria-current="page"{% endif %}>
         <span class="material-icons-outlined" aria-hidden="true">groups</span>
         Equipes
-      </a>
-      <a class="drawer__link{% if request.path|slice:":6" == url_mapa %} is-active{% endif %}" href="{{ url_mapa }}" {% if request.path|slice:":6" == url_mapa %}aria-current="page"{% endif %}>
-        <span class="material-icons-outlined" aria-hidden="true">map</span>
-        Mapa
-      </a>
-      <a class="drawer__link{% if request.path|slice:":7" == url_sobre %} is-active{% endif %}" href="{{ url_sobre }}" {% if request.path|slice:":7" == url_sobre %}aria-current="page"{% endif %}>
-        <span class="material-icons-outlined" aria-hidden="true">info</span>
-        Sobre
       </a>
       <a class="drawer__link{% if request.path|slice:":12" == url_diretorios %} is-active{% endif %}" href="{{ url_diretorios }}">
         <span class="material-icons-outlined" aria-hidden="true">school</span>
@@ -70,7 +66,11 @@
       </a>
       <a class="drawer__link{% if request.path|slice:":11" == url_estagios %} is-active{% endif %}" href="{{ url_estagios }}">
       <span class="material-icons-outlined" aria-hidden="true">work_outline</span>
-      Estágios 
+      Estágios e Inovação
+      </a>
+      <a class="drawer__link{% if request.path|slice:":7" == url_sobre %} is-active{% endif %}" href="{{ url_sobre }}" {% if request.path|slice:":7" == url_sobre %}aria-current="page"{% endif %}>
+      <span class="material-icons-outlined" aria-hidden="true">info</span>
+      Sobre
       </a>
     </nav>
   </div>
@@ -82,11 +82,17 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
+  <div class="container footer__inner">
+    <p class="footer-copy">© 2025 • PUC Oportunidades</p>
+
+    <div class="footer-links">
       <a href="{{ url_sobre }}">Sobre</a>
       <a href="#">Contato</a>
     </div>
-  </footer>
+  </div>
+</footer>
+
+
 
   {% block extra_js %}{% endblock %}
 </body>

@@ -5,12 +5,10 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/iniciacao.css' %}">
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<!-- ====== BANNER / BOX DE INTRODUÇÃO ====== -->
 <section class="boxtext">
   <h2>Oportunidades de Iniciação Científica</h2>
   <p>
@@ -19,24 +17,22 @@
 </section>
 
 <main class="container">
-    {% for p in iniciacoes %}
+  {% for p in iniciacoes %}
     <div class="program">
-        <h3 class="nomeinic">{{ p.nome }}</h3>
-        <p class="desinic">{{ p.descricao }}</p>
+      <h3 class="nomeinic">{{ p.nome }}</h3>
+      <p class="desinic">{{ p.descricao }}</p>
 
-        <div class="detalhes-topicos">
-            {{ p.topicos_lista|safe }}
-        </div>
+      <div class="detalhes-topicos">
+        {{ p.topicos_lista|safe }}
+      </div>
+
+      <a class="btn-iniciacao" href="{% url 'core:iniciacao_detalhe' p.id %}">
+        Ver detalhes completos
+      </a>
     </div>
-
-    {% empty %}
-        <p>Nenhuma oportunidade de iniciação científica está disponível no momento.</p>
-    {% endfor %}
+  {% empty %}
+    <p class="no-data">Nenhuma oportunidade de iniciação científica está disponível no momento.</p>
+  {% endfor %}
 </main>
 
-<footer>
-  <p>© 2025 • PUC Oportunidades</p>
-</footer>
-
 {% endblock %}
-

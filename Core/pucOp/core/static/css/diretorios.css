@@ -1,17 +1,17 @@
 .diretorios-section {
   width: 100%;
   display: flex;
-  justify-content: center;  /* centraliza todo o container */
-  margin-top: 40px;         
-  padding: 0 20px;           /* evita que encoste nas bordas da tela */
+  justify-content: center;
+  margin-top: 40px;
+  padding: 0 20px;
 }
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   width: 100%;
-  max-width: 1200px;         /* deixa tudo alinhado com limite */
+  max-width: 1200px;
 }
 
 .card {
@@ -20,59 +20,64 @@
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
   transform: translateY(-7px) scale(1.01);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-  
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-.imgdiretorio-container { 
-  height: 120px; /* Altura fixa para todos os containers de imagem */
+/* Imagem */
+.imgdiretorio-container {
+  height: 120px;
   width: 100%;
-  display: flex; /* Para centralizar o conteúdo (a imagem) */
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 15px; /* Centraliza o container e adiciona margem inferior */
+  margin-bottom: 15px;
 }
 
-/* A imagem em si */
 .imgdiretorio {
-  max-height: 100%; /* Limita a altura da imagem ao container */
-  max-width: 100%;  /* Limita a largura da imagem ao container */
-  width: auto;      /* Permite que a largura se ajuste automaticamente */
-  height: auto;     /* Permite que a altura se ajuste automaticamente */
-  object-fit: contain; /* Garante que a imagem caiba sem ser cortada ou distorcida */
-  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
-/* Garante que o texto tenha altura uniforme forçando o container do texto */
+/* Título */
+.nomediretorio {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #6D28D9;
+  margin-bottom: 0.6em;
+}
+
+/* Texto da descrição */
 .textdiretorio {
   font-size: 0.95rem;
   color: #555;
-  height: 90px; /* Ajuste esta altura conforme a necessidade para padronizar (Ex: 90px) */
+  min-height: 90px;
   display: flex;
-  align-items: flex-start; /* Alinha o texto ao topo dentro do seu container */
-  justify-content: center; /* Centraliza o texto horizontalmente */
-  text-align: center; /* Garante que o conteúdo do texto fique centralizado */
-}
-
-footer {
-  background-color: #e0e0e0;
+  align-items: flex-start;
+  justify-content: center;
   text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #333;
-  margin-top: 18rem;
 }
 
-.nomediretorio{
-  font-family:Arial, sans-serif;
-  font-size:20pt;
-  color:#6D28D9;
-  margin-bottom:.7em;
+.btn-diretorio{
+  display:inline-block;
+  margin-top:1.2rem;
+  padding:0.55rem 1.3rem;
+  border-radius:999px;
+  background:#6D28D9;
+  color:#fff;
+  text-decoration:none;
+  font-size:0.9rem;
+  font-weight:600;
+  transition:background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-  
+.btn-diretorio:hover{
+  background:#5b21b6;
+  transform:translateY(-1px);
+  box-shadow:0 6px 12px rgba(0,0,0,0.18);
+}
+

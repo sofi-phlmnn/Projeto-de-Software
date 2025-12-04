@@ -26,15 +26,11 @@
     <div class="textoequi">
       <h3 class="nomequipe">{{ e.nome }}</h3>
       <p class="textequipe">{{ e.descricao }}</p>
+      <a class="btn-equipe" href="{% url 'core:equipe_detalhe' e.id %}">Ver detalhes completos</a>
     </div>
   </div>
   {% empty %}
   <p class="boxtext">Nenhuma equipe cadastrada ainda.</p>
   {% endfor %}
 </section>
-
-<footer>
-  <p>© 2025 • PUC Oportunidades</p>
-</footer>
-
 {% endblock %}
