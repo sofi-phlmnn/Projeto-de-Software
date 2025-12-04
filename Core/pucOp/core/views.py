@@ -3,9 +3,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
+from .forms import RegistroForm # <-- IMPORTAÇÃO NECESSÁRIA
 
+# --- FUNÇÕES BÁSICAS ---
 
-@login_required(login_url='login')
+@login_required(login_url='core:login')
 def home(request):
     hero = {
         "titulo": "Bem-vindo ao Portal de Oportunidades da PUC-Rio!",
@@ -54,20 +57,12 @@ def home(request):
         },
     ]
 
-
-
-
- # <-- FECHOU A LISTA AQUI
-    
-
-
-
     categorias = [
-        {"class": "cat cat--orange", "label_html": "equipes",                  "href": reverse("core:equipes")},
+        {"class": "cat cat--orange", "label_html": "equipes",              "href": reverse("core:equipes")},
         {"class": "cat cat--blue",   "label_html": "iniciação<br/>científica", "href": reverse("core:iniciacao")},
         {"class": "cat cat--yellow", "label_html": "entidades<br/>estudantis", "href": reverse("core:entidades")},
         {"class": "cat cat--pink",   "label_html": "diretório<br/>acadêmico",  "href": reverse("core:diretorios")},
-        {"class": "cat cat--green",  "label_html": "estágio",                  "href": reverse("core:estagios")},
+        {"class": "cat cat--green",  "label_html": "estágio",              "href": reverse("core:estagios")},
     ]
 
     ctx = {
@@ -76,9 +71,6 @@ def home(request):
         "categorias": categorias
     }
     return render(request, "home.html", ctx)
-
-
-
 
 
 def equipes(request):
@@ -315,8 +307,6 @@ def sobre(request):
     return render(request, "sobre.html")
 
 
-
-
 def iniciacao(request):
     iniciacoes = [
         {
@@ -365,72 +355,53 @@ def iniciacao(request):
 
     return render(request, "iniciacao.html", {"iniciacoes": iniciacoes})
 
+
+# --- VIEWS DE AUTENTICAÇÃO ---
+
+@login_required(login_url='core:login')
 def perfil(request):
-    return render(request, "core/perfil.html")
+    # DADOS DE TESTE (CONTEXTO)
+    perfil_dados = {
+        "nome": request.user.first_name if request.user.first_name else request.user.username,
+        "curso": "Engenharia de Software (8º Período)", # Altere pelo dado real
+        "favoritos": [
+            {
+                "titulo": "Equipe RioBotz", 
+                "tipo": "Equipe de Competição"
+            },
+            {
+                "titulo": "Estágio Tech Solutions", 
+                "tipo": "Vaga de Estágio"
+            },
+            {
+                "titulo": "PIBIC em IA", 
+                "tipo": "Iniciação Científica"
+            },
+        ]
+    }
+    
+    context = {
+        "profile": perfil_dados, 
+        "usuario": request.user 
+    }
+    
+    # O nome do template é "perfil.html"
+    return render(request, "perfil.html", context) 
 
-@login_required
-def home(request):
-    return render(request, 'home.html')
 
-
-# LOGIN
-def login_view(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        senha = request.POST.get("password")
-
-        user = authenticate(request, username=username, password=senha)
-
-        if user:
-            login(request, user)
-            return redirect("home")
-        else:
-            return render(request, "login.html", {"erro": "Usuário ou senha incorretos."})
-
-    return render(request, "login.html")
-
-
-# CADASTRO
 def cadastro_view(request):
     if request.method == "POST":
-        username = request.POST.get("username")
-        email = request.POST.get("email")
-        senha = request.POST.get("password")
+        form = RegistroForm(request.POST) # Usa o formulário de segurança
+        if form.is_valid():
+            form.save() # Salva o usuário de forma segura (com hash de senha)
+            messages.success(request, "Cadastro realizado com sucesso! Faça login.")
+            return redirect("core:login")
+        else:
+            # Se não for válido, retorna o formulário com os erros
+            return render(request, "cadastro.html", {'form': form})
+    
+    # Se for um GET, cria um formulário vazio
+    else:
+        form = RegistroForm()
 
-        # Verifica se já existe
-        if User.objects.filter(username=username).exists():
-            return render(request, "cadastro.html", {"erro": "Nome de usuário já existe."})
-
-        # Cria usuário
-        User.objects.create_user(username=username, email=email, password=senha)
-        return redirect("login")
-
-    return render(request, "cadastro.html")
-
-
-# LOGOUT
-def logout_view(request):
-    logout(request)
-    return redirect("login")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return render(request, "cadastro.html", {'form': form})

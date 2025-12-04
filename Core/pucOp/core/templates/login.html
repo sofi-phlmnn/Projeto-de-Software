@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinculou - Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <nav class="sidebar-menu">
+        <a href="{% url 'core:home' %}" class="menu-item ">
+            <span class="menu-icon">🗓️</span>
+            <span class="menu-text">Calendário</span>
+        </a>
+        
+        <a href="{% url 'core:perfil' %}" class="menu-item">
+            <span class="menu-icon">👤</span>
+            <span class="menu-text">Perfil</span>
+        </a>
+    
+        <a href="{% url 'core:login' %}" class="menu-item">
+            <span class="menu-icon">👤</span>
+            <span class="menu-text">Login</span>
+        </a>
+        
+        <a href="{% url 'core:cadastro' %}" class="menu-item">
+            <span class="menu-icon">👤</span>
+            <span class="menu-text">Cadastro</span>
+        </a>
+    </nav>
+    
+    <div class="welcome-banner">
+        <h1>Bem-vindo ao Vinculou!</h1>
+    </div>
+
+    <div class="login-form-container">
+        <form class="login-form" method="post" action="{% url 'core:login' %}">
+            {% csrf_token %} 
+            
+            {% comment %} Exibir mensagens de erro ou sucesso {% endcomment %}
+            {% if form.errors %}
+                <p style="color: red;">Usuário ou senha inválidos.</p>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="usuario">Usuário</label>
+                <input 
+                    type="text" 
+                    id="usuario"
+                    name="username" class="login-input" 
+                    placeholder="Digite seu usuário"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input 
+                    type="password" 
+                    id="senha"
+                    name="password" class="login-input" 
+                    placeholder="Digite sua senha"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-btn">
+                Entrar
+            </button>
+            
+            <p style="margin-top: 15px;">
+                <a href="#" id="open-reset-modal">Esqueceu sua senha?</a>
+            </p>
+        </form>
+    </div>
+    
+    <div id="resetPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Redefinir Senha</h2>
+            
+            <form method="post" action="{% url 'core:password_reset_dev' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_email_reset">E-mail</label>
+                    <input 
+                        type="email" 
+                        id="id_email_reset" 
+                        name="email" 
+                        class="login-input" 
+                        placeholder="Digite seu e-mail de cadastro" 
+                        required
+                    >
+                </div>
+                <button type="submit" class="login-btn">
+                    Enviar link de redefinição
+                </button>
+            </form>
+            <p style="margin-top: 15px; font-size: 0.8em;">Um link será enviado para este e-mail.</p>
+        </div>
+    </div>
+
+
+    <script>
+        // Lógica da Sidebar
+        // Se você não tiver menuToggle ou sidebar definidos, o código pode dar erro.
+        // Se eles existirem em um base.html, mantenha este código.
+        const menuToggle = document.getElementById('menuToggle'); 
+        const sidebar = document.getElementById('sidebar'); 
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const body = document.body;
+
+        if (menuToggle && sidebar && sidebarOverlay) {
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.add('active');
+                sidebarOverlay.classList.add('active');
+                body.classList.add('sidebar-open');
+            });
+
+            sidebarOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            });
+
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    body.classList.remove('sidebar-open');
+                });
+            });
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    body.classList.remove('sidebar-open');
+                }
+            });
+        }
+        
+        // LÓGICA DO MODAL (ADICIONADA)
+        const modal = document.getElementById("resetPasswordModal");
+        const btn = document.getElementById("open-reset-modal");
+        // O &times; do HTML é o elemento [0]
+        const span = document.querySelector("#resetPasswordModal .close-button");
+
+        // Verifica se os elementos do modal existem antes de adicionar event listeners
+        if (modal && btn && span) {
+            // Quando o usuário clica no link, abre o modal
+            btn.onclick = function(event) {
+                event.preventDefault(); 
+                modal.style.display = "block";
+            }
+
+            // Quando o usuário clica no (x), fecha o modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Quando o usuário clica fora do modal, fecha
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -6,26 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil</title>
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-</head>
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}"> 
+    </head>
 <body>
 
-    <!-- NAVBAR -->
     <header class="navbar">
         <div class="navbar-title">PUC OPORTUNIDADES</div>
+        <a href="{% url 'core:logout' %}" style="color: white; margin-left: auto; text-decoration: none; font-weight: 500;">Logout</a>
     </header>
 
     <main class="container">
         
-        <!-- Card de apresentação -->
         <section class="profile-card">
             <div class="profile-info">
                 <h1 class="profile-name">{{ profile.nome }}</h1>
                 <p class="profile-course">{{ profile.curso }}</p>
+                <p class="profile-email" style="font-size: 16px; color: #555;">E-mail: {{ usuario.email }}</p>
             </div>
         </section>
 
-        <!-- Favoritos -->
         <h2 class="section-title">Favoritos</h2>
 
         <section class="favorites-list">
@@ -35,6 +34,8 @@
                 <p class="favorite-type">{{ fav.tipo }}</p>
                 <a href="#" class="card-link">Ver Mais</a>
             </div>
+            {% empty %}
+                <p style="grid-column: 1 / -1; color: #777;">Você ainda não tem itens favoritos salvos.</p>
             {% endfor %}
         </section>
 
