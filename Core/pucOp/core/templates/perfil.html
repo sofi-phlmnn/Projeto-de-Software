@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-title">PUC OPORTUNIDADES</div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Card de apresentação -->
+        <section class="profile-card">
+            <div class="profile-info">
+                <h1 class="profile-name">{{ profile.nome }}</h1>
+                <p class="profile-course">{{ profile.curso }}</p>
+            </div>
+        </section>
+
+        <!-- Favoritos -->
+        <h2 class="section-title">Favoritos</h2>
+
+        <section class="favorites-list">
+            {% for fav in profile.favoritos %}
+            <div class="favorite-card">
+                <h3>{{ fav.titulo }}</h3>
+                <p class="favorite-type">{{ fav.tipo }}</p>
+                <a href="#" class="card-link">Ver Mais</a>
+            </div>
+            {% endfor %}
+        </section>
+
+    </main>
+
+</body>
+</html>

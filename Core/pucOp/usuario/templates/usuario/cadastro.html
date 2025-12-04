@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vinda(o)!</title>
-    <link rel="stylesheet" href="{% static 'css/estilo/style(cadastro).css' %}">
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
 </head>
 <body>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -20,16 +20,6 @@
             <a href="{% url 'filtrobusca' %}" class="menu-item">
                 <span class="menu-icon">💬</span>
                 <span class="menu-text">Filtros</span>
-            </a>
-            
-            <a href="{% url 'avaliacaoprof' %}" class="menu-item active">
-                <span class="menu-icon">⭐</span>
-                <span class="menu-text">Avaliações</span>
-            </a>
-            
-            <a href="{% url 'provasantigas' %}" class="menu-item">
-                <span class="menu-icon">📚</span>
-                <span class="menu-text">Provas Antigas</span>
             </a>
             
             <a href="{% url 'home' %}" class="menu-item ">
@@ -67,7 +57,13 @@
     </div>
     
     <br/><br/>
-    <h1 class="welcome-message">Bem vinda(o)!</h1>
+    <h1 class="welcome-message">
+        {% if usuario.is_authenticated %}
+            Bem-vindo(a) de volta, {{ usuario.first_name|default:usuario.username }}!
+        {% else %}
+            Bem-vinda(o)!
+        {% endif %}
+    </h1>
     
     <main class="main-content-container">
         <div class="register-card">
@@ -75,6 +71,8 @@
             
             <form method="post" action="{% url 'cadastro' %}">
                 {% csrf_token %} {{ form.as_p }} 
+                {% csrf_token %} 
+                {{ form.as_p }} 
                 
                 <button type="submit" class="create-account-button">
                     Criar conta
@@ -89,8 +87,6 @@
         const sidebar = document.getElementById('sidebar');
         const sidebarOverlay = document.getElementById('sidebarOverlay');
         const body = document.body;
-
-        // ... (Seu código de navegação lateral) ...
 
         menuToggle.addEventListener('click', function() {
             sidebar.classList.add('active');

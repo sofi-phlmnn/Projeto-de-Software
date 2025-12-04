@@ -1,0 +1,99 @@
+/* ----- Layout Geral ----- */
+body {
+    margin: 0;
+    padding: 0;
+    background: #F4F6FA;
+    font-family: 'Inter', sans-serif;
+    color: #2b2b2b;
+}
+
+/* ----- Navbar ----- */
+.navbar {
+    background: #6C27FF;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ----- Container ----- */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+/* ----- Card do Perfil ----- */
+.profile-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.profile-name {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.profile-course {
+    margin-top: 8px;
+    font-size: 18px;
+    color: #6C27FF;
+    font-weight: 500;
+}
+
+/* ----- Título da seção ----- */
+.section-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* ----- Cards de Favoritos ----- */
+.favorites-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.favorite-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease-in-out;
+}
+
+.favorite-card:hover {
+    transform: translateY(-5px);
+}
+
+.favorite-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.favorite-type {
+    font-size: 14px;
+    color: #6C27FF;
+    margin-top: 4px;
+}
+
+.card-link {
+    margin-top: 18px;
+    display: inline-block;
+    font-size: 15px;
+    color: #6C27FF;
+    font-weight: 600;
+    text-decoration: none;
+}
