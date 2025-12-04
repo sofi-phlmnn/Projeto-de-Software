@@ -1,45 +1,72 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil</title>
-    <link rel="stylesheet" href="{% static 'css/perfil.css' %}"> 
-    </head>
-<body>
+{% block title %}PUC Oportunidades — Meu Perfil{% endblock %}
 
-    <header class="navbar">
-        <div class="navbar-title">PUC OPORTUNIDADES</div>
-        <a href="{% url 'core:logout' %}" style="color: white; margin-left: auto; text-decoration: none; font-weight: 500;">Logout</a>
-    </header>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfil_padronizado.css' %}">
+{% endblock %}
 
-    <main class="container">
-        
-        <section class="profile-card">
-            <div class="profile-info">
-                <h1 class="profile-name">{{ profile.nome }}</h1>
-                <p class="profile-course">{{ profile.curso }}</p>
-                <p class="profile-email" style="font-size: 16px; color: #555;">E-mail: {{ usuario.email }}</p>
+{% block content %}
+
+<section class="hero hero--perfil">
+    <div class="container">
+        <div class="hero-card">
+            <div class="hero-card__text hero-card__text--full">
+                <h2 class="hero-card__title">Bem-vindo(a), {{ profile.nome }}!</h2>
+                <p class="hero-card__desc">
+                    Este é o seu painel de controle. Gerencie suas informações e acesse seus favoritos salvos.
+                </p>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <h2 class="section-title">Favoritos</h2>
+<main class="container">
 
-        <section class="favorites-list">
+    <section class="section perfil-section">
+        <h2 class="section__title">
+            Minhas Informações
+        </h2>
+        
+        <div class="profile-details-card">
+            <p><strong>Nome Completo:</strong> {{ profile.nome }}</p>
+            <p><strong>E-mail:</strong> {{ usuario.email }}</p>
+            <p><strong>Curso:</strong> {{ profile.curso }}</p>
+
+            <div class="logout-box">
+                <form method="post" action="{% url 'core:logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">
+                        Sair / Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section perfil-section">
+        <h2 class="section__title">
+            Favoritos Salvos
+        </h2>
+
+        <div class="cards-grid">
             {% for fav in profile.favoritos %}
-            <div class="favorite-card">
-                <h3>{{ fav.titulo }}</h3>
-                <p class="favorite-type">{{ fav.tipo }}</p>
-                <a href="#" class="card-link">Ver Mais</a>
+            <div class="op-card favorite-item">
+                <div class="op-card__header">
+                    <span class="op-card__badge badge--purple">⭐</span>
+                    <h3 class="op-card__title">{{ fav.titulo }}</h3>
+                </div>
+
+                <p class="op-card__desc">{{ fav.tipo }}</p>
+                <a href="#" class="op-card__link">Ver Detalhes</a>
             </div>
             {% empty %}
-                <p style="grid-column: 1 / -1; color: #777;">Você ainda não tem itens favoritos salvos.</p>
+                <p class="favoritos-vazio">Você ainda não tem itens favoritos salvos.</p>
             {% endfor %}
-        </section>
+        </div>
+    </section>
 
-    </main>
+</main>
 
-</body>
-</html>
+{% endblock %}

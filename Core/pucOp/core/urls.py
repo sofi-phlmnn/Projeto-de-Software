@@ -13,15 +13,15 @@ urlpatterns = [
     path("iniciacao/", views.iniciacao, name="iniciacao"),
     path("entidades/", views.entidades, name="entidades"),
     path("estagios/", views.estagios, name="estagios"),
-    path("perfil/", views.perfil, name="perfil"), # Rota para a view de perfil
+    path("perfil/", views.perfil, name="perfil"), 
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path("cadastro/", views.cadastro_view, name="cadastro"),
     
-    # ROTAS DE REDEFINIÇÃO DE SENHA (USADAS PELO MODAL E PELO DJANGO)
+    # ROTAS DE REDEFINIÇÃO DE SENHA (OK)
     path(
         'password_reset/', 
         auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'), 
-        name='password_reset_dev' # Rota inicial de solicitação de e-mail (usada pelo modal)
+        name='password_reset_dev'
     ),
     path(
         'password_reset/done/', 
@@ -39,6 +39,9 @@ urlpatterns = [
         name='password_reset_complete'
     ),
     
-    # Rota de Logout
+    # Rota de Logout (OK)
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
+    path('perfil/editar/', views.perfil_editar, name='perfil_editar'),
+
 ]

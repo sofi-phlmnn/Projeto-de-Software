@@ -6,7 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegistroForm # <-- IMPORTAÇÃO NECESSÁRIA
 
-# --- FUNÇÕES BÁSICAS ---
+# -----------------------------------------------------------
+# VIEWS DE CONTEÚDO
+# -----------------------------------------------------------
 
 @login_required(login_url='core:login')
 def home(request):
@@ -356,14 +358,17 @@ def iniciacao(request):
     return render(request, "iniciacao.html", {"iniciacoes": iniciacoes})
 
 
-# --- VIEWS DE AUTENTICAÇÃO ---
+# -----------------------------------------------------------
+# VIEWS DE AUTENTICAÇÃO (Login, Cadastro, Perfil)
+# -----------------------------------------------------------
 
 @login_required(login_url='core:login')
 def perfil(request):
     # DADOS DE TESTE (CONTEXTO)
     perfil_dados = {
+        # Tenta usar o primeiro nome, senão usa o username
         "nome": request.user.first_name if request.user.first_name else request.user.username,
-        "curso": "Engenharia de Software (8º Período)", # Altere pelo dado real
+        "curso": "Engenharia de Software (8º Período)", 
         "favoritos": [
             {
                 "titulo": "Equipe RioBotz", 
@@ -391,7 +396,7 @@ def perfil(request):
 
 def cadastro_view(request):
     if request.method == "POST":
-        form = RegistroForm(request.POST) # Usa o formulário de segurança
+        form = RegistroForm(request.POST) # Usa o formulário de segurança (RegistroForm)
         if form.is_valid():
             form.save() # Salva o usuário de forma segura (com hash de senha)
             messages.success(request, "Cadastro realizado com sucesso! Faça login.")
@@ -399,9 +404,10 @@ def cadastro_view(request):
         else:
             # Se não for válido, retorna o formulário com os erros
             return render(request, "cadastro.html", {'form': form})
-    
+   
     # Se for um GET, cria um formulário vazio
     else:
         form = RegistroForm()
+
 
     return render(request, "cadastro.html", {'form': form})
