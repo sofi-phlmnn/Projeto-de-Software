@@ -1,19 +1,18 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ---------- BODY ---------- */
+/* Fundo da página */
 body {
-
-
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(235,235,235);
   color: #000;
   font-family: Arial, sans-serif;
 }
 
-/* ---------- BANNER / INTRO ---------- */
+/* Caixa de introdução */
 .boxtext {
   color: rgb(81,80,80);
   background: #fff;
@@ -22,26 +21,25 @@ body {
   margin: 2em auto;
   padding: 3em;
   border-radius: 1em;
-  font-family: Arial, sans-serif;
   font-size: 12pt;
   line-height: 1.5;
-  max-width: 1300px;
+  max-width: 980px;
   text-align: center;
 }
 
-/* ---------- CONTAINER ---------- */
+/* Container geral */
 .container {
   width: min(1100px, 96%);
   margin: 0 auto;
 }
 
-/* ---------- CARDS DE INICIAÇÃO ---------- */
+/* Card de cada programa */
 .program {
   color: rgb(81,80,80);
   background: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   border-radius: 1em;
-  margin: 2em auto 6em auto;
+  margin: 2em auto 4em auto;
   padding: 3em;
   border: 1px solid #e5e7eb;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -50,26 +48,26 @@ body {
 
 .program:hover {
   transform: translateY(-7px) scale(1.01);
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* ---------- TIPOGRAFIA ---------- */
+/* Título */
 .nomeinic {
   font-size: 20pt;
   color: #6D28D9;
   margin-bottom: 0.7em;
-  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
+/* Descrição */
 .desinic {
   font-size: 1rem;
-
-
   color: #444;
   margin-bottom: 1.5rem;
   line-height: 1.5;
 }
 
+/* Lista de tópicos */
 .program ul {
   list-style: disc;
   margin-left: 1.5rem;
@@ -81,17 +79,36 @@ body {
   color: #555;
 }
 
-/* ---------- FOOTER ---------- */
-footer {
-  background-color: #e0e0e0;
+/* Caso não exista conteúdo */
+.no-data {
   text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #333;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  font-size: 1.1rem;
+  color: #666;
 }
 
+/* Responsivo */
+@media (max-width: 960px){
+  .program {
+    padding: 2em;
+    margin: 2em 1em 3em 1em;
+  }
+}
 
-
-
-
+.btn-iniciacao{
+  display:inline-block;
+  margin-top:1.2rem;
+  padding:0.55rem 1.3rem;
+  border-radius:999px;
+  background:#6D28D9;
+  color:#fff;
+  text-decoration:none;
+  font-size:0.9rem;
+  font-weight:600;
+  transition:background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-iniciacao:hover{
+  background:#5b21b6;
+  transform:translateY(-1px);
+  box-shadow:0 6px 12px rgba(0,0,0,0.18);
+}

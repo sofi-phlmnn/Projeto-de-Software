@@ -6,11 +6,15 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegistroForm # <-- IMPORTAÇÃO NECESSÁRIA
 
-# -----------------------------------------------------------
-# VIEWS DE CONTEÚDO
-# -----------------------------------------------------------
+from django.shortcuts import get_object_or_404
+from django.http import Http404
+from .models import Oportunidade, CategoriaOportunidade
+
+
 
 @login_required(login_url='core:login')
+
+
 def home(request):
     hero = {
         "titulo": "Bem-vindo ao Portal de Oportunidades da PUC-Rio!",
@@ -70,215 +74,108 @@ def home(request):
     ctx = {
         "hero": hero,
         "destaques": destaques,
-        "categorias": categorias
+        "categorias": categorias,
     }
     return render(request, "home.html", ctx)
 
 
 def equipes(request):
-    equipes = [
-        {
-            "nome": "RIOROBOTZ",
-            "img": "rio.jpg",
-            "descricao": (
-                "A RioBotz é a equipe de competições robóticas da PUC-Rio, que visa projetar, "
-                "otimizar e construir robôs de combate, humanoides, de sumô, e para diversas outras categorias. "
-                "A RioBotz é uma referência mundial de inovação em Robótica, permitindo aos alunos desenvolverem "
-                "capacidades não apenas em engenharia mas também em liderança, organização, comunicação, gestão e trabalho em equipe."
-            ),
-        },
-        {
-            "nome": "PEGASUS",
-            "img": "pegasus.png",
-            "descricao": (
-                "A equipe PEGASUS é responsável por desenvolver carros de corrida no estilo Fórmula SAE, "
-                "desde o projeto até a competição. Com um ambiente plural e inclusivo, reunimos estudantes de diferentes áreas, "
-                "promovendo a troca de ideias e inovação. Divididos em dois núcleos — Projeto e Comercial — organizamos esforços em sete setores especializados. "
-                "Nosso objetivo é aprimorar conhecimentos e alcançar a excelência na competição, aplicando na prática o que aprendemos em sala de aula."
-            ),
-        },
-        {
-            "nome": "AERORIO",
-            "img": "aero.jpg",
-            "descricao": (
-                "A AeroRio é uma equipe de desenvolvimento e construção de aeronaves não tripuladas, como drones e aviões de asa fixa. "
-                "O grupo busca constantemente novos conhecimentos e desafios, participando de competições nacionais e internacionais, "
-                "bem como atuando no desenvolvimento de projetos de pesquisa. A equipe é composta por alunos de diversas Engenharias, "
-                "integrando teoria e prática com foco em multidisciplinaridade, trabalho em equipe, proatividade e organização."
-            ),
-        },
-        {
-            "nome": "REPTILES BAJA",
-            "img": "reptiles.png",
-            "descricao": (
-                "A equipe Reptiles Baja PUC-Rio constrói um veículo off-road, desde o projeto até a manufatura, "
-                "para participar de competições organizadas pela SAE-Brasil. Além da aplicação prática dos conteúdos de sala, "
-                "estimula habilidades como liderança, proatividade, organização, respeito e disciplina."
-            ),
-        },
-    ]
-    return render(request, "equipe.html", {"equipes": equipes})
+    """Lista de equipes de competição (usa equipe.html)."""
+    equipes_qs = (
+        Oportunidade.objects
+        .filter(categoria=CategoriaOportunidade.EQUIPE)
+        .order_by("nome")
+    )
+    return render(request, "equipe.html", {"equipes": equipes_qs})
 
 
 def diretorios(request):
-    diretorios = [
-        {
-            "nome": "DAAF",
-            "img": "daff2.png",
-            "descricao": (
-                "O DAAF acolhe os alunos tanto"
-                "academicamente quanto"
-                " socialmente,transformando a "
-                "Engenharia da PUC na melhor"
-                " possível!"
-            ),
-        },
-        {
-            "nome": "DAQEQ",
-            "img": "daqeq.png",
-            "descricao": (
-                "O Diretório Acadêmico de"
-                " Química e das Engenharias" 
-                "Química e de Materiais atua na"
-                " luta pelos direitos dos estudantes," 
-                "promove eventos acadêmicos,"
-                "culturais e sociais."
-            ),
-        },
-        {
-            "nome": "CAINF",
-            "img": "cainf2.png",
-            "descricao": (
-                "O Centro Acadêmico de"
-                " Informática representa os alunos"
-                " do Departamento de Informática,"
-                " defendendo seus interesses e "
-                "promovendo eventos"
-                " de tecnologia."
-            ),
-        },
-    ]
-    return render(request, "diretorios.html", {"diretorios": diretorios})
+    """Lista de diretórios / centros acadêmicos (diretorios.html)."""
+    diretorios_qs = (
+        Oportunidade.objects
+        .filter(categoria=CategoriaOportunidade.DIRETORIO)
+        .order_by("nome")
+    )
+    return render(request, "diretorios.html", {"diretorios": diretorios_qs})
 
 
 def estagios(request):
-    estagios = [
-        {
-            "nome": "APPLE DEVELOPER ACADEMY – PUC-RIO",
-            "descricao": (
-                "Programa de inovação tecnológica promovido pela PUC com apoio da Apple, focado no "
-                "desenvolvimento de apps e produtos digitais."
-            ),
-            "topicos_lista": """
-            <ul>
-                <li> Programa de inovação / extensão</li>
-                <li> Inscrições periódicas pelo ECOA / PUC-Rio</li>
-                <li> Atuação prática com projetos, mentoria e tecnologia</li>
-                <li> Inscrições periódicas pelo ECOA / PUC-Rio</li>
-            </ul>
-            """
-        },
-        {
-            "nome": "PROGRAMA DE ESTÁGIO PETROBRAS",
-            "descricao": "Programa de estágio nacional da Petrobras para estudantes de nível técnico ou superior.",
-            "topicos_lista": """
-            <ul>
-                <li> Estágios para cursos técnicos ou superiores</li>
-                <li> Bolsa-auxílio recente: R$ 1.825,00</li>
-                <li> Carga horária típica: 20 horas semanais</li>
-            </ul>
-            """
-        },
-        {
-            "nome": "IGNIÇÃO PETROBRAS / ECOA PUC-RIO",
-            "descricao": (
-                "Programa de inovação no mercado de óleo e gás em parceria com a Petrobras, "
-                "organizado pelo ECOA na PUC-Rio."
-            ),
-            "topicos_lista": """
-            <ul>
-                <li> Voltado a estudantes universitários com criatividade tecnológica</li>
-                <li> Desenvolvimento de soluções para problemas reais</li>
-                <li> Participação remunerada ou com bolsa conforme normas do ECOA / PUC</li>
-            </ul>
-            """
-        },
-        {
-            "nome": "I9CULTURA / TECNOTOPIAS",
-            "descricao": (
-                "Programa de inovação cultural do Instituto ECOA PUC-Rio que valoriza o uso de tecnologia "
-                "para promover transformações na área cultural."
-            ),
-            "topicos_lista": """
-            <ul>
-                <li> Desenvolve exposições e instalações com tecnologia, cultura e arte</li>
-                <li> Programa gratuito e aberto ao público para participação e experimentação</li>
-                <li> Instalações imersivas explorando cultura, meio ambiente e inovação</li>
-            </ul>
-            """
-        },
-    ]
-    return render(request, "estagios.html", {"estagios": estagios})
+    """Lista de estágios / programas (estagios.html)."""
+    estagios_qs = (
+        Oportunidade.objects
+        .filter(categoria=CategoriaOportunidade.ESTAGIO)
+        .order_by("nome")
+    )
+    return render(request, "estagios.html", {"estagios": estagios_qs})
 
 
 def entidades(request):
-    entidades = [
-        {
-            "nome": "PUC EMPRESA JÚNIOR",
-            "img": "ej.png",
-            "descricao": "Consultoria e projetos com clientes reais para desenvolvimento dos alunos nas áreas de gestão e tecnologia.",
-            "tipo": "Empresa Júnior",
-            "contatos": [
-                {"icone": "person", "texto": "Maria Luiza Castro (Presidência 2025.2)"},
-                {"icone": "alternate_email", "texto": "@pucempresa"},
-                {"icone": "mail", "texto": "contato@pucempresa.br"},
-            ]
-        },
-        {
-            "nome": "DIRETÓRIO ACADÊMICO DE ENGENHARIA (DAENG)",
-            "img": "deep.png",
-            "descricao": "Representação estudantil dos cursos de engenharia: apoio acadêmico, eventos e integração dos alunos.",
-            "tipo": "Diretório Acadêmico",
-            "contatos": [
-                {"icone": "alternate_email", "texto": "@daeng_puc"},
-                {"icone": "mail", "texto": "daeng@puc-rio.br"},
-            ]
-        },
-        {
-            "nome": "CENTRO ACADÊMICO DE COMPUTAÇÃO (CACOMP)",
-            "img": "com.png",
-            "descricao": "Iniciativas para alunos de Ciência da Computação: hackathons, grupos de estudo e integração com o mercado.",
-            "tipo": "Centro Acadêmico",
-            "contatos": [
-                {"icone": "alternate_email", "texto": "@cacomp_puc"},
-                {"icone": "mail", "texto": "cacomp@puc-rio.br"},
-            ]
-        },
-        {
-            "nome": "COLETIVO ECOPUC",
-            "img": "ecoa.png",
-            "descricao": "Projetos ambientais no campus: reciclagem, comunicação e voluntariado voltados à sustentabilidade.",
-            "tipo": "Coletivo",
-            "contatos": [
-                {"icone": "alternate_email", "texto": "@ecopuc"},
-                {"icone": "mail", "texto": "ecopuc@puc-rio.br"},
-            ]
-        },
-    ]
-    return render(request, "entidades.html", {"entidades": entidades})
+    """Lista de entidades estudantis (entidades.html)."""
+    entidades_qs = (
+        Oportunidade.objects
+        .filter(categoria=CategoriaOportunidade.ENTIDADE)
+        .order_by("nome")
+    )
+    return render(request, "entidades.html", {"entidades": entidades_qs})
 
+
+def iniciacao(request):
+    """Lista de iniciação científica / pesquisa (iniciacao.html)."""
+    iniciacoes_qs = (
+        Oportunidade.objects
+        .filter(categoria=CategoriaOportunidade.INICIACAO)
+        .order_by("nome")
+    )
+    return render(request, "iniciacao.html", {"iniciacoes": iniciacoes_qs})
+
+
+# --------------------------------------------------------------------
+# DETALHE GENÉRICO 
+# --------------------------------------------------------------------
+
+def oportunidade_detalhe(request, id):
+    """
+    Página de detalhe genérica para QUALQUER Oportunidade,
+    usando o mesmo template detalhe_oportunidade.html.
+    """
+    oportunidade = get_object_or_404(Oportunidade, id=id)
+
+    # Mapa de categoria -> nome da URL da lista (para o botão Voltar)
+    voltar_url_name_por_categoria = {
+        CategoriaOportunidade.EQUIPE: "core:equipes",
+        CategoriaOportunidade.ESTAGIO: "core:estagios",
+        CategoriaOportunidade.DIRETORIO: "core:diretorios",
+        CategoriaOportunidade.ENTIDADE: "core:entidades",
+        CategoriaOportunidade.INICIACAO: "core:iniciacao",
+    }
+
+    voltar_url_name = voltar_url_name_por_categoria.get(oportunidade.categoria)
+    if not voltar_url_name:
+        raise Http404("Categoria não configurada para voltar.")
+
+    ctx = {
+        "categoria_label": oportunidade.categoria_label,  # ex: "Equipe de competição"
+        "objeto": oportunidade,
+        "voltar_url": reverse(voltar_url_name),
+    }
+    return render(request, "detalhe_oportunidade.html", ctx)
+
+
+# --------------------------------------------------------------------
+# MAPA (mantém igual)
+# --------------------------------------------------------------------
 
 def mapa(request):
     hero = {
         "titulo": "Mapa do Campus PUC-Rio",
         "descricao": (
             "Encontre rapidamente equipes de competição, projetos de inovação, secretarias e pontos de alimentação. "
-            "Clique no mapa para abrir no Google Maps."
+            "Clique nos itens da lista para centralizar no mapa ou clique em um ponto do mapa para abrir no Google Maps."
         ),
         "logo_url": "https://quempuc.biobd.inf.puc-rio.br/static/images/puc-rio-logo.png",
     }
 
-    mapa = {
+    mapa_info = {
         "link": (
             "https://www.google.com/maps/place/Pontif%C3%ADcia+Universidade+Cat%C3%B3lica+do+Rio+de+Janeiro"
             "+(PUC-Rio)/@-22.9786329,-43.2340871,595m/data=!3m1!1e3!4m6!3m5!1s0x9bd5ca02b99d7b:0xf49ca71057d61fe8"
@@ -288,22 +185,79 @@ def mapa(request):
     }
 
     paines = [
-        {"title": "Equipes de Competição",      "color": "orange", "itens": ["Rio Robots", "Pegasus", "…", "Baja"]},
-        {"title": "Projetos de Inovação",       "color": "green",  "itens": ["Apple Acadêmico", "Twist", "…", "Incubadora Gênesis"]},
-        {"title": "Estágio interno",            "color": "pink",   "itens": ["ECOOA", "Empresa Júnior", "…", "AIChE"]},
-        {"title": "Locais para alimentação",    "color": "blue",   "itens": ["LeMax", "Rei do Mate", "…", "Mega Mate"]},
-        {"title": "Secretárias",                "color": "green",  "itens": ["Psicologia", "Economia", "…", "Ciência da Computação"]},
+        {
+            "title": "Equipes de Competição",
+            "color": "orange",
+            "itens": ["RioBotz", "Pegasus", "Reptiles Baja", "AeroRio"],
+        },
+        {
+            "title": "Projetos de Inovação",
+            "color": "green",
+            "itens": ["Apple Developer Academy", "Ignição Petrobras", "I9Cultura / Tecnotopias", "ECOA PUC-Rio"],
+        },
+        {
+            "title": "Estágio interno",
+            "color": "pink",
+            "itens": ["PUC Empresa Júnior", "Estágio Interno CCS", "AIChE", "PET Engenharia"],
+        },
+        {
+            "title": "Locais para alimentação",
+            "color": "blue",
+            "itens": ["LeMax", "Rei do Mate", "Mega Mate", "Cantina do Frade"],
+        },
+        {
+            "title": "Secretarias",
+            "color": "green",
+            "itens": ["Secretaria Psicologia", "Secretaria Economia", "Secretaria Computação", "Secretaria CCS"],
+        },
     ]
 
     pontos = [
-        {"name": "PUC-Rio (Gávea)", "lat": -22.97960, "lng": -43.23350, "desc": "Campus"},
-        {"name": "LeMax",           "lat": -22.97905, "lng": -43.23300, "desc": "Alimentação"},
-        {"name": "Secretaria CCS",  "lat": -22.97990, "lng": -43.23410, "desc": "Secretaria"},
+        {"name": "PUC-Rio (Campus)", "lat": -22.979580, "lng": -43.233480, "desc": "Entrada principal da PUC-Rio.", "tipo": "campus"},
+
+        # Equipes de competição
+        {"name": "RioBotz", "lat": -22.9800367048818, "lng": -43.23288754210833, "desc": "Laboratório RioBotz – robôs de combate.", "tipo": "equipes"},
+        {"name": "Pegasus",        "lat": -22.9790798161517, "lng": -43.23316845692918, "desc": "Equipe Pegasus – Fórmula SAE.", "tipo": "equipes"},
+        {"name": "Reptiles Baja",  "lat": -22.979870489298467, "lng": -43.23312574270568, "desc": "Equipe Reptiles Baja SAE.", "tipo": "equipes"},
+        {"name": "AeroRio",        "lat": -22.97955124079113,  "lng": -43.23283962884005, "desc": "Equipe AeroRio – aviões e drones.", "tipo": "equipes"},
+
+        # Projetos de inovação
+        {"name": "Apple Developer Academy",      "lat": -22.97909785428375,  "lng": -43.234103295781174, "desc": "Laboratório Apple Developer Academy.", "tipo": "inovacao"},
+        {"name": "Ignição Petrobras",          "lat": -22.97895148267144,  "lng": -43.23372099956563,  "desc": "Ignição Petrobras – RDC.", "tipo": "inovacao"},
+        {"name": "I9Cultura / Tecnotopias",      "lat": -22.97941112975673,  "lng": -43.232963581712146, "desc": "Projetos culturais e tecnologia – ECOA.", "tipo": "inovacao"},
+        {"name": "ECOA PUC-Rio",                 "lat": -22.979742197483868, "lng": -43.23285522461012,  "desc": "Instituto ECOA de inovação.", "tipo": "inovacao"},
+
+        # Entidades / Estágio interno
+        {"name": "PUC Empresa Júnior", "lat": -22.97998406374321, "lng": -43.2325942729298,  "desc": "Empresa Júnior da PUC-Rio.", "tipo": "estagio"},
+        {"name": "Estágio Interno CCS","lat": -22.979952128356045,"lng": -43.23359260217461,  "desc": "Estágio interno no CCS.", "tipo": "estagio"},
+        {"name": "AIChE",              "lat": -22.97950513808575, "lng": -43.23430202795027,  "desc": "Capítulo AIChE – Engenharia Química.", "tipo": "estagio"},
+        {"name": "PET Engenharia",     "lat": -22.978906590831073,"lng": -43.23331988629732,  "desc": "PET Engenharia – RDC.", "tipo": "estagio"},
+
+        # Alimentação
+        {"name": "LeMax",           "lat": -22.979677465987344, "lng": -43.232373371322744, "desc": "Restaurante LeMax (CCS).", "tipo": "alimentacao"},
+        {"name": "Rei do Mate",     "lat": -22.98002951410263, "lng": -43.23297164651833,  "desc": "Quiosque Rei do Mate.", "tipo": "alimentacao"},
+        {"name": "Mega Mate",       "lat": -22.979894703663575, "lng": -43.232687988768255,  "desc": "Loja Mega Mate.", "tipo": "alimentacao"},
+        {"name": "Cantina do Frade","lat": -22.97963015670803,  "lng": -43.23314509295869,  "desc": "Cantina do Frade – Amizade.", "tipo": "alimentacao"},
+
+        # Secretarias
+        {"name": "Secretaria Psicologia", "lat": -22.980086253214224, "lng": -43.23381240603214, "desc": "Secretaria de Psicologia.", "tipo": "secretaria"},
+        {"name": "Secretaria Economia",   "lat": -22.97995410273898,  "lng": -43.23395752380477, "desc": "Secretaria de Economia.", "tipo": "secretaria"},
+        {"name": "Secretaria Computação", "lat": -22.979791097741757, "lng": -43.2333960765081,  "desc": "INF – Secretaria de Computação.", "tipo": "secretaria"},
+        {"name": "Secretaria CCS",        "lat": -22.979908439593603, "lng": -43.23410977859713, "desc": "Secretaria geral do CCS.", "tipo": "secretaria"},
     ]
 
-    ctx = {"hero": hero, "mapa": mapa, "paines": paines, "pontos": pontos}
+    ctx = {
+        "hero": hero,
+        "mapa": mapa_info,
+        "paines": paines,
+        "pontos": pontos,
+    }
     return render(request, "mapa.html", ctx)
 
+
+# --------------------------------------------------------------------
+# SOBRE
+# --------------------------------------------------------------------
 
 def sobre(request):
     return render(request, "sobre.html")
@@ -411,3 +365,4 @@ def cadastro_view(request):
 
 
     return render(request, "cadastro.html", {'form': form})
+

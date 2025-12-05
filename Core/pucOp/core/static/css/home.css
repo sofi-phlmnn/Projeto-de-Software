@@ -1,6 +1,12 @@
-.hero-card__text{margin-left:100px}
-.home .section__title{letter-spacing:.2px}
+.hero-card__text {
+  margin-left: 100px;
+}
 
+.home .section__title {
+  letter-spacing: .2px;
+}
+
+/* GRID DE CATEGORIAS */
 .categories {
   display: flex;
   justify-content: center;
@@ -25,37 +31,34 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
-/* HOVER EFFECT */
+/* EFEITO HOVER */
 .category-circle:hover {
   transform: translateY(-6px) scale(1.05);
   box-shadow: 0 10px 20px rgba(0,0,0,0.20);
 }
 
-/* TEXTO */
+/* TEXTO INTERNO */
 .category-label {
   text-align: center;
   padding: 0 10px;
 }
 
-/* CORES PARA CADA CÍRCULO */
+/* CORES DE CADA CÍRCULO */
 .cat-equipe {
-  background-color: #f78d2d; /* laranja */
+  background-color: #f78d2d;
 }
-
 .cat-iniciacao {
-  background-color: #2d6cf7; /* azul */
+  background-color: #2d6cf7;
 }
-
 .cat-entidades {
-  background-color: #f7c92d; /* amarelo */
+  background-color: #f7c92d;
+  color: #111;
 }
-
 .cat-da {
-  background-color: #f72d90; /* rosa */
+  background-color: #f72d90;
 }
-
 .cat-estagio {
-  background-color: #2dd48f; /* verde */
+  background-color: #2dd48f;
 }
 
 /* RESPONSIVO */

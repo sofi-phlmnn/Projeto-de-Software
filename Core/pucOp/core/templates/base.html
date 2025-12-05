@@ -64,6 +64,7 @@
 
       <a class="drawer__link{% if request.path|slice:':12' == url_diretorios %} is-active{% endif %}" href="{{ url_diretorios }}">
         <span class="material-icons-outlined">school</span> Diretórios Acadêmicos
+
       </a>
 
       <a class="drawer__link{% if request.path|slice:':11' == url_iniciacao %} is-active{% endif %}" href="{{ url_iniciacao }}">
@@ -74,8 +75,14 @@
         <span class="material-icons-outlined">groups</span> Entidades Estudantis
       </a>
 
-      <a class="drawer__link{% if request.path|slice:':11' == url_estagios %} is-active{% endif %}" href="{{ url_estagios }}">
-        <span class="material-icons-outlined">work_outline</span> Estágios
+      <a class="drawer__link{% if request.path|slice:'':11' == url_estagios %} is-active{% endif %}" href="{{ url_estagios }}">
+      <span class="material-icons-outlined" aria-hidden="true">work_outline</span>
+      Estágios e Inovação
+      </a>
+      <a class="drawer__link{% if request.path|slice:':7' == url_sobre %} is-active{% endif %}" href="{{ url_sobre }}" {% if request.path|slice:":7" == url_sobre %}aria-current="page"{% endif %}>
+      <span class="material-icons-outlined" aria-hidden="true">info</span>
+      Sobre
+
       </a>
 
       <!-- NOVO ITEM PERFIL -->
@@ -93,11 +100,17 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
+  <div class="container footer__inner">
+    <p class="footer-copy">© 2025 • PUC Oportunidades</p>
+
+    <div class="footer-links">
       <a href="{{ url_sobre }}">Sobre</a>
       <a href="#">Contato</a>
     </div>
-  </footer>
+  </div>
+</footer>
+
+
 
   {% block extra_js %}{% endblock %}
 </body>

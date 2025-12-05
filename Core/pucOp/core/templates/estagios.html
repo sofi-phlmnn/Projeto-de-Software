@@ -4,38 +4,36 @@
 {% block title %}PUC Oportunidades — Estágios e Inovação{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
 <link rel="stylesheet" href="{% static 'css/estagios.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<!-- Banner da Página -->
-<section class="boxtextEstagio">
-  <h2>Programas de Estágio e Inovação</h2>
-  <p>Conheça iniciativas que unem aprendizado prático, tecnologia e desenvolvimento profissional.</p>
+<p class="boxtext">
+  <strong>Programas de Estágio e Inovação</strong> conectam aprendizado prático, tecnologia e desenvolvimento profissional com a vivência real do mercado.
+  Aqui você encontra iniciativas que ampliam suas habilidades e impulsionam sua formação acadêmica e profissional.
+</p>
+
+<section class="estagios-container">
+  {% for e in estagios %}
+    <article class="estagio-card">
+      <h2 class="nomestagio">{{ e.nome }}</h2>
+
+      <p class="desestagio">{{ e.descricao }}</p>
+
+      {% if e.topicos_lista %}
+        <div class="lista-topicos">
+          {{ e.topicos_lista|safe }}
+        </div>
+      {% endif %}
+
+      <a class="btn-estagios" href="{% url 'core:estagio_detalhe' e.id %}">
+        Ver detalhes completos
+      </a>
+    </article>
+  {% empty %}
+    <p class="no-estagios">Nenhum programa de estágio cadastrado no momento.</p>
+  {% endfor %}
 </section>
 
-<!-- Container Principal -->
-<main>
-  {% for e in estagios %}
-  <div class="estagios">
-    <div class="textestagio">
-      <h3 class="nomestagio">{{ e.nome }}</h3>
-      <p class="desestagio">{{ e.descricao }}</p>
-      <div class="detalhes-topicos">
-        {{ e.topicos_lista|safe }}
-      </div>
-    </div>
-  </div>
-  {% empty %}
-  <p class="boxtext">Nenhum programa de estágio ou inovação encontrado no momento.</p>
-  {% endfor %}
-</main>
-
-<footer>
-  <p>© 2025 • PUC Oportunidades</p>
-</footer>
-
 {% endblock %}
-

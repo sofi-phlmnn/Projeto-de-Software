@@ -5,48 +5,50 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/entidades.css' %}">
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
-
 
 <section class="boxtext">
   <h2>Entidades Estudantis na PUC-Rio</h2>
   <p>Explore representantes estudantis, empresas juniores, coletivos e ligas.</p>
 </section>
 
-<main class="container">
-    {% for e in entidades %}
-  <div class="entity">
-      
+<section class="entidades-container">
+  {% for e in entidades %}
+    <article class="entity">
+      <header class="entity-header">
+        <img class="entity-logo" src="{% static 'img/'|add:e.img %}" alt="Logo da {{ e.nome }}">
+        <h3 class="entity-name">{{ e.nome }}</h3>
+      </header>
 
-      <div class="entity-header">
-          <img class="entity-logo" src="{% static 'img/' %}{{ e.img }}" alt="Logo da {{ e.nome }}">
-          <h3 class="nomestagio">{{ e.nome }}</h3>
-      </div>
-      
-      <p class="desestagio">{{ e.descricao }}</p>
-      
+      <p class="entity-desc">{{ e.descricao }}</p>
 
-      <div class="detalhes-topicos">
-         <ul class="entity-meta">
-            <li><span class="material-icons-outlined"></span> {{ e.tipo }}</li>
-            {% for item in e.contatos %}
-                <li><span class="material-icons-outlined">{{ item.icone }}</span> {{ item.texto }}</li>
-            {% endfor %}
-        </ul>
-      </div>
-  </div>
-    {% empty %}
-        <p>Nenhuma entidade estudantil encontrada no momento.</p>
-    {% endfor %} 
-</main>
+      <ul class="entity-meta">
+        <li>
+          <span class="material-icons-outlined">category</span>
+          {{ e.tipo }}
+        </li>
 
-<footer>
-  <p>© 2025 • PUC Oportunidades</p>
-</footer>
+        {% for item in e.contatos.all %}
+          <li>
+            {% if item.icone %}
+              <span class="material-icons-outlined">{{ item.icone }}</span>
+            {% endif %}
+            <span>{{ item.texto }}</span>
+          </li>
+{% endfor %}
+
+      </ul>
+
+      <!-- botão de ver detalhes -->
+      <a class="btn-entity" href="{% url 'core:entidade_detalhe' e.id %}">
+        Ver detalhes completos
+      </a>
+    </article>
+  {% empty %}
+    <p class="no-entities">Nenhuma entidade estudantil encontrada no momento.</p>
+  {% endfor %}
+</section>
 
 {% endblock %}
-

@@ -1,122 +1,119 @@
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box; 
-} 
-
-body { 
-  background-color: rgb(235,235,235) !important; 
-  color:#000;
-  font-family: Arial, sans-serif; 
-} 
-/*oi*/
-/* Banner / Box de Introdução */
-.boxtext { 
-  color: rgb(81,80,80); 
-  background: #fff; 
-  box-shadow: 0px 1px 8px #33333355; 
-  border: 1px solid #e5e7eb; 
-  margin: 2em auto; 
-  padding: 3em; 
-  border-radius: 1em; 
-  font-family: Arial, sans-serif; 
-  font-size: 12pt; 
+.boxtext {
+  color: rgb(81, 80, 80);
+  background: #fff;
+  box-shadow: 0px 1px 8px #33333355;
+  border: 1px solid #e5e7eb;
+  margin: 2em auto 4em auto;
+  padding: 3em;
+  border-radius: 1em;
+  font-size: 1rem;
   line-height: 1.5;
-  margin-bottom: 4em; 
-  max-width: 1300px; 
-  text-align: center;
-} 
-
-/* Container */
-.container { 
-  width: min(1100px, 96%);
-  margin: 0 auto; 
-} 
-
-/* Cards das Entidades */
-.entity { 
-  color: rgb(81,80,80); 
-  background: #fff; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-  border-radius: 1em; 
-  margin: 2em auto 6em auto; 
-  padding: 3em; 
   max-width: 1100px;
-  border: 1px solid #e5e7eb; 
-  position: relative; 
-  z-index: 1; 
-  transition: transform 0.2s ease, box-shadow 0.2s ease; 
+  text-align: center;
 }
 
-.entity:hover { 
-  transform: translateY(-7px) scale(1.01); 
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); 
-} 
+/* Container da lista de entidades */
+.entidades-container {
+  width: min(1100px, 96%);
+  margin: 0 auto var(--space-5) auto;
+}
 
+/* Card de cada entidade */
+.entity {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 1em;
+  padding: 2.5em;
+  margin-bottom: 3em;
+  border: 1px solid #e5e7eb;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
 
+.entity:hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Header: logo + nome lado a lado */
 .entity-header {
-    display: flex;
-    align-items: center; 
-    gap: 15px; 
-    margin-bottom: 0.7em; 
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 1rem;
 }
 
 .entity-logo {
-    width: 150px; 
-    height: 150px; 
-    object-fit: contain; 
-    border-radius: 10px;
-    margin-bottom: 20px;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
+/* Nome da entidade */
+.entity-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #6D28D9;
+  margin: 0;
+  text-transform: uppercase;
+}
 
-.nomestagio { 
-  font-family: Arial, sans-serif; 
-  font-size: 1.5rem; 
-  font-weight: bold; 
-  color: #6D28D9; 
-  margin: 0; 
-  text-transform: uppercase; 
-} 
+/* Descrição */
+.entity-desc {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
 
+/* Lista de info (tipo, redes, e-mail etc.) */
+.entity-meta {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 0.5rem;
+}
 
-.desestagio { 
-  font-size: 1rem; 
-  color: #444; 
-  margin-bottom: 1.5rem; 
-  line-height: 1.5; 
-} 
-
-
-.entity-meta { 
-  list-style: none; 
-  margin-left: 0; 
-  padding-left: 0; 
-  margin-top: 1em;
-} 
-
-.entity-meta li { 
-  margin-bottom: 0.4rem; 
-  font-size: 0.95rem; 
-  color: #555; 
-  display: flex; 
+.entity-meta li {
+  display: flex;
   align-items: center;
-} 
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.4rem;
+}
 
-.entity-meta li .material-icons-outlined { 
-  margin-right: 8px; 
-  font-size: 1.1rem; 
-  color: #999; 
-  flex-shrink: 0; 
-  vertical-align: middle;
+.entity-meta .material-icons-outlined {
+  margin-right: 8px;
+  font-size: 1.15rem;
+  color: #777;
+}
+
+/* Mensagem quando não há entidades */
+.no-entities {
+  text-align: center;
+  color: #555;
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-entity{
+  display:inline-block;
+  margin-top:1.2rem;
+  padding:0.55rem 1.3rem;
+  border-radius:999px;
+  background:#6D28D9;
+  color:#fff;
+  text-decoration:none;
+  font-size:0.9rem;
+  font-weight:600;
+  transition:background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-entity:hover{
+  background:#5b21b6;
+  transform:translateY(-1px);
+  box-shadow:0 6px 12px rgba(0,0,0,0.18);
 }
 
 
-footer { 
-  background-color: #e0e0e0; 
-  text-align: center; 
-  padding: 1rem; 
-  font-size: 0.9rem; 
-  color: #333; 
-  margin-top: 2rem; 
-} 
+
+

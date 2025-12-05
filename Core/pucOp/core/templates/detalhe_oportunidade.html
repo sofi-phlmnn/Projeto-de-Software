@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ objeto.nome }} — {{ categoria_label }} • PUC Oportunidades{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/detalhe.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="detalhe-wrapper">
+  <article class="detalhe-card">
+
+    <header class="detalhe-header">
+      <h2 class="detalhe-title">{{ objeto.nome }}</h2>
+    </header>
+
+    <div class="detalhe-main">
+
+      {% if objeto.img %}
+      <div class="detalhe-image">
+        <img src="{% static 'img/' %}{{ objeto.img }}" alt="Imagem de {{ objeto.nome }}">
+
+        {% if objeto.texto_lateral %}
+          <p class="detalhe-lorem">
+            {{ objeto.texto_lateral }}
+          </p>
+        {% endif %}
+
+      </div>
+      {% endif %}
+
+      <div class="detalhe-texto">
+
+        <p class="detalhe-descricao">{{ objeto.descricao }}</p>
+
+        {% if objeto.topicos_lista %}
+        <div class="detalhe-topicos">
+          {{ objeto.topicos_lista|safe }}
+        </div>
+        {% endif %}
+
+        {% if objeto.img2 %}
+        <div class="detalhe-image-secundaria">
+          <img src="{% static 'img/' %}{{ objeto.img2 }}" alt="Imagem complementar de {{ objeto.nome }}">
+        </div>
+        {% endif %}
+
+        {% if objeto.contatos.all %}
+        <section class="detalhe-contatos">
+          <h3>Contatos</h3>
+          <ul>
+            {% for c in objeto.contatos.all %}
+            <li>
+              {% if c.icone %}
+              <span class="material-symbols-outlined">{{ c.icone }}</span>
+              {% endif %}
+              <span>{{ c.texto }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if objeto.tags.all %}
+    <div class="detalhe-tags">
+      {% for tag in objeto.tags.all %}
+      <span class="tag-pill tag-{{ tag.cor }}">{{ tag.nome }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if voltar_url %}
+    <div class="detalhe-footer">
+      <a class="btn-voltar" href="{{ voltar_url }}">&larr; Voltar</a>
+    </div>
+    {% endif %}
+  </article>
+</section>
+
+{% endblock %}
