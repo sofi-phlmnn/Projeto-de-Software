@@ -18,20 +18,19 @@
 
     <div class="detalhe-main">
 
-      {# COLUNA ESQUERDA: IMAGEM PRINCIPAL + LOREM #}
       {% if objeto.img %}
       <div class="detalhe-image">
         <img src="{% static 'img/' %}{{ objeto.img }}" alt="Imagem de {{ objeto.nome }}">
 
-        <p class="detalhe-lorem">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
+        {% if objeto.texto_lateral %}
+          <p class="detalhe-lorem">
+            {{ objeto.texto_lateral }}
+          </p>
+        {% endif %}
+
       </div>
       {% endif %}
 
-      {# COLUNA DIREITA: TEXTO + IMAGEM PEQUENA + CONTATOS #}
       <div class="detalhe-texto">
 
         <p class="detalhe-descricao">{{ objeto.descricao }}</p>
@@ -48,11 +47,11 @@
         </div>
         {% endif %}
 
-        {% if objeto.contatos %}
+        {% if objeto.contatos.all %}
         <section class="detalhe-contatos">
           <h3>Contatos</h3>
           <ul>
-            {% for c in objeto.contatos %}
+            {% for c in objeto.contatos.all %}
             <li>
               {% if c.icone %}
               <span class="material-symbols-outlined">{{ c.icone }}</span>
@@ -66,10 +65,9 @@
       </div>
     </div>
 
-    {# TAGS COLORIDAS #}
-    {% if objeto.tags %}
+    {% if objeto.tags.all %}
     <div class="detalhe-tags">
-      {% for tag in objeto.tags %}
+      {% for tag in objeto.tags.all %}
       <span class="tag-pill tag-{{ tag.cor }}">{{ tag.nome }}</span>
       {% endfor %}
     </div>

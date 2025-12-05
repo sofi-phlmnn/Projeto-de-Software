@@ -30,12 +30,15 @@
           {{ e.tipo }}
         </li>
 
-        {% for item in e.contatos %}
+        {% for item in e.contatos.all %}
           <li>
-            <span class="material-icons-outlined">{{ item.icone }}</span>
-            {{ item.texto }}
+            {% if item.icone %}
+              <span class="material-icons-outlined">{{ item.icone }}</span>
+            {% endif %}
+            <span>{{ item.texto }}</span>
           </li>
-        {% endfor %}
+{% endfor %}
+
       </ul>
 
       <!-- botão de ver detalhes -->
