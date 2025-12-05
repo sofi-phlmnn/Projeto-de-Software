@@ -482,3 +482,49 @@ main{
   margin-bottom:4em;
   max-width:980px;
 }
+
+.topbar__profile-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #6D28D9;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+  font-size: 0.9rem;
+}
+
+.topbar__profile-link .material-icons-outlined{
+  font-size: 18px;
+}
+
+/* ===== FAVORITOS (estrela) ===== */
+
+.favorito-card{
+  position: relative;   /* permite posicionar a estrela dentro do card */
+}
+
+.fav-form{
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  margin: 0;
+}
+
+.icon-btn{
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn .material-icons-outlined{
+  font-size: 24px;
+  color: #6D28D9;  /* roxo do site */
+}

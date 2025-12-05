@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
+
+from .models import StudentProfile, Favorite
 
 
 def home(request):
@@ -152,10 +155,45 @@ EQUIPES_DATA = [
     },
 ]
 
+def _add_is_fav(request, tipo, lista):
+    """
+    Recebe uma lista de dicionários (EQUIPES_DATA, DIRETORIOS_DATA, etc.)
+    e adiciona a chave 'is_fav' em cada item, de acordo com o usuário.
+    """
+    # Faz uma cópia para não mexer na lista original
+    nova_lista = [obj.copy() for obj in lista]
+
+    if not request.user.is_authenticated:
+        for obj in nova_lista:
+            obj["is_fav"] = False
+        return nova_lista
+
+    fav_ids = set(
+        Favorite.objects.filter(user=request.user, tipo=tipo)
+        .values_list("objeto_id", flat=True)
+    )
+
+    for obj in nova_lista:
+        obj["is_fav"] = obj["id"] in fav_ids
+
+    return nova_lista
 
 
 def equipes(request):
-    return render(request, "equipe.html", {"equipes": EQUIPES_DATA})
+    favoritos_ids = set()
+    if request.user.is_authenticated:
+        favoritos_ids = set(
+            Favorite.objects.filter(user=request.user, tipo="equipe")
+                            .values_list("objeto_id", flat=True)
+        )
+
+    equipes_data = []
+    for e in EQUIPES_DATA:
+        e_copy = e.copy()
+        e_copy["is_fav"] = e["id"] in favoritos_ids
+        equipes_data.append(e_copy)
+
+    return render(request, "equipe.html", {"equipes": equipes_data})
 
 
 def equipe_detalhe(request, id):
@@ -242,8 +280,8 @@ DIRETORIOS_DATA = [
 
 
 def diretorios(request):
-    return render(request, "diretorios.html", {"diretorios": DIRETORIOS_DATA})
-
+    diretorios_lista = _add_is_fav(request, "diretorio", DIRETORIOS_DATA)
+    return render(request, "diretorios.html", {"diretorios": diretorios_lista})
 
 def diretorio_detalhe(request, id):
     diretorio = next((d for d in DIRETORIOS_DATA if d["id"] == id), None)
@@ -353,7 +391,8 @@ ESTAGIOS_DATA = [
 
 
 def estagios(request):
-    return render(request, "estagios.html", {"estagios": ESTAGIOS_DATA})
+    estagios_lista = _add_is_fav(request, "estagio", ESTAGIOS_DATA)
+    return render(request, "estagios.html", {"estagios": estagios_lista})
 
 
 def estagio_detalhe(request, id):
@@ -448,7 +487,8 @@ ENTIDADES_DATA = [
 
 
 def entidades(request):
-    return render(request, "entidades.html", {"entidades": ENTIDADES_DATA})
+    entidades_lista = _add_is_fav(request, "entidade", ENTIDADES_DATA)
+    return render(request, "entidades.html", {"entidades": entidades_lista})
 
 
 def entidade_detalhe(request, id):
@@ -644,7 +684,8 @@ INICIACOES_DATA = [
 
 
 def iniciacao(request):
-    return render(request, "iniciacao.html", {"iniciacoes": INICIACOES_DATA})
+    iniciacoes_lista = _add_is_fav(request, "iniciacao", INICIACOES_DATA)
+    return render(request, "iniciacao.html", {"iniciacoes": iniciacoes_lista})
 
 
 def iniciacao_detalhe(request, id):
@@ -658,3 +699,114 @@ def iniciacao_detalhe(request, id):
         "voltar_url": reverse("core:iniciacao"),
     }
     return render(request, "detalhe_oportunidade.html", ctx)
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from .models import StudentProfile
+from .forms import StudentProfileForm
+
+
+@login_required  # se ainda não tiver login configurado, pode remover temporariamente
+def perfil_aluno(request):
+    # pega ou cria o perfil do usuário logado
+    profile, created = StudentProfile.objects.get_or_create(
+        user=request.user,
+        defaults={
+            "nome": request.user.get_full_name() or request.user.username,
+            "curso": "Engenharia de Produção",
+            "periodo": 5,
+            "disponibilidade": "20-30h/sem",
+            "modalidade": "Remoto/Híbrido",
+            "cr": 7.9,
+            "creditos_cursados": 84,
+            "creditos_totais": 180,
+            "ac_cumpridas": 83,
+            "ac_total": 100,
+        },
+    )
+
+    if request.method == "POST":
+        form = StudentProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("core:perfil")  # redireciona pra própria página
+    else:
+        form = StudentProfileForm(instance=profile)
+
+    ctx = {
+        "profile": profile,
+        "form": form,
+    }
+    return render(request, "perfil.html", ctx)
+
+@login_required
+def toggle_favorito(request, tipo, item_id):
+    # se tiver algum get do objeto, também use item_id
+    # ex: objeto = Equipe.objects.get(pk=item_id)
+
+    favorite, created = Favorite.objects.get_or_create(
+        user=request.user,
+        tipo=tipo,
+        objeto_id=item_id,   # ← aqui é o ponto do erro
+    )
+
+    if not created:
+        favorite.delete()
+
+    return redirect(request.META.get("HTTP_REFERER", "core:home"))
+
+
+@login_required
+def favoritos(request):
+    """Lista todos os favoritos do usuário atual."""
+    favoritos = Favorite.objects.filter(user=request.user).order_by("-criado_em")
+
+    # vamos reconstruir os objetos a partir das listas *_DATA
+    itens = []
+    for fav in favoritos:
+        data = None
+        detail_url = None
+        categoria_label = ""
+
+        if fav.tipo == "equipe":
+            data = next((e for e in EQUIPES_DATA if e["id"] == fav.objeto_id), None)
+            if data:
+                detail_url = reverse("core:equipe_detalhe", args=[data["id"]])
+                categoria_label = "Equipe de competição"
+
+        elif fav.tipo == "estagio":
+            data = next((e for e in ESTAGIOS_DATA if e["id"] == fav.objeto_id), None)
+            if data:
+                detail_url = reverse("core:estagio_detalhe", args=[data["id"]])
+                categoria_label = "Estágio / Programa"
+
+        elif fav.tipo == "diretorio":
+            data = next((d for d in DIRETORIOS_DATA if d["id"] == fav.objeto_id), None)
+            if data:
+                detail_url = reverse("core:diretorio_detalhe", args=[data["id"]])
+                categoria_label = "Diretório / CA"
+
+        elif fav.tipo == "entidade":
+            data = next((e for e in ENTIDADES_DATA if e["id"] == fav.objeto_id), None)
+            if data:
+                detail_url = reverse("core:entidade_detalhe", args=[data["id"]])
+                categoria_label = "Entidade estudantil"
+
+        elif fav.tipo == "iniciacao":
+            data = next((i for i in INICIACOES_DATA if i["id"] == fav.objeto_id), None)
+            if data:
+                detail_url = reverse("core:iniciacao_detalhe", args=[data["id"]])
+                categoria_label = "Iniciação científica"
+
+        if data:
+            itens.append({
+                "tipo": fav.tipo,
+                "categoria": categoria_label,
+                "obj": data,
+                "detail_url": detail_url,
+            })
+
+    ctx = {
+        "itens": itens,
+    }
+    return render(request, "favoritos.html", ctx)

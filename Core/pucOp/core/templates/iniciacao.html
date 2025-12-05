@@ -18,7 +18,25 @@
 
 <main class="container">
   {% for p in iniciacoes %}
-    <div class="program">
+    <div class="program favorito-card">
+
+      {# ⭐ botão de favorito #}
+      {% if request.user.is_authenticated %}
+        <form method="post"
+              action="{% url 'core:toggle_favorito' 'iniciacao' p.id %}"
+              class="fav-form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <button type="submit"
+                  class="icon-btn"
+                  title="{% if p.is_fav %}Remover dos favoritos{% else %}Adicionar aos favoritos{% endif %}">
+            <span class="material-icons-outlined">
+              {% if p.is_fav %}star{% else %}star_border{% endif %}
+            </span>
+          </button>
+        </form>
+      {% endif %}
+
       <h3 class="nomeinic">{{ p.nome }}</h3>
       <p class="desinic">{{ p.descricao }}</p>
 

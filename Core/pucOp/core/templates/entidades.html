@@ -16,7 +16,25 @@
 
 <section class="entidades-container">
   {% for e in entidades %}
-    <article class="entity">
+    <article class="entity favorito-card">
+
+      {# ⭐ botão de favorito #}
+      {% if request.user.is_authenticated %}
+        <form method="post"
+              action="{% url 'core:toggle_favorito' 'entidade' e.id %}"
+              class="fav-form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <button type="submit"
+                  class="icon-btn"
+                  title="{% if e.is_fav %}Remover dos favoritos{% else %}Adicionar aos favoritos{% endif %}">
+            <span class="material-icons-outlined">
+              {% if e.is_fav %}star{% else %}star_border{% endif %}
+            </span>
+          </button>
+        </form>
+      {% endif %}
+
       <header class="entity-header">
         <img class="entity-logo" src="{% static 'img/'|add:e.img %}" alt="Logo da {{ e.nome }}">
         <h3 class="entity-name">{{ e.nome }}</h3>

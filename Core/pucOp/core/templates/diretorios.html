@@ -23,7 +23,25 @@
   <section class="diretorios-section">
     <div class="cards-container">
       {% for e in diretorios %}
-        <div class="card">
+        <div class="card favorito-card">
+
+          {# ⭐ botão de favorito #}
+          {% if request.user.is_authenticated %}
+            <form method="post"
+                  action="{% url 'core:toggle_favorito' 'diretorio' e.id %}"
+                  class="fav-form">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <button type="submit"
+                      class="icon-btn"
+                      title="{% if e.is_fav %}Remover dos favoritos{% else %}Adicionar aos favoritos{% endif %}">
+                <span class="material-icons-outlined">
+                  {% if e.is_fav %}star{% else %}star_border{% endif %}
+                </span>
+              </button>
+            </form>
+          {% endif %}
+
           <div class="imgdiretorio-container">
             <img class="imgdiretorio" alt="{{ e.nome }}" src="{% static 'img/'|add:e.img %}">
           </div>

@@ -1,101 +1,127 @@
-body{
-  background-color:rgb(235,235,235) !important;
-  color:#000;
+/* ===== PÁGINA DE EQUIPES ===== */
+
+.equipes-page{
+  padding: 32px 0 48px;
 }
 
-.boxtextEquipe {
-  color: rgb(81,80,80);
-  background: #fff;
-  box-shadow: 0px 1px 8px #33333355;
-  border: 1px solid #e5e7eb;
-  margin: 2em auto;
-  padding: 3em;
-  border-radius: 1em;
-  font-family: Arial, sans-serif;
-  font-size: 12pt;
-  line-height: 1.5;
-  margin-bottom: 4em;
-  max-width: 980px;
+/* bloco de texto introdutório (a caixa branca grande lá em cima) */
+.boxtextEquipe{
+  max-width: 1100px;
+  margin: 32px auto 0;
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+  color: #111827;
+  line-height: 1.6;
 }
 
+/* ===== LISTA DE EQUIPES ===== */
 
-.equipes{
-  display:flex;align-items:center;gap:40px;
-  color:rgb(81,80,80);
-  background:#fff;
-  
-  /* Sombra inicial IGUAL à dos Diretórios */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-  
-  border-radius:1em;
-  margin:2em auto 6em auto;
-  padding:3em;
-  max-width:1100px;
-  border:1px solid #e5e7eb;
-  position: relative; /* Adicionado para garantir que o z-index funcione */
-  z-index: 1; /* Adicionado para garantir que não haja sobreposição */
-  
-  /* Transição IGUAL à dos Diretórios (para suavizar o hover) */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.equipes-list{
+  max-width: 1100px;
+  margin: 32px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-.equipes:hover{
-  /* Este já está correto! */
-  transform: translateY(-7px) scale(1.01);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+/* ---- CARD DA EQUIPE ---- */
+
+.equipes-card{
+  position: relative;               /* pai da estrela */
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
 }
 
-.imgequipes{
-  border-radius:.3em;
-  width:22em;height:12em;
-  object-fit:cover;
-  margin-right:18em;
-
-}
-.textoequi{display:flex;flex-direction:column;margin-left:-18em;min-width:0}
-.nomequipe{
-  font-family:Arial, sans-serif;
-  font-size:20pt;
-  color:#6D28D9;
-  margin-bottom:.7em;
-}
-.textequipe{
-  font-family:Arial, sans-serif;
-  font-size:12pt;
-  line-height:1.5;
-  margin:0;
-}
-.rodape{
-  background-color:rgb(42,41,41);
-  margin-top:4em;
-  font-family:Arial, sans-serif;
-  padding:3em;
-  color:#fff;
-  border-radius:10px;
-}
-.rodape a{color:inherit;text-decoration:none}
-@media (max-width:960px){
-  .equipes{flex-direction:column;align-items:flex-start}
-  .imgequipes{width:100%;height:220px;margin-right:0}
-  .textoequi{margin-left:0}
+/* wrapper da imagem */
+.equipes-card__img-wrapper{
+  flex: 0 0 260px;
 }
 
-.btn-equipe{
-  display:inline-block;
-  margin-top:1.2rem;
-  padding:0.55rem 1.3rem;
-  border-radius:999px;
-  background:#6D28D9;
-  color:#fff;
-  text-decoration:none;
-  font-size:0.9rem;
-  font-weight:600;
-  transition:background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-.btn-equipe:hover{
-  background:#5b21b6;
-  transform:translateY(-1px);
-  box-shadow:0 6px 12px rgba(0,0,0,0.18);
+/* imagem da equipe */
+.equipes-card__img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
+/* textos do card */
+.equipes-card__body{
+  flex: 1;
+}
 
+.equipes-card__title{
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #4C1D95; /* roxo mais escuro */
+}
+
+.equipes-card__text{
+  margin: 0;
+  color: #4B5563;
+  line-height: 1.6;
+}
+
+/* botão roxo "Ver detalhes completos" */
+.equipes-card__cta{
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 32px;
+  border-radius: 999px;
+  background: #6D28D9;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---- ESTRELA DE FAVORITO ---- */
+
+.equipes-card__fav-form{
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  margin: 0;
+}
+
+.icon-btn{
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn .material-icons-outlined{
+  font-size: 24px;
+  color: #6D28D9;  /* roxo */
+}
+
+/* responsivo simples */
+@media (max-width: 800px){
+  .equipes-card{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .equipes-card__img-wrapper{
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .equipes-card__fav-form{
+    top: 12px;
+    right: 16px;
+  }
+}

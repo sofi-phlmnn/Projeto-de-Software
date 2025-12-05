@@ -19,6 +19,7 @@
   {% url 'core:iniciacao' as url_iniciacao %}
   {% url 'core:entidades' as url_entidades %}
   {% url 'core:estagios' as url_estagios %}
+  {% url 'core:perfil' as url_perfil %}
 
   <header class="topbar" role="banner">
     <div class="container topbar__inner">
@@ -29,6 +30,13 @@
           <span class="material-icons-outlined" aria-hidden="true">search</span>
           <input type="search" placeholder="Pesquisar..." aria-label="Pesquisar" />
         </div>
+
+        <!-- NOVO: botão Meu Perfil -->
+        <a href="{{ url_perfil }}" class="topbar__profile-link">
+          <span class="material-icons-outlined" aria-hidden="true">person</span>
+          <span>Meu Perfil</span>
+        </a>
+
         <label for="nav-toggle" class="icon-btn hamburger" aria-label="Abrir menu" role="button">
           <span class="material-icons-outlined" aria-hidden="true">menu</span>
         </label>
@@ -43,6 +51,12 @@
       <a class="drawer__link{% if request.path == url_home %} is-active{% endif %}" href="{{ url_home }}" {% if request.path == url_home %}aria-current="page"{% endif %}>
         <span class="material-icons-outlined" aria-hidden="true">home</span>
         Início
+      </a>
+      <a class="drawer__link{% if request.path|slice:":8" == url_perfil %} is-active{% endif %}"
+         href="{{ url_perfil }}"
+         {% if request.path|slice:":8" == url_perfil %}aria-current="page"{% endif %}>
+        <span class="material-icons-outlined" aria-hidden="true">person</span>
+        Meu Perfil
       </a>
       <a class="drawer__link{% if request.path|slice:":6" == url_mapa %} is-active{% endif %}" href="{{ url_mapa }}" {% if request.path|slice:":6" == url_mapa %}aria-current="page"{% endif %}>
       <span class="material-icons-outlined" aria-hidden="true">map</span>

@@ -43,10 +43,14 @@
                     <img src="https://quirinopolis.go.gov.br/wp-content/uploads/2025/01/Programa-Bolsa-Universitaria-2025.png" alt="Maria Alves">
                 </div>
                 <div class="info-perfil">
-                    <h2 class="nome">Maria Alves</h2>
-                    <p class="texto-secundario">Engenharia de Produção - 5º período</p>
-                    <p class="texto-pequeno">ID 203948 - CR 7,9 - 84/180 créditos</p>
-                </div>
+    <h2 class="nome">{{ profile.nome }}</h2>
+    <p class="texto-secundario">
+        {{ profile.curso }} - {{ profile.periodo }}º período
+    </p>
+    <p class="texto-pequeno">
+        CR {{ profile.cr }} - {{ profile.creditos_cursados }}/{{ profile.creditos_totais }} créditos
+    </p>
+</div>
             </div>
 
             <!-- Ações do perfil -->

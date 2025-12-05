@@ -1,0 +1,270 @@
+{{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PUC Oportunidades - Perfil do Aluno</title>
+    <!-- Fonte e ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- CSS do projeto -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+        <div class="container">
+            <h1 class="marca">PUC OPORTUNIDADES</h1>
+
+            <div class="acoes-cabecalho">
+                <div class="busca">
+                    <span class="material-icons">search</span>
+                    <input type="text" placeholder="Buscar vagas..." aria-label="Buscar vagas" />
+                </div>
+
+                <button class="botao-icone" aria-label="Notificações"><span class="material-icons">notifications</span></button>
+                <button class="botao-icone botao-menu" aria-label="Menu"><span class="material-icons">menu</span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="container principal">
+
+        <!-- FORM COMEÇA AQUI -->
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Cartão de perfil -->
+            <section class="cartao-perfil card">
+                <div class="perfil-esquerda">
+                    <div class="avatar">
+                        <img src="https://quirinopolis.go.gov.br/wp-content/uploads/2025/01/Programa-Bolsa-Universitaria-2025.png"
+                             alt="{{ profile.nome }}">
+                    </div>
+                    <div class="info-perfil">
+                        <h2 class="nome">{{ profile.nome }}</h2>
+                        <p class="texto-secundario">
+                            {{ profile.curso }} - {{ profile.periodo }}º período
+                        </p>
+                        <p class="texto-pequeno">
+                            CR {{ profile.cr }} - {{ profile.creditos_cursados }}/{{ profile.creditos_totais }} créditos
+                        </p>
+                    </div>
+                </div>
+
+                <div class="acoes-perfil">
+    <button type="button" class="btn btn-secundario" id="btn-editar-perfil">
+        <span class="material-icons">edit</span> Editar Perfil
+    </button>
+    <button type="submit" class="btn btn-primario btn-desabilitado"
+            id="btn-salvar-perfil" disabled>
+        <span class="material-icons">save</span> Salvar Alterações
+    </button>
+</div>
+            </section>
+
+            <!-- Layout principal -->
+            <div class="estrutura">
+
+                <!-- Coluna esquerda: informações editáveis + cards -->
+                <aside class="coluna-esquerda">
+                    <div class="card">
+                        <h3>Informações do Perfil</h3>
+                        <div class="grade-info">
+
+                            <div>
+                                <p class="rotulo">Nome</p>
+                                <input class="valor campo-editavel" type="text" name="nome"
+                                      value="{{ form.nome.value|default:profile.nome }}">
+                            </div>
+
+                            <div>
+                                <p class="rotulo">Curso</p>
+                                <input class="valor campo-editavel" type="text" name="curso"
+                                       value="{{ form.curso.value|default:profile.curso }}">
+                            </div>
+
+                            <div>
+                                <p class="rotulo">Período</p>
+                                <input class="valor campo-editavel" type="number" name="periodo"
+                                       value="{{ form.periodo.value|default:profile.periodo }}">
+                            </div>
+
+                            <div>
+                                <p class="rotulo">Disponibilidade</p>
+                                <input class="valor campo-editavel" type="text" name="disponibilidade"
+                                       value="{{ form.disponibilidade.value|default:profile.disponibilidade }}">
+                            </div>
+
+                            <div>
+                                <p class="rotulo">Modalidade</p>
+                                <input class="valor campo-editavel" type="text" name="modalidade"
+                                       value="{{ form.modalidade.value|default:profile.modalidade }}">
+                            </div>
+
+                            <div>
+                                <p class="rotulo">CR</p>
+                                <input class="valor campo-editavel" type="number" step="0.1" name="cr"
+                                       value="{{ form.cr.value|default:profile.cr }}">
+                            </div>
+
+                            <div>
+                                <p class="rotulo">Créditos cursados</p>
+                                <input class="valor campo-editavel" type="number" name="creditos_cursados"
+                                       value="{{ form.creditos_cursados.value|default:profile.creditos_cursados }}">
+                            </div>
+
+                            <div>
+                                <p class="rotulo">Créditos totais</p>
+                                <input class="valor campo-editavel" type="number" name="creditos_totais"
+                                       value="{{ form.creditos_totais.value|default:profile.creditos_totais }}">
+                            </div>
+                        </div>
+
+                        <!-- Progresso AC -->
+                        <div class="bloco-progresso">
+                            <p class="rotulo">Progresso de AC</p>
+                            <div class="progresso">
+                                <div class="barra-progresso" style="width: {{ profile.ac_percentual }}%"></div>
+                            </div>
+                            <p class="texto-pequeno direita">
+                                <input class="valor campo-editavel" type="number" name="ac_cumpridas" style="width:60px"
+                                       value="{{ form.ac_cumpridas.value|default:profile.ac_cumpridas }}">
+                                /
+                                <input class="valor campo-editavel" type="number" name="ac_total" style="width:60px"
+                                       value="{{ form.ac_total.value|default:profile.ac_total }}">
+                                horas complementares cumpridas
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Competências (por enquanto estático) -->
+                    <div class="card">
+                        <h3>Competências</h3>
+                        <div class="grupo-tags">
+                            <div class="tag">Excel Avançado</div>
+                            <div class="tag">Python</div>
+                            <div class="tag">Power BI</div>
+                            <div class="tag">Estatística</div>
+                            <div class="tag">Operações</div>
+                            <div class="tag">Dados</div>
+                            <div class="tag">Consultoria</div>
+                            <div class="tag">Inovação</div>
+                            <div class="tag">Português (Nativo)</div>
+                            <div class="tag">Inglês (B1)</div>
+                            <div class="tag">Espanhol (B1)</div>
+                        </div>
+                    </div>
+
+                    <!-- Notificações (estático por enquanto) -->
+                    <div class="card">
+                        <h3>Notificações</h3>
+                        <ul class="notificacoes">
+                            <li>
+                                <div class="nota-esquerda">
+                                    <span class="material-icons">work</span>
+                                    <span>Vagas de Eng. de Produção com bolsa &gt; R$ 2.000</span>
+                                </div>
+                                <input type="checkbox" checked />
+                            </li>
+                            <li>
+                                <div class="nota-esquerda">
+                                    <span class="material-icons">event</span>
+                                    <span>Novos eventos e palestras</span>
+                                </div>
+                                <input type="checkbox" />
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Coluna direita (mantida igual ao seu layout) -->
+                <section class="coluna-direita">
+                    <div class="card cartao-navegacao">
+                        <nav class="abas">
+  <a class="aba" href="#">Recomendações</a>
+  <a class="aba" href="{% url 'core:favoritos' %}">Favoritos</a>
+  <a class="aba" href="#">Minhas Inscrições</a>
+  <a class="aba" href="#">Equipes &amp; IC</a>
+  <a class="aba" href="#">Preferências</a>
+</nav>
+                    </div>
+
+                    <div class="card cartao-vaga">
+                        <div class="topo-vaga">
+                            <div>
+                                <h4>Estágio</h4>
+                                <div class="meta-vaga">
+                                    <span><span class="material-icons">place</span> Remoto</span>
+                                    <span><span class="material-icons">schedule</span> 20-30h</span>
+                                    <span><span class="material-icons">attach_money</span> Bolsa R$ 2.200</span>
+                                    <span><span class="material-icons">school</span> Requer: 60+ créditos</span>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="botao-link">Ver detalhes</button>
+                            </div>
+                        </div>
+
+                        <div class="acoes-vaga">
+                            <button class="btn btn-primario largura-total">
+                                <span class="material-icons">send</span> Candidatar
+                            </button>
+                            <button class="btn btn-outline largura-total">
+                                <span class="material-icons">favorite_border</span> Favoritar
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </form>
+        <!-- FIM DO FORM -->
+
+    </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const editBtn  = document.getElementById("btn-editar-perfil");
+    const saveBtn  = document.getElementById("btn-salvar-perfil");
+    const campos   = document.querySelectorAll(".campo-editavel");
+
+    function setEditing(editing) {
+        campos.forEach(function (campo) {
+            campo.disabled = !editing;
+            if (!editing) {
+                campo.classList.add("campo-bloqueado");
+            } else {
+                campo.classList.remove("campo-bloqueado");
+            }
+        });
+
+        saveBtn.disabled = !editing;
+        if (editing) {
+            saveBtn.classList.remove("btn-desabilitado");
+        } else {
+            saveBtn.classList.add("btn-desabilitado");
+        }
+    }
+
+    // começa travado quando a página carrega
+    setEditing(false);
+
+    // ao clicar em "Editar Perfil", libera os campos
+    editBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        setEditing(true);
+
+        // opcional: foca no primeiro campo
+        if (campos.length > 0) {
+            campos[0].focus();
+        }
+    });
+});
+</script>
+
+</body>
+</html>

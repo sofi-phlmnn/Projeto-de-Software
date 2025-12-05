@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Meus Favoritos • PUC Oportunidades{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section container">
+  <h1 class="section-title">Meus Favoritos</h1>
+
+  {% if itens %}
+    <div class="cards-grid">
+      {% for item in itens %}
+        <article class="op-card card">
+          <div class="op-card__body">
+            <p class="op-card__badge">{{ item.categoria }}</p>
+            <h2 class="op-card__title">{{ item.obj.nome }}</h2>
+            <p class="op-card__desc">{{ item.obj.descricao }}</p>
+          </div>
+
+          <div class="op-card__footer">
+            <a href="{{ item.detail_url }}" class="btn-link">Ver detalhes</a>
+
+            <form method="post" action="{% url 'core:toggle_favorito' item.tipo item.obj.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{% url 'core:favoritos' %}">
+              <button type="submit" class="icon-btn" title="Remover dos favoritos">
+                <span class="material-icons-outlined">star</span>
+              </button>
+            </form>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Você ainda não favoritou nenhuma oportunidade.</p>
+  {% endif %}
+</section>
+{% endblock %}

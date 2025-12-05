@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}PUC Oportunidades — Equipes{% endblock %}
+{% block title %}PUC Oportunidades – Equipes{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/equipe.css' %}">
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
 {% endblock %}
 
 {% block content %}
-<section>
+<section class="equipes-page">
   <p class="boxtextEquipe">
-    As<strong> equipes de competição </strong>da PUC-Rio reúnem alunos de diferentes cursos que, juntos, aplicam seus
+    As <strong>equipes de competição</strong> da PUC-Rio reúnem alunos de diferentes cursos que, juntos, aplicam seus
     conhecimentos acadêmicos em projetos desafiadores e de impacto. Mais do que representar a universidade
     em torneios nacionais e internacionais, essas equipes oferecem uma oportunidade única de aprendizado prático,
     integração multidisciplinar e desenvolvimento pessoal. Participar de uma equipe significa viver de perto a
@@ -20,17 +19,43 @@
     valorizadas no mercado de trabalho, como liderança, criatividade, gestão de tempo e comunicação.
   </p>
 
-  {% for e in equipes %}
-  <div class="equipes">
-    <img class="imgequipes" alt="Logo da equipe {{ e.nome }}" src="{% static 'img/' %}{{ e.img }}">
-    <div class="textoequi">
-      <h3 class="nomequipe">{{ e.nome }}</h3>
-      <p class="textequipe">{{ e.descricao }}</p>
-      <a class="btn-equipe" href="{% url 'core:equipe_detalhe' e.id %}">Ver detalhes completos</a>
-    </div>
+  <div class="equipes-list">
+    {% for e in equipes %}
+      <article class="equipes-card">
+        {% if request.user.is_authenticated %}
+          <form method="post"
+                action="{% url 'core:toggle_favorito' 'equipe' e.id %}"
+                class="equipes-card__fav-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button type="submit"
+                    class="icon-btn"
+                    title="{% if e.is_fav %}Remover dos favoritos{% else %}Adicionar aos favoritos{% endif %}">
+              <span class="material-icons-outlined">
+                {% if e.is_fav %}star{% else %}star_border{% endif %}
+              </span>
+            </button>
+          </form>
+        {% endif %}
+
+        <div class="equipes-card__img-wrapper">
+          <img class="equipes-card__img"
+               alt="Logo da equipe {{ e.nome }}"
+               src="{% static 'img/' %}{{ e.img }}">
+        </div>
+
+        <div class="equipes-card__body">
+          <h3 class="equipes-card__title">{{ e.nome }}</h3>
+          <p class="equipes-card__text">{{ e.descricao }}</p>
+
+          <a class="equipes-card__cta" href="{% url 'core:equipe_detalhe' e.id %}">
+            Ver detalhes completos
+          </a>
+        </div>
+      </article>
+    {% empty %}
+      <p class="boxtextEquipe">Nenhuma equipe cadastrada ainda.</p>
+    {% endfor %}
   </div>
-  {% empty %}
-  <p class="boxtext">Nenhuma equipe cadastrada ainda.</p>
-  {% endfor %}
 </section>
 {% endblock %}
