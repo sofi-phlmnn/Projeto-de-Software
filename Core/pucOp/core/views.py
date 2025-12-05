@@ -532,15 +532,15 @@ def mapa(request):
         {"name": "ECOA PUC-Rio",                 "lat": -22.979742197483868, "lng": -43.23285522461012,  "desc": "Instituto ECOA de inovação.", "tipo": "inovacao"},
 
         # Entidades / Estágio interno
-        {"name": "PUC Empresa Júnior", "lat": -22.979249393742546, "lng": -43.2340123325173,  "desc": "Empresa Júnior da PUC-Rio.", "tipo": "estagio"},
+        {"name": "PUC Empresa Júnior", "lat": -22.97998406374321, "lng": -43.2325942729298,  "desc": "Empresa Júnior da PUC-Rio.", "tipo": "estagio"},
         {"name": "Estágio Interno CCS","lat": -22.979952128356045,"lng": -43.23359260217461,  "desc": "Estágio interno no CCS.", "tipo": "estagio"},
         {"name": "AIChE",              "lat": -22.97950513808575, "lng": -43.23430202795027,  "desc": "Capítulo AIChE – Engenharia Química.", "tipo": "estagio"},
         {"name": "PET Engenharia",     "lat": -22.978906590831073,"lng": -43.23331988629732,  "desc": "PET Engenharia – RDC.", "tipo": "estagio"},
 
         # Alimentação
-        {"name": "LeMax",           "lat": -22.979078817877828, "lng": -43.233027143880124, "desc": "Restaurante LeMax (CCS).", "tipo": "alimentacao"},
-        {"name": "Rei do Mate",     "lat": -22.979328936463566, "lng": -43.23330088265907,  "desc": "Quiosque Rei do Mate.", "tipo": "alimentacao"},
-        {"name": "Mega Mate",       "lat": -22.97921498163446,  "lng": -43.23353742018726,  "desc": "Loja Mega Mate.", "tipo": "alimentacao"},
+        {"name": "LeMax",           "lat": -22.979677465987344, "lng": -43.232373371322744, "desc": "Restaurante LeMax (CCS).", "tipo": "alimentacao"},
+        {"name": "Rei do Mate",     "lat": -22.98002951410263, "lng": -43.23297164651833,  "desc": "Quiosque Rei do Mate.", "tipo": "alimentacao"},
+        {"name": "Mega Mate",       "lat": -22.979894703663575, "lng": -43.232687988768255,  "desc": "Loja Mega Mate.", "tipo": "alimentacao"},
         {"name": "Cantina do Frade","lat": -22.97963015670803,  "lng": -43.23314509295869,  "desc": "Cantina do Frade – Amizade.", "tipo": "alimentacao"},
 
         # Secretarias
