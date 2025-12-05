@@ -73,7 +73,7 @@ def home(request):
 
 
 # --------------------------------------------------------------------
-# LISTAS POR TIPO (usando models, mas mantendo os templates atuais)
+# LISTAS POR TIPO
 # --------------------------------------------------------------------
 
 def equipes(request):
@@ -127,7 +127,7 @@ def iniciacao(request):
 
 
 # --------------------------------------------------------------------
-# DETALHE GENÉRICO (usa detalhe_oportunidade.html)
+# DETALHE GENÉRICO 
 # --------------------------------------------------------------------
 
 def oportunidade_detalhe(request, id):
