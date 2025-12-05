@@ -41,7 +41,5 @@ urlpatterns = [
     
     # Rota de Logout (OK)
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    
-    path('perfil/editar/', views.perfil_editar, name='perfil_editar'),
 
 ]
