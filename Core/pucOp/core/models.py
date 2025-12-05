@@ -1,5 +1,9 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.utils.text import slugify
+
+User=get_user_model()
+# Create your models here.
 
 
 class CategoriaOportunidade(models.TextChoices):
@@ -113,3 +117,4 @@ class Contato(models.Model):
 
     def __str__(self):
         return f"{self.icone}: {self.texto}"
+

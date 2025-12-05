@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}PUC Oportunidades — Meu Perfil{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfil_padronizado.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="hero hero--perfil">
+    <div class="container">
+        <div class="hero-card">
+            <div class="hero-card__text hero-card__text--full">
+                <h2 class="hero-card__title">Bem-vindo(a), {{ profile.nome }}!</h2>
+                <p class="hero-card__desc">
+                    Este é o seu painel de controle. Gerencie suas informações e acesse seus favoritos salvos.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main class="container">
+
+    <section class="section perfil-section">
+        <h2 class="section__title">
+            Minhas Informações
+        </h2>
+        
+        <div class="profile-details-card">
+            <p><strong>Nome Completo:</strong> {{ profile.nome }}</p>
+            <p><strong>E-mail:</strong> {{ usuario.email }}</p>
+            <p><strong>Curso:</strong> {{ profile.curso }}</p>
+
+            <div class="logout-box">
+                <form method="post" action="{% url 'core:logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">
+                        Sair / Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section perfil-section">
+        <h2 class="section__title">
+            Favoritos Salvos
+        </h2>
+
+        <div class="cards-grid">
+            {% for fav in profile.favoritos %}
+            <div class="op-card favorite-item">
+                <div class="op-card__header">
+                    <span class="op-card__badge badge--purple">⭐</span>
+                    <h3 class="op-card__title">{{ fav.titulo }}</h3>
+                </div>
+
+                <p class="op-card__desc">{{ fav.tipo }}</p>
+                <a href="#" class="op-card__link">Ver Detalhes</a>
+            </div>
+            {% empty %}
+                <p class="favoritos-vazio">Você ainda não tem itens favoritos salvos.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+</main>
+
+{% endblock %}

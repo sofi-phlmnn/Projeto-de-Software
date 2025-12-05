@@ -1,13 +1,20 @@
-from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.http import Http404
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib import messages
+from .forms import RegistroForm # <-- IMPORTAÇÃO NECESSÁRIA
 
+from django.shortcuts import get_object_or_404
+from django.http import Http404
 from .models import Oportunidade, CategoriaOportunidade
 
 
-# --------------------------------------------------------------------
-# HOME
-# --------------------------------------------------------------------
+
+@login_required(login_url='core:login')
+
+
 def home(request):
     hero = {
         "titulo": "Bem-vindo ao Portal de Oportunidades da PUC-Rio!",
@@ -57,11 +64,11 @@ def home(request):
     ]
 
     categorias = [
-        {"class": "cat cat--orange", "label_html": "equipes",                  "href": reverse("core:equipes")},
+        {"class": "cat cat--orange", "label_html": "equipes",              "href": reverse("core:equipes")},
         {"class": "cat cat--blue",   "label_html": "iniciação<br/>científica", "href": reverse("core:iniciacao")},
         {"class": "cat cat--yellow", "label_html": "entidades<br/>estudantis", "href": reverse("core:entidades")},
         {"class": "cat cat--pink",   "label_html": "diretório<br/>acadêmico",  "href": reverse("core:diretorios")},
-        {"class": "cat cat--green",  "label_html": "estágio",                  "href": reverse("core:estagios")},
+        {"class": "cat cat--green",  "label_html": "estágio",              "href": reverse("core:estagios")},
     ]
 
     ctx = {
@@ -71,10 +78,6 @@ def home(request):
     }
     return render(request, "home.html", ctx)
 
-
-# --------------------------------------------------------------------
-# LISTAS POR TIPO
-# --------------------------------------------------------------------
 
 def equipes(request):
     """Lista de equipes de competição (usa equipe.html)."""
@@ -258,3 +261,108 @@ def mapa(request):
 
 def sobre(request):
     return render(request, "sobre.html")
+
+
+def iniciacao(request):
+    iniciacoes = [
+        {
+            "nome": "PIBIC – Iniciação Científica com Bolsa",
+            "descricao": (
+                "O PIBIC é o principal programa de iniciação científica da PUC-Rio, oferecendo bolsas "
+                "para estudantes que desejam desenvolver projetos de pesquisa com orientação docente."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li><strong>Duração:</strong> 12 meses de pesquisa</li>
+                <li><strong>Bolsa:</strong> Auxílio CNPq ou PUC</li>
+                <li><strong>Resultado:</strong> Seminários e publicações</li>
+            </ul>
+            """
+        },
+        {
+            "nome": "Laboratórios e Grupos de Pesquisa",
+            "descricao": (
+                "Os laboratórios da PUC-Rio oferecem ambientes de investigação em diversas áreas como "
+                "tecnologia, humanidades, saúde e comunicação."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li><strong>Participação:</strong> Com bolsa ou voluntária</li>
+                <li><strong>Inscrição:</strong> Via professor orientador</li>
+                <li><strong>Benefício:</strong> Experiência para mestrado e publicações</li>
+            </ul>
+            """
+        },
+        {
+            "nome": "ECOA – Inovação e Pesquisa Criativa",
+            "descricao": (
+                "O Instituto ECOA desenvolve projetos interdisciplinares envolvendo tecnologia, cultura, "
+                "sustentabilidade e arte, oferecendo experiências únicas aos alunos."
+            ),
+            "topicos_lista": """
+            <ul>
+                <li><strong>Diferencial:</strong> Pesquisa + Inovação</li>
+                <li><strong>Ambiente:</strong> Colaborativo e criativo</li>
+                <li><strong>Projetos:</strong> Exposições, mostras e prototipagem</li>
+            </ul>
+            """
+        },
+    ]
+
+    return render(request, "iniciacao.html", {"iniciacoes": iniciacoes})
+
+
+# -----------------------------------------------------------
+# VIEWS DE AUTENTICAÇÃO (Login, Cadastro, Perfil)
+# -----------------------------------------------------------
+
+@login_required(login_url='core:login')
+def perfil(request):
+    # DADOS DE TESTE (CONTEXTO)
+    perfil_dados = {
+        # Tenta usar o primeiro nome, senão usa o username
+        "nome": request.user.first_name if request.user.first_name else request.user.username,
+        "curso": "Engenharia de Software (8º Período)", 
+        "favoritos": [
+            {
+                "titulo": "Equipe RioBotz", 
+                "tipo": "Equipe de Competição"
+            },
+            {
+                "titulo": "Estágio Tech Solutions", 
+                "tipo": "Vaga de Estágio"
+            },
+            {
+                "titulo": "PIBIC em IA", 
+                "tipo": "Iniciação Científica"
+            },
+        ]
+    }
+    
+    context = {
+        "profile": perfil_dados, 
+        "usuario": request.user 
+    }
+    
+    # O nome do template é "perfil.html"
+    return render(request, "perfil.html", context) 
+
+
+def cadastro_view(request):
+    if request.method == "POST":
+        form = RegistroForm(request.POST) # Usa o formulário de segurança (RegistroForm)
+        if form.is_valid():
+            form.save() # Salva o usuário de forma segura (com hash de senha)
+            messages.success(request, "Cadastro realizado com sucesso! Faça login.")
+            return redirect("core:login")
+        else:
+            # Se não for válido, retorna o formulário com os erros
+            return render(request, "cadastro.html", {'form': form})
+   
+    # Se for um GET, cria um formulário vazio
+    else:
+        form = RegistroForm()
+
+
+    return render(request, "cadastro.html", {'form': form})
+

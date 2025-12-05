@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinculou - Cadastro</title>
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
+    <style>
+        /* CSS BÁSICO PARA EXIBIR ERROS E FORM.AS_P DE FORMA MAIS LIMPA */
+        .register-card p {
+            margin-bottom: 15px;
+        }
+        .register-card input[type="text"],
+        .register-card input[type="email"],
+        .register-card input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; 
+        }
+        .register-card ul.errorlist {
+            color: red;
+            font-size: 0.9em;
+            list-style: none;
+            padding-left: 0;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="{% static 'img/image-removebg-preview.png' %}" alt="Logo" class="sidebar-logo">
+            <div class="sidebar-title">Vinculou</div>
+        </div>
+        
+        <nav class="sidebar-menu">
+            <a href="{% url 'core:perfil' %}" class="menu-item">
+                <span class="menu-icon">👤</span>
+                <span class="menu-text">Perfil</span>
+            </a>
+        
+            <a href="{% url 'core:login' %}" class="menu-item">
+                <span class="menu-icon">👤</span>
+                <span class="menu-text">Login</span>
+            </a>
+            
+        </nav>
+    </div>
+
+    
+    <br/><br/>
+    <h1 class="welcome-message">
+        {% if usuario.is_authenticated %}
+            Bem-vindo(a) de volta, {{ usuario.first_name|default:usuario.username }}!
+        {% else %}
+            Bem-vinda(o)!
+        {% endif %}
+    </h1>
+    
+    <main class="main-content-container">
+        <div class="register-card">
+            <h2>Cadastre-se</h2>
+            
+        <form method="post" action="{% url 'core:cadastro' %}">
+            {% csrf_token %} 
+            
+            {{ form.as_p }} 
+
+            <button type="submit" class="create-account-button">
+                Criar conta
+            </button>
+            <p style="margin-top: 15px; font-size: 0.9em;">
+                Já tem uma conta? <a href="{% url 'core:login' %}">Faça Login aqui.</a>
+            </p>
+        </form>
+            </div>
+    </main>
+    
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const body = document.body;
+
+        if (menuToggle && sidebar && sidebarOverlay) {
+             menuToggle.addEventListener('click', function() {
+                sidebar.classList.add('active');
+                sidebarOverlay.classList.add('active');
+                body.classList.add('sidebar-open');
+            });
+
+            sidebarOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            });
+        }
+       
+
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                menuItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                
+                if (sidebar) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    body.classList.remove('sidebar-open');
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                if (sidebar) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    body.classList.remove('sidebar-open');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
